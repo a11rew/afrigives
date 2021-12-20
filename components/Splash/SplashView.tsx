@@ -1,4 +1,5 @@
 import { Image, StyleSheet } from "react-native";
+import normalize from "../../utils/normalize";
 import { View, Text } from "../Themed";
 
 const SplashView: React.FC = () => {
@@ -29,17 +30,17 @@ const styles = StyleSheet.create({
   },
   h1: {
     fontFamily: "ps-bold",
-    fontSize: 36,
+    fontSize: normalize(40),
     color: "#0C6D3D",
   },
   h2: {
     fontFamily: "ps-bold",
-    fontSize: 16,
+    fontSize: normalize(16),
   },
   sprite_1: {
     position: "absolute",
     alignSelf: "center",
-    bottom: -90,
+    bottom: normalize(-90),
   },
   sprite_2: {
     position: "absolute",
@@ -55,8 +56,8 @@ const styles = StyleSheet.create({
   sprite_3: {
     position: "absolute",
     alignSelf: "flex-end",
-    top: -30,
-    right: -50,
+    top: normalize(-30),
+    right: normalize(-50),
     transform: [{ rotateX: "180deg" }],
   },
 });
