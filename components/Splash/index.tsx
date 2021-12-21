@@ -14,25 +14,6 @@ import {
 } from "react-native";
 
 const AnimatedAppLoader: React.FC = ({ children }) => {
-  const [isSplashReady, setSplashReady] = React.useState(false);
-
-  const startAsync = async () => {
-    await Asset.fromModule(require("../../assets/sprites/splash_flower.png"));
-  };
-
-  const onFinish = React.useMemo(() => () => setSplashReady(true), []);
-
-  if (!isSplashReady) {
-    return (
-      <AppLoading
-        autoHideSplash={false}
-        startAsync={startAsync}
-        onError={console.error}
-        onFinish={onFinish}
-      />
-    );
-  }
-
   return <AnimatedSplashScreen>{children}</AnimatedSplashScreen>;
 };
 
@@ -51,21 +32,6 @@ const AnimatedSplashScreen: React.FC = ({ children }) => {
       }).start(() => setAnimationComplete(true));
     }
   }, [isAppReady]);
-
-  const onImageLoaded = React.useMemo(
-    () => async () => {
-      try {
-        await SplashScreen.hideAsync();
-        // Load stuff
-        await Promise.all([]);
-      } catch (e) {
-        // handle errors
-      } finally {
-        setAppReady(true);
-      }
-    },
-    []
-  );
 
   return <SplashView />;
 };
