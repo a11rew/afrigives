@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { AnimatedAppLoader } from "./components/Splash";
 
 import useCachedResources from "./hooks/useCachedResources";
@@ -14,12 +14,14 @@ export default function App() {
     return null;
   } else {
     return (
-      <AnimatedAppLoader>
-        <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaProvider>
-      </AnimatedAppLoader>
+      <SafeAreaProvider>
+        <SafeAreaView style={{ flex: 1 }}>
+          <AnimatedAppLoader>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+          </AnimatedAppLoader>
+        </SafeAreaView>
+      </SafeAreaProvider>
     );
   }
 }

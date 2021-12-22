@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
   h2: {
     fontFamily: "ps-bold",
     fontSize: normalize(16),
-    marginBottom: normalize(100),
   },
   sprite_1: {
     position: "absolute",
