@@ -61,8 +61,9 @@ const SplashView: React.FC<{
   }));
 
   useEffect(() => {
-    setTimeout(() => move(), 400);
-    setTimeout(() => exit(true), 1200);
+    move();
+    setTimeout(() => reset(), 1200);
+    setTimeout(() => exit(true), 2000);
   }, []);
 
   return (
