@@ -8,7 +8,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { useEffect } from "react";
 
-const SplashView: React.FC = () => {
+const SplashView: React.FC<{
+  exit: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ exit }) => {
   const positions = useSharedValue({
     sp_1: normalize(-300),
     sp_2: normalize(-300),
@@ -59,7 +61,8 @@ const SplashView: React.FC = () => {
   }));
 
   useEffect(() => {
-    setTimeout(() => move(), 500);
+    setTimeout(() => move(), 400);
+    setTimeout(() => exit(true), 1200);
   }, []);
 
   return (
@@ -105,11 +108,12 @@ const styles = StyleSheet.create({
   h2: {
     fontFamily: "ps-bold",
     fontSize: normalize(16),
+    marginBottom: normalize(100),
   },
   sprite_1: {
     position: "absolute",
     alignSelf: "center",
-    // bottom: normalize(-90),
+    bottom: normalize(-90),
   },
   sprite_2: {
     position: "absolute",
