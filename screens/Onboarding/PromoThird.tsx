@@ -29,11 +29,12 @@ const PromoThird = (props: Props) => {
             style={{
               position: "absolute",
               resizeMode: "contain",
-              height: normalize(314),
+              height: normalize(260),
               aspectRatio: 1,
-              bottom: -5,
+
+              // bottom: -5,
             }}
-            source={require("../../assets/sprites/arms/arm1.png")}
+            source={require("../../assets/sprites/arms/arm_3.png")}
           />
         </View>
 
