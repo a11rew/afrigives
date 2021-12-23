@@ -69,7 +69,6 @@ const Onbooarding = (props: Props): JSX.Element => {
   // Handle back button when focused and relinquish when not
   useFocusEffect(
     React.useCallback(() => {
-      console.log("WE got called");
       const backHandler = BackHandler.addEventListener(
         "hardwareBackPress",
         moveBackward
@@ -89,7 +88,6 @@ const Onbooarding = (props: Props): JSX.Element => {
     }
   };
   const moveBackward = () => {
-    console.log("called");
     if (position > 0) {
       setPosition((e) => {
         offset.value = (1 - e) * Dimensions.get("screen").width;
@@ -134,7 +132,15 @@ const Onbooarding = (props: Props): JSX.Element => {
             }
           >
             {position === 2 ? (
-              <Text style={{ color: "white" }}>Register to donate</Text>
+              <Text
+                style={{
+                  color: "white",
+                  fontFamily: "ps-bold",
+                  fontSize: normalize(14),
+                }}
+              >
+                Register to donate
+              </Text>
             ) : (
               <Icon name="arrowright" color="#fff" size={20} />
             )}
@@ -219,7 +225,7 @@ const styles = StyleSheet.create({
 
   loginText: {
     fontFamily: "ps-bold",
-    fontSize: normalize(16),
+    fontSize: normalize(14),
     marginTop: "12%",
   },
 

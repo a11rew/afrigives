@@ -15,9 +15,8 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
+    "jsEngine": "hermes",
     "ios": {
       "supportsTablet": true
     },
@@ -26,7 +25,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.andrewhga.afrigives"
+      "package": "com.andrewglago.afrigives"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
