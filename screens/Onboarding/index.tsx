@@ -10,10 +10,6 @@ interface Props {}
 const Onbooarding = (props: Props): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Text style={styles.h1}>
-        Donate clothes easily to countries across Africa
-      </Text>
-
       <View>
         <PromoFirst />
       </View>
@@ -53,14 +49,14 @@ const styles = StyleSheet.create({
     color: "#0C6D3D",
     paddingHorizontal: normalize(80),
     textAlign: "center",
-    marginBottom: normalize(97),
+    marginBottom: "15%",
   },
 
   carousel: {
     justifyContent: "center",
     flexDirection: "row",
-    marginBottom: normalize(32),
-    marginTop: normalize(84),
+    marginBottom: "7%",
+    marginTop: "15%",
   },
 
   carouselDot: {

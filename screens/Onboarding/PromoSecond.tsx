@@ -5,11 +5,11 @@ import normalize from "../../utils/normalize";
 
 interface Props {}
 
-const PromoFirst = (props: Props) => {
+const PromoSecond = (props: Props) => {
   return (
     <>
       <Text style={styles.h1}>
-        Donate clothes easily to countries across Africa
+        Donate in solidarity to support places in need
       </Text>
       <View style={styles.centerContainer}>
         <View style={styles.center}>
@@ -38,8 +38,8 @@ const PromoFirst = (props: Props) => {
         </View>
 
         <View style={styles.promoText}>
-          <Text style={styles.promoH1}>Photo: Uniform for Kids Campaign</Text>
-          <Text style={styles.promoH2}>$2,335 worth donated</Text>
+          <Text style={styles.promoH1}>Photo: Jalabunga Wildfire Relief</Text>
+          <Text style={styles.promoH2}>$5,410 worth donated</Text>
         </View>
       </View>
     </>
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PromoFirst;
+export default PromoSecond;
