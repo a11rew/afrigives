@@ -113,51 +113,53 @@ const Onbooarding = (props: Props): JSX.Element => {
 
       <PromoView offsetAnimate={offsetAnimate} position={position} />
 
-      <View style={styles.carouselDots}>
-        <CarouselDot active={position === 0} />
-        <CarouselDot active={position === 1} />
-        <CarouselDot active={position === 2} />
-      </View>
+      <View style={{ flex: 1, justifyContent: "space-evenly" }}>
+        <View style={styles.carouselDots}>
+          <CarouselDot active={position === 0} />
+          <CarouselDot active={position === 1} />
+          <CarouselDot active={position === 2} />
+        </View>
 
-      <View style={{ alignItems: "center" }}>
-        <Animated.View style={[widthAnimate]}>
-          <TouchableOpacity
-            style={styles.actionButton}
-            onPress={
-              position === 2
-                ? () => {
-                    navigation.navigate("Signup");
-                  }
-                : moveForward
-            }
-          >
-            {position === 2 ? (
-              <Text
-                style={{
-                  color: "white",
-                  fontFamily: "ps-bold",
-                  fontSize: normalize(14),
-                }}
-              >
-                Register to donate
-              </Text>
-            ) : (
-              <Icon name="arrowright" color="#fff" size={20} />
-            )}
-          </TouchableOpacity>
-        </Animated.View>
+        <View style={{ alignItems: "center" }}>
+          <Animated.View style={[widthAnimate]}>
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={
+                position === 2
+                  ? () => {
+                      navigation.navigate("Signup");
+                    }
+                  : moveForward
+              }
+            >
+              {position === 2 ? (
+                <Text
+                  style={{
+                    color: "white",
+                    fontFamily: "ps-bold",
+                    fontSize: normalize(14),
+                  }}
+                >
+                  Register to donate
+                </Text>
+              ) : (
+                <Icon name="arrowright" color="#fff" size={20} />
+              )}
+            </TouchableOpacity>
+          </Animated.View>
 
-        <View>
-          <Pressable
-            disabled={position !== 2}
-            onPress={() => {
-              navigation.navigate("Login");
-            }}
-          >
-            <Animated.Text style={[styles.loginText, loginAnimate]}>
-              Already have an account? Login
-            </Animated.Text>
-          </Pressable>
+          <View>
+            <Pressable
+              disabled={position !== 2}
+              onPress={() => {
+                navigation.navigate("Login");
+              }}
+            >
+              <Animated.Text style={[styles.loginText, loginAnimate]}>
+                Already have an account? Login
+              </Animated.Text>
+            </Pressable>
+          </View>
         </View>
       </View>
     </View>
@@ -176,8 +178,8 @@ const CarouselDot = ({ active }: { active?: boolean }) => (
 const styles = StyleSheet.create({
   logoContainer: {
     position: "relative",
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: "7%",
+    marginBottom: "2%",
     alignItems: "center",
     borderBottomWidth: 0,
     shadowOpacity: 0,
@@ -194,7 +196,7 @@ const styles = StyleSheet.create({
 
   logo: {
     fontFamily: "ps-bold",
-    fontSize: 24,
+    fontSize: normalize(26),
     color: "#0C6D3D",
     textAlign: "center",
   },
@@ -212,8 +214,6 @@ const styles = StyleSheet.create({
   carouselDots: {
     justifyContent: "center",
     flexDirection: "row",
-    marginBottom: "7%",
-    marginTop: "15%",
   },
 
   carouselDot: {

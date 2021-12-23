@@ -7,7 +7,7 @@ interface Props {}
 
 const PromoThird = (props: Props) => {
   return (
-    <View style={{ width: "100%" }}>
+    <View style={{ width: "100%", justifyContent: "space-between" }}>
       <Text style={styles.h1}>
         Donate with family and friends in donation groups
       </Text>
@@ -31,8 +31,6 @@ const PromoThird = (props: Props) => {
               resizeMode: "contain",
               height: normalize(260),
               aspectRatio: 1,
-
-              // bottom: -5,
             }}
             source={require("../../assets/sprites/arms/arm_3.png")}
           />

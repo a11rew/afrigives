@@ -7,7 +7,7 @@ interface Props {}
 
 const PromoFirst = (props: Props) => {
   return (
-    <View style={{ width: "100%" }}>
+    <View style={{ width: "100%", justifyContent: "space-between" }}>
       <Text style={styles.h1}>
         Donate clothes easily to countries across Africa
       </Text>

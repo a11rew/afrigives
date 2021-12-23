@@ -7,7 +7,12 @@ interface Props {}
 
 const PromoSecond = (props: Props) => {
   return (
-    <View style={{ width: "100%" }}>
+    <View
+      style={{
+        width: "100%",
+        justifyContent: "space-between",
+      }}
+    >
       <Text style={styles.h1}>
         Donate in solidarity to support places in need
       </Text>
@@ -31,7 +36,7 @@ const PromoSecond = (props: Props) => {
               resizeMode: "contain",
               height: normalize(260),
               aspectRatio: 1,
-              bottom: 2,
+              bottom: 1,
             }}
             source={require("../../assets/sprites/arms/arm_2.png")}
           />
@@ -51,7 +56,7 @@ const styles = StyleSheet.create({
     fontFamily: "ps-bold",
     paddingHorizontal: normalize(80),
     textAlign: "center",
-    marginBottom: "15%",
+    // marginBottom: "15%",
   },
 
   h2: {
