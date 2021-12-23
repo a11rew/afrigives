@@ -5,11 +5,11 @@ import normalize from "../../utils/normalize";
 
 interface Props {}
 
-const PromoSecond = (props: Props) => {
+const PromoThird = (props: Props) => {
   return (
     <View style={{ width: "100%" }}>
       <Text style={styles.h1}>
-        Donate in solidarity to support places in need
+        Donate with family and friends in donation groups
       </Text>
       <View style={styles.centerContainer}>
         <View style={styles.center}>
@@ -22,7 +22,7 @@ const PromoSecond = (props: Props) => {
             <Image
               style={styles.promoImage}
               resizeMode="cover"
-              source={require("../../assets/stock/wrf.png")}
+              source={require("../../assets/stock/wmn.png")}
             />
           </View>
           <Image
@@ -38,8 +38,8 @@ const PromoSecond = (props: Props) => {
         </View>
 
         <View style={styles.promoText}>
-          <Text style={styles.promoH1}>Photo: Jalabunga Wildfire Relief</Text>
-          <Text style={styles.promoH2}>$5,410 worth donated</Text>
+          <Text style={styles.promoH1}>Photo: Cloth the Old Campaign</Text>
+          <Text style={styles.promoH2}>$3,829 worth donated</Text>
         </View>
       </View>
     </View>
@@ -104,4 +104,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PromoSecond;
+export default PromoThird;

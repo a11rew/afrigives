@@ -7,7 +7,7 @@ interface Props {}
 
 const PromoFirst = (props: Props) => {
   return (
-    <>
+    <View style={{ width: "100%" }}>
       <Text style={styles.h1}>
         Donate clothes easily to countries across Africa
       </Text>
@@ -42,7 +42,7 @@ const PromoFirst = (props: Props) => {
           <Text style={styles.promoH2}>$2,335 worth donated</Text>
         </View>
       </View>
-    </>
+    </View>
   );
 };
 
