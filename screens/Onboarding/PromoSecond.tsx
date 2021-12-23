@@ -49,7 +49,6 @@ const PromoSecond = (props: Props) => {
 const styles = StyleSheet.create({
   h1: {
     fontFamily: "ps-bold",
-    color: "#0C6D3D",
     paddingHorizontal: normalize(80),
     textAlign: "center",
     marginBottom: "15%",

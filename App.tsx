@@ -1,3 +1,4 @@
+import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { AnimatedAppLoader } from "./components/Splash";
@@ -5,6 +6,7 @@ import { AnimatedAppLoader } from "./components/Splash";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
+import { View } from "./components/Themed";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -15,12 +17,12 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1 }}>
-          <AnimatedAppLoader>
-            <Navigation colorScheme={colorScheme} />
-            <StatusBar />
-          </AnimatedAppLoader>
-        </SafeAreaView>
+        {/* <SafeAreaView style={{ flex: 1 }}> */}
+        <AnimatedAppLoader>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+        </AnimatedAppLoader>
+        {/* </SafeAreaView> */}
       </SafeAreaProvider>
     );
   }

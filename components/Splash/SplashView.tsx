@@ -7,10 +7,11 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { useEffect } from "react";
+import { SharedElement } from "react-navigation-shared-element";
 
 const SplashView: React.FC<{
   exit: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ exit }) => {
+}> = ({ navigation }) => {
   const positions = useSharedValue({
     sp_1: normalize(-300),
     sp_2: normalize(-300),
@@ -63,12 +64,14 @@ const SplashView: React.FC<{
   useEffect(() => {
     move();
     setTimeout(() => reset(), 1200);
-    setTimeout(() => exit(true), 2000);
+    setTimeout(() => navigation.navigate("SplashOnboard"), 2000);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.h1}>Afrigives</Text>
+      <SharedElement id="afriLogo">
+        <Text style={styles.h1}>Afrigives</Text>
+      </SharedElement>
       <Animated.Text style={[styles.h2, Anim_Text]}>Community</Animated.Text>
       <Animated.Image
         style={[styles.sprite_1, Anim_1]}
@@ -81,16 +84,6 @@ const SplashView: React.FC<{
         style={[styles.sprite_3, Anim_3]}
         source={require("../../assets/sprites/splash_flower.png")}
       />
-
-      {/* <TouchableOpacity
-        style={{ paddingTop: 100, paddingBottom: 20 }}
-        onPress={move}
-      >
-        <Text>Move</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={reset}>
-        <Text>Reset</Text>
-      </TouchableOpacity> */}
     </View>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  BackHandler,
   Button,
   Dimensions,
   Easing,
@@ -20,11 +21,14 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
+import { SharedElement } from "react-navigation-shared-element";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {}
 
 const Onbooarding = (props: Props): JSX.Element => {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   const [position, setPosition] = useState(0);
 
   const animWidth = useSharedValue((39 / 100) * Dimensions.get("screen").width);
@@ -42,6 +46,11 @@ const Onbooarding = (props: Props): JSX.Element => {
     opacity: withTiming(loginOpacity.value),
   }));
 
+  const backOpacity = useSharedValue(0);
+  const backAnimate = useAnimatedStyle(() => ({
+    opacity: withTiming(backOpacity.value),
+  }));
+
   useEffect(() => {
     if (position === 2) {
       animWidth.value = (90 / 100) * Dimensions.get("screen").width;
@@ -50,6 +59,21 @@ const Onbooarding = (props: Props): JSX.Element => {
       animWidth.value = (39 / 100) * Dimensions.get("screen").width;
       loginOpacity.value = 0;
     }
+
+    if (position > 0) {
+      backOpacity.value = 1;
+    } else {
+      backOpacity.value = 0;
+    }
+  }, [position]);
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      moveBackward
+    );
+
+    return () => backHandler.remove();
   }, [position]);
 
   const moveForward = () => {
@@ -67,11 +91,32 @@ const Onbooarding = (props: Props): JSX.Element => {
         offset.value = (1 - e) * Dimensions.get("screen").width;
         return e - 1;
       });
+    } else {
     }
+    return true;
   };
 
   return (
-    <View style={styles.container}>
+    <View
+      style={{
+        ...styles.container,
+        paddingTop: insets.top,
+        paddingLeft: insets.left,
+        paddingRight: insets.right,
+        paddingBottom: insets.bottom,
+      }}
+    >
+      <View style={styles.logoContainer}>
+        <SharedElement id="afriLogo">
+          <Text style={styles.logo}>Afrigives</Text>
+        </SharedElement>
+        <Animated.View style={[styles.backButton, backAnimate]}>
+          <Pressable style={styles.backButton} onPress={moveBackward}>
+            <Icon name="arrowleft" size={20} />
+          </Pressable>
+        </Animated.View>
+      </View>
+
       <Animated.View style={[{ ...styles.carousel }, offsetAnimate]}>
         <PromoFirst />
         <PromoSecond />
@@ -103,9 +148,7 @@ const Onbooarding = (props: Props): JSX.Element => {
             )}
           </TouchableOpacity>
         </Animated.View>
-        {/* <TouchableOpacity onPress={moveBackward} style={styles.actionButton}>
-          <Text>Backwards</Text>
-        </TouchableOpacity> */}
+
         <View>
           <Pressable
             disabled={position !== 2}
@@ -133,14 +176,36 @@ const CarouselDot = ({ active }: { active?: boolean }) => (
 );
 
 const styles = StyleSheet.create({
+  logoContainer: {
+    position: "relative",
+    marginTop: 20,
+    marginBottom: 10,
+    alignItems: "center",
+    borderBottomWidth: 0,
+    shadowOpacity: 0,
+    backgroundColor: "transparent",
+  },
+
+  backButton: {
+    position: "absolute",
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    left: 10,
+  },
+
+  logo: {
+    fontFamily: "ps-bold",
+    fontSize: 24,
+    color: "#0C6D3D",
+    textAlign: "center",
+  },
   container: {
     flex: 1,
-    paddingTop: 60,
   },
 
   h1: {
     fontFamily: "ps-bold",
-    color: "#0C6D3D",
     paddingHorizontal: normalize(80),
     textAlign: "center",
     marginBottom: "15%",
