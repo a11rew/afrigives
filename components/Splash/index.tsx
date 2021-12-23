@@ -6,28 +6,26 @@ import { createSharedElementStackNavigator } from "react-navigation-shared-eleme
 import Onbooarding from "../../screens/Onboarding";
 import SplashView from "./SplashView";
 
-const SplashStack = createSharedElementStackNavigator();
+const Stack = createSharedElementStackNavigator();
 
-const AnimatedAppLoader = ({ children }: { children: React.ReactNode }) => {
+const SplashStack = ({ children }: { children: React.ReactNode }) => {
   return (
-    <NavigationContainer>
-      <SplashStack.Navigator
-        initialRouteName="SplashView"
-        screenOptions={{ headerShown: false }}
-      >
-        <SplashStack.Screen name="SplashView" component={SplashView} />
-        <SplashStack.Screen
-          name="SplashOnboard"
-          component={Onbooarding}
-          sharedElements={() => [
-            {
-              id: "afriLogo",
-            },
-          ]}
-        />
-      </SplashStack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouteName="SplashView"
+      screenOptions={{ headerShown: false }}
+    >
+      <Stack.Screen name="SplashView" component={SplashView} />
+      <Stack.Screen
+        name="SplashOnboard"
+        component={Onbooarding}
+        sharedElements={() => [
+          {
+            id: "afriLogo",
+          },
+        ]}
+      />
+    </Stack.Navigator>
   );
 };
 
-export { AnimatedAppLoader };
+export { SplashStack };

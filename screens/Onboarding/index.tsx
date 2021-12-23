@@ -11,34 +11,27 @@ import {
 import { Text, View } from "../../components/Themed";
 import Icon from "react-native-vector-icons/AntDesign";
 import normalize from "../../utils/normalize";
-import PromoFirst from "./PromoFirst";
-import PromoSecond from "./PromoSecond";
-import PromoThird from "./PromoThird";
+
 import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { SharedElement } from "react-navigation-shared-element";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import PromoView from "./PromoView";
 
 interface Props {}
 
 const Onbooarding = (props: Props): JSX.Element => {
+  // Element animations
   const navigation = useNavigation();
-  const insets = useSafeAreaInsets();
   const [position, setPosition] = useState(0);
 
   const animWidth = useSharedValue((39 / 100) * Dimensions.get("screen").width);
   const widthAnimate = useAnimatedStyle(() => ({
     width: withTiming(animWidth.value),
-  }));
-
-  const offset = useSharedValue(position);
-  const offsetAnimate = useAnimatedStyle(() => ({
-    transform: [{ translateX: withTiming(offset.value) }],
   }));
 
   const loginOpacity = useSharedValue(0);
@@ -51,6 +44,12 @@ const Onbooarding = (props: Props): JSX.Element => {
     opacity: withTiming(backOpacity.value),
   }));
 
+  const offset = useSharedValue(position);
+  const offsetAnimate = useAnimatedStyle(() => ({
+    transform: [{ translateX: withTiming(offset.value) }],
+  }));
+
+  // Carousel effect
   useEffect(() => {
     if (position === 2) {
       animWidth.value = (90 / 100) * Dimensions.get("screen").width;
@@ -67,15 +66,20 @@ const Onbooarding = (props: Props): JSX.Element => {
     }
   }, [position]);
 
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      moveBackward
-    );
+  // Handle back button when focused and relinquish when not
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log("WE got called");
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        moveBackward
+      );
 
-    return () => backHandler.remove();
-  }, [position]);
+      return () => backHandler.remove();
+    }, [position])
+  );
 
+  // Carousel effect functions
   const moveForward = () => {
     if (position < 2) {
       setPosition((e) => {
@@ -84,8 +88,8 @@ const Onbooarding = (props: Props): JSX.Element => {
       });
     }
   };
-
   const moveBackward = () => {
+    console.log("called");
     if (position > 0) {
       setPosition((e) => {
         offset.value = (1 - e) * Dimensions.get("screen").width;
@@ -97,15 +101,7 @@ const Onbooarding = (props: Props): JSX.Element => {
   };
 
   return (
-    <View
-      style={{
-        ...styles.container,
-        paddingTop: insets.top,
-        paddingLeft: insets.left,
-        paddingRight: insets.right,
-        paddingBottom: insets.bottom,
-      }}
-    >
+    <View style={styles.container}>
       <View style={styles.logoContainer}>
         <SharedElement id="afriLogo">
           <Text style={styles.logo}>Afrigives</Text>
@@ -117,11 +113,7 @@ const Onbooarding = (props: Props): JSX.Element => {
         </Animated.View>
       </View>
 
-      <Animated.View style={[{ ...styles.carousel }, offsetAnimate]}>
-        <PromoFirst />
-        <PromoSecond />
-        <PromoThird />
-      </Animated.View>
+      <PromoView offsetAnimate={offsetAnimate} position={position} />
 
       <View style={styles.carouselDots}>
         <CarouselDot active={position === 0} />
@@ -209,12 +201,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: normalize(80),
     textAlign: "center",
     marginBottom: "15%",
-  },
-
-  carousel: {
-    flexDirection: "row",
-    // justifyContent: "center",
-    backgroundColor: "red",
   },
 
   carouselDots: {

@@ -1,7 +1,6 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { AnimatedAppLoader } from "./components/Splash";
 
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
@@ -17,12 +16,10 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        {/* <SafeAreaView style={{ flex: 1 }}> */}
-        <AnimatedAppLoader>
+        <SafeAreaView style={{ flex: 1 }}>
           <Navigation colorScheme={colorScheme} />
           <StatusBar />
-        </AnimatedAppLoader>
-        {/* </SafeAreaView> */}
+        </SafeAreaView>
       </SafeAreaProvider>
     );
   }
