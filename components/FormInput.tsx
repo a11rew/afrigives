@@ -53,6 +53,7 @@ export const FormProtectedInput = ({ label, style, ...props }: Props) => {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
+            ...(style as any),
           },
         ]}
       >
@@ -65,7 +66,7 @@ export const FormProtectedInput = ({ label, style, ...props }: Props) => {
               offset.value = 10;
             }
           }}
-          style={[{ width: "90%", fontFamily: "ps" }, style]}
+          style={[{ width: "90%", fontFamily: "ps" }]}
           placeholderTextColor="#3B3B3B"
           {...props}
         />

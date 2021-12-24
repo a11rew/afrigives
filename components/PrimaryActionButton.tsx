@@ -1,6 +1,11 @@
 import React from "react";
-import { StyleSheet, TouchableOpacityProps } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  Pressable,
+  PressableProps,
+  StyleSheet,
+  TouchableOpacityProps,
+  TouchableOpacity,
+} from "react-native";
 import { Text } from "./Themed";
 import normalize from "../utils/normalize";
 

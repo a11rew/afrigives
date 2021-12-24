@@ -5,48 +5,104 @@ import FormInput, { FormProtectedInput } from "../../components/FormInput";
 import HeaderWithBack from "../../components/HeaderWithBack";
 import PrimaryActionButton from "../../components/PrimaryActionButton";
 import { Text, View } from "../../components/Themed";
+import { useForm, Controller } from "react-hook-form";
 import normalize from "../../utils/normalize";
 
 interface Props {}
 
-const Login = (props: Props): JSX.Element => (
-  <View style={styles.container}>
-    <HeaderWithBack title="Login">Glad you're back</HeaderWithBack>
-    <View style={styles.formContainer}>
-      <FormInput label="Email" textContentType="emailAddress" />
-      <FormProtectedInput label="Password" />
-      <View style={{ marginTop: 20 }}>
-        <PrimaryActionButton>Start donating</PrimaryActionButton>
-      </View>
+const Login = (props: Props): JSX.Element => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-      <TouchableOpacity style={{}}>
-        <Text
-          style={{
-            fontFamily: "ps-bold",
-            color: "#0C6D3D",
-            textAlign: "center",
-            fontSize: normalize(14),
-            marginTop: normalize(36),
+  return (
+    <View style={styles.container}>
+      <HeaderWithBack title="Login">Glad you're back</HeaderWithBack>
+      <View style={styles.formContainer}>
+        <Controller
+          control={control}
+          name="email"
+          rules={{
+            required: true,
+            pattern: {
+              value:
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: "Must be a valid email address",
+            },
           }}
-        >
-          Forgotten password?
-        </Text>
-      </TouchableOpacity>
-    </View>
-    <View style={styles.tos}>
-      <TouchableOpacity style={{}}>
-        <Text
-          style={{
-            fontFamily: "ps-bold",
-            color: "#0C6D3D",
+          render={({ field: { onBlur, onChange, value } }) => (
+            <FormInput
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              label="Email"
+              textContentType="emailAddress"
+              style={{ borderColor: errors.email ? "red" : "#CCC" }}
+            />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="password"
+          rules={{
+            required: true,
+            // minLength: {
+            //   value: 8,
+            //   message: "Password must be at least 8 characters",
+            // },
           }}
-        >
-          Terms of Service and Privacy Policy
-        </Text>
-      </TouchableOpacity>
+          render={({ field: { onBlur, onChange, value } }) => (
+            <FormProtectedInput
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              label="Password"
+              style={{ borderColor: errors.password ? "red" : "#CCC" }}
+            />
+          )}
+        />
+
+        <View style={{ marginTop: 20 }}>
+          <PrimaryActionButton>Start donating</PrimaryActionButton>
+        </View>
+
+        <TouchableOpacity style={{}}>
+          <Text
+            style={{
+              fontFamily: "ps-bold",
+              color: "#0C6D3D",
+              textAlign: "center",
+              fontSize: normalize(14),
+              marginTop: normalize(36),
+            }}
+          >
+            Forgotten password?
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.tos}>
+        <TouchableOpacity style={{}}>
+          <Text
+            style={{
+              fontFamily: "ps-bold",
+              color: "#0C6D3D",
+            }}
+          >
+            Terms of Service and Privacy Policy
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: { flex: 1 },

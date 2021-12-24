@@ -10,13 +10,21 @@ const SplashStack = ({ children }: { children: React.ReactNode }) => (
     <Stack.Screen
       name="SplashView"
       component={SplashView}
-      // sharedElements={() => [
-      //   {
-      //     id: "afriLogo",
-      //   },
-      // ]}
+      sharedElements={() => [
+        {
+          id: "afriLogo",
+        },
+      ]}
     />
-    <Stack.Screen name="SplashOnboard" component={Onbooarding} />
+    <Stack.Screen
+      name="SplashOnboard"
+      component={Onbooarding}
+      sharedElements={() => [
+        {
+          id: "afriLogo",
+        },
+      ]}
+    />
   </Stack.Navigator>
 );
 
