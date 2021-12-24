@@ -1,13 +1,9 @@
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import normalize from "../../utils/normalize";
-import { View, Text } from "../Themed";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
+import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { useEffect } from "react";
 import { SharedElement } from "react-navigation-shared-element";
+import { View, Text } from "../Themed";
+import normalize from "../../utils/normalize";
 
 const SplashView: React.FC<{
   exit: React.Dispatch<React.SetStateAction<boolean>>;

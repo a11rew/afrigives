@@ -8,9 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import { Text, View } from "../../components/Themed";
 import Icon from "react-native-vector-icons/AntDesign";
-import normalize from "../../utils/normalize";
 
 import Animated, {
   interpolate,
@@ -20,6 +18,8 @@ import Animated, {
 } from "react-native-reanimated";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { SharedElement } from "react-navigation-shared-element";
+import normalize from "../../utils/normalize";
+import { Text, View } from "../../components/Themed";
 import PromoView from "./PromoView";
 
 interface Props {}
@@ -69,13 +69,10 @@ const Onbooarding = (props: Props): JSX.Element => {
   // Handle back button when focused and relinquish when not
   useFocusEffect(
     React.useCallback(() => {
-      const backHandler = BackHandler.addEventListener(
-        "hardwareBackPress",
-        moveBackward
-      );
+      const backHandler = BackHandler.addEventListener("hardwareBackPress", moveBackward);
 
       return () => backHandler.remove();
-    }, [position])
+    }, [position]),
   );
 
   // Carousel effect functions

@@ -1,30 +1,22 @@
 import React from "react";
 import { StyleSheet, TouchableOpacityProps } from "react-native";
-import { Text } from "./Themed";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Text } from "./Themed";
 import normalize from "../utils/normalize";
 
-interface Props extends TouchableOpacityProps {}
+type Props = TouchableOpacityProps;
 
-const PrimaryActionButton: React.FC<Props> = ({
-  disabled,
-  children,
-  ...rest
-}) => {
-  return (
-    <TouchableOpacity
-      style={{
-        ...styles.button,
-        backgroundColor: disabled
-          ? "rgba(12, 109, 61, 0.4)"
-          : "rgba(12, 109, 61, 1)",
-      }}
-      {...(rest as any)}
-    >
-      <Text style={styles.text}>{children}</Text>
-    </TouchableOpacity>
-  );
-};
+const PrimaryActionButton: React.FC<Props> = ({ disabled, children, ...rest }) => (
+  <TouchableOpacity
+    style={{
+      ...styles.button,
+      backgroundColor: disabled ? "rgba(12, 109, 61, 0.4)" : "rgba(12, 109, 61, 1)",
+    }}
+    {...(rest as any)}
+  >
+    <Text style={styles.text}>{children}</Text>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   text: {

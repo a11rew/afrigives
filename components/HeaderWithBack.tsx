@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { View, Text } from "./Themed";
 import { Pressable, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
+import { View, Text } from "./Themed";
 import normalize from "../utils/normalize";
 
 interface Props {

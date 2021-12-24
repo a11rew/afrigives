@@ -5,45 +5,41 @@ import normalize from "../../utils/normalize";
 
 interface Props {}
 
-const PromoThird = (props: Props) => {
-  return (
-    <View style={{ width: "100%", justifyContent: "space-between" }}>
-      <Text style={styles.h1}>
-        Donate with family and friends in donation groups
-      </Text>
-      <View style={styles.centerContainer}>
-        <View style={styles.center}>
-          <View style={{ position: "relative" }}>
-            <Image
-              style={{ zIndex: -10 }}
-              resizeMode="cover"
-              source={require("../../assets/sprites/center.png")}
-            ></Image>
-            <Image
-              style={styles.promoImage}
-              resizeMode="cover"
-              source={require("../../assets/stock/wmn.png")}
-            />
-          </View>
+const PromoThird = (props: Props) => (
+  <View style={{ width: "100%", justifyContent: "space-between" }}>
+    <Text style={styles.h1}>Donate with family and friends in donation groups</Text>
+    <View style={styles.centerContainer}>
+      <View style={styles.center}>
+        <View style={{ position: "relative" }}>
           <Image
-            style={{
-              position: "absolute",
-              resizeMode: "contain",
-              height: normalize(260),
-              aspectRatio: 1,
-            }}
-            source={require("../../assets/sprites/arms/arm_3.png")}
+            style={{ zIndex: -10 }}
+            resizeMode="cover"
+            source={require("../../assets/sprites/center.png")}
+          />
+          <Image
+            style={styles.promoImage}
+            resizeMode="cover"
+            source={require("../../assets/stock/wmn.png")}
           />
         </View>
+        <Image
+          style={{
+            position: "absolute",
+            resizeMode: "contain",
+            height: normalize(260),
+            aspectRatio: 1,
+          }}
+          source={require("../../assets/sprites/arms/arm_3.png")}
+        />
+      </View>
 
-        <View style={styles.promoText}>
-          <Text style={styles.promoH1}>Photo: Cloth the Old Campaign</Text>
-          <Text style={styles.promoH2}>$3,829 worth donated</Text>
-        </View>
+      <View style={styles.promoText}>
+        <Text style={styles.promoH1}>Photo: Cloth the Old Campaign</Text>
+        <Text style={styles.promoH2}>$3,829 worth donated</Text>
       </View>
     </View>
-  );
-};
+  </View>
+);
 
 const styles = StyleSheet.create({
   h1: {

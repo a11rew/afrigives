@@ -13,14 +13,13 @@ export default function App() {
 
   if (!isLoadingComplete) {
     return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1 }}>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaView>
-      </SafeAreaProvider>
-    );
   }
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar />
+      </SafeAreaView>
+    </SafeAreaProvider>
+  );
 }

@@ -9,46 +9,44 @@ import normalize from "../../utils/normalize";
 
 interface Props {}
 
-const Login = (props: Props): JSX.Element => {
-  return (
-    <View style={styles.container}>
-      <HeaderWithBack title="Login">Glad you're back</HeaderWithBack>
-      <View style={styles.formContainer}>
-        <FormInput label="Email" textContentType="emailAddress" />
-        <FormProtectedInput label="Password" />
-        <View style={{ marginTop: 20 }}>
-          <PrimaryActionButton>Start donating</PrimaryActionButton>
-        </View>
+const Login = (props: Props): JSX.Element => (
+  <View style={styles.container}>
+    <HeaderWithBack title="Login">Glad you're back</HeaderWithBack>
+    <View style={styles.formContainer}>
+      <FormInput label="Email" textContentType="emailAddress" />
+      <FormProtectedInput label="Password" />
+      <View style={{ marginTop: 20 }}>
+        <PrimaryActionButton>Start donating</PrimaryActionButton>
+      </View>
 
-        <TouchableOpacity style={{}}>
-          <Text
-            style={{
-              fontFamily: "ps-bold",
-              color: "#0C6D3D",
-              textAlign: "center",
-              fontSize: normalize(14),
-              marginTop: normalize(36),
-            }}
-          >
-            Forgotten password?
-          </Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.tos}>
-        <TouchableOpacity style={{}}>
-          <Text
-            style={{
-              fontFamily: "ps-bold",
-              color: "#0C6D3D",
-            }}
-          >
-            Terms of Service and Privacy Policy
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={{}}>
+        <Text
+          style={{
+            fontFamily: "ps-bold",
+            color: "#0C6D3D",
+            textAlign: "center",
+            fontSize: normalize(14),
+            marginTop: normalize(36),
+          }}
+        >
+          Forgotten password?
+        </Text>
+      </TouchableOpacity>
     </View>
-  );
-};
+    <View style={styles.tos}>
+      <TouchableOpacity style={{}}>
+        <Text
+          style={{
+            fontFamily: "ps-bold",
+            color: "#0C6D3D",
+          }}
+        >
+          Terms of Service and Privacy Policy
+        </Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: { flex: 1 },

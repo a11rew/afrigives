@@ -5,51 +5,47 @@ import normalize from "../../utils/normalize";
 
 interface Props {}
 
-const PromoSecond = (props: Props) => {
-  return (
-    <View
-      style={{
-        width: "100%",
-        justifyContent: "space-between",
-      }}
-    >
-      <Text style={styles.h1}>
-        Donate in solidarity to support places in need
-      </Text>
-      <View style={styles.centerContainer}>
-        <View style={styles.center}>
-          <View style={{ position: "relative" }}>
-            <Image
-              style={{ zIndex: -10 }}
-              resizeMode="cover"
-              source={require("../../assets/sprites/center.png")}
-            ></Image>
-            <Image
-              style={styles.promoImage}
-              resizeMode="cover"
-              source={require("../../assets/stock/wrf.png")}
-            />
-          </View>
+const PromoSecond = (props: Props) => (
+  <View
+    style={{
+      width: "100%",
+      justifyContent: "space-between",
+    }}
+  >
+    <Text style={styles.h1}>Donate in solidarity to support places in need</Text>
+    <View style={styles.centerContainer}>
+      <View style={styles.center}>
+        <View style={{ position: "relative" }}>
           <Image
-            style={{
-              position: "absolute",
-              resizeMode: "contain",
-              height: normalize(260),
-              aspectRatio: 1,
-              bottom: 1,
-            }}
-            source={require("../../assets/sprites/arms/arm_2.png")}
+            style={{ zIndex: -10 }}
+            resizeMode="cover"
+            source={require("../../assets/sprites/center.png")}
+          />
+          <Image
+            style={styles.promoImage}
+            resizeMode="cover"
+            source={require("../../assets/stock/wrf.png")}
           />
         </View>
+        <Image
+          style={{
+            position: "absolute",
+            resizeMode: "contain",
+            height: normalize(260),
+            aspectRatio: 1,
+            bottom: 1,
+          }}
+          source={require("../../assets/sprites/arms/arm_2.png")}
+        />
+      </View>
 
-        <View style={styles.promoText}>
-          <Text style={styles.promoH1}>Photo: Jalabunga Wildfire Relief</Text>
-          <Text style={styles.promoH2}>$5,410 worth donated</Text>
-        </View>
+      <View style={styles.promoText}>
+        <Text style={styles.promoH1}>Photo: Jalabunga Wildfire Relief</Text>
+        <Text style={styles.promoH2}>$5,410 worth donated</Text>
       </View>
     </View>
-  );
-};
+  </View>
+);
 
 const styles = StyleSheet.create({
   h1: {

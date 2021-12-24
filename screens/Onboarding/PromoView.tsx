@@ -20,15 +20,13 @@ interface Props {
   };
 }
 
-const PromoView = ({ position, offsetAnimate }: Props) => {
-  return (
-    <Animated.View style={[{ ...styles.carousel }, offsetAnimate]}>
-      <PromoFirst />
-      <PromoSecond />
-      <PromoThird />
-    </Animated.View>
-  );
-};
+const PromoView = ({ position, offsetAnimate }: Props) => (
+  <Animated.View style={[{ ...styles.carousel }, offsetAnimate]}>
+    <PromoFirst />
+    <PromoSecond />
+    <PromoThird />
+  </Animated.View>
+);
 
 const styles = StyleSheet.create({
   carousel: {
