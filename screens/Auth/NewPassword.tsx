@@ -1,11 +1,10 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import FormInput from "../../components/FormInput";
+import { FormProtectedInput } from "../../components/FormInput";
 import HeaderWithBack from "../../components/HeaderWithBack";
 import { View } from "../../components/Themed";
 import PrimaryActionButton from "../../components/PrimaryActionButton";
-import { useNavigation } from "@react-navigation/native";
 
 interface Props {}
 
@@ -13,49 +12,62 @@ interface FormValues {
   email: string;
 }
 
-const ForgotPassword = (props: Props) => {
+const NewPassword = (props: Props) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm({
     defaultValues: {
-      email: "",
       password: "",
+      confirmPassword: "",
     },
   });
-  const navigation = useNavigation();
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    navigation.navigate("NewPassword");
-  };
+  console.log(errors);
+  const onSubmit = (data: FormValues) => console.log(data);
   return (
     <View style={styles.container}>
-      <HeaderWithBack title="Forgot password?">
-        That's okay. Enter the email used for Afrigives. We'll send you a password reset link
-      </HeaderWithBack>
+      <HeaderWithBack title="New password?">Choose new login password</HeaderWithBack>
 
       <View style={styles.formContainer}>
         <Controller
           control={control}
-          name="email"
+          name="password"
           rules={{
             required: true,
-            pattern: {
-              value:
-                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Must be a valid email address",
+            minLength: {
+              value: 8,
+              message: "Password must be at least 8 characters",
             },
           }}
           render={({ field: { onBlur, onChange, value } }) => (
-            <FormInput
+            <FormProtectedInput
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
-              label="Email"
-              textContentType="emailAddress"
-              style={{ borderColor: errors.email ? "red" : "#CCC" }}
+              label="Password"
+              placeholder="Must be at least 8 characters"
+              style={{ borderColor: errors.password ? "red" : "#CCC" }}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="confirmPassword"
+          rules={{
+            required: true,
+            validate: (value) => value === getValues("password"),
+          }}
+          render={({ field: { onBlur, onChange, value } }) => (
+            <FormProtectedInput
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              label="Confirm password"
+              placeholder="Must match password"
+              style={{ borderColor: errors.confirmPassword ? "red" : "#CCC" }}
             />
           )}
         />
@@ -91,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPassword;
+export default NewPassword;
