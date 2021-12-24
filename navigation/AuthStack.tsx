@@ -6,6 +6,7 @@ import { AuthStackParamList } from "../types";
 import SplashStack from "../components/Splash";
 import ForgotPassword from "../screens/Auth/ForgotPassword";
 import NewPassword from "../screens/Auth/NewPassword";
+import SentMailModal from "../screens/Auth/SentMailModal";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 
@@ -16,6 +17,9 @@ const AuthStack = () => (
     <Stack.Screen name="Signup" component={Signup} />
     <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
     <Stack.Screen name="NewPassword" component={NewPassword} />
+    <Stack.Group screenOptions={{ presentation: "modal" }}>
+      <Stack.Screen name="SentMailModal" component={SentMailModal} />
+    </Stack.Group>
   </Stack.Navigator>
 );
 

@@ -28,7 +28,7 @@ const ForgotPassword = (props: Props) => {
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
-    navigation.navigate("NewPassword");
+    navigation.navigate("SentMailModal");
   };
   return (
     <View style={styles.container}>
