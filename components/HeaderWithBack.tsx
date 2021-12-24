@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 
   h1: {
     fontFamily: "ps-bold",
-    paddingHorizontal: normalize(80),
+    paddingHorizontal: normalize(50),
     textAlign: "center",
   },
 });

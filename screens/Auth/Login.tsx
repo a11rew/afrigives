@@ -1,14 +1,19 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import FormInput, { FormProtectedInput } from "../../components/FormInput";
 import HeaderWithBack from "../../components/HeaderWithBack";
 import PrimaryActionButton from "../../components/PrimaryActionButton";
 import { Text, View } from "../../components/Themed";
 import { useForm, Controller } from "react-hook-form";
 import normalize from "../../utils/normalize";
+import { useNavigation } from "@react-navigation/native";
 
 interface Props {}
+
+interface FormValues {
+  email: string;
+  password: string;
+}
 
 const Login = (props: Props): JSX.Element => {
   const {
@@ -21,6 +26,8 @@ const Login = (props: Props): JSX.Element => {
       password: "",
     },
   });
+  const onSubmit = (data: FormValues) => console.log(data);
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
@@ -71,7 +78,7 @@ const Login = (props: Props): JSX.Element => {
         />
 
         <View style={{ marginTop: 20 }}>
-          <PrimaryActionButton>Start donating</PrimaryActionButton>
+          <PrimaryActionButton onPress={handleSubmit(onSubmit)}>Start donating</PrimaryActionButton>
         </View>
 
         <TouchableOpacity style={{}}>
@@ -83,6 +90,7 @@ const Login = (props: Props): JSX.Element => {
               fontSize: normalize(14),
               marginTop: normalize(36),
             }}
+            onPress={() => navigation.navigate("ForgotPassword")}
           >
             Forgotten password?
           </Text>

@@ -1,6 +1,5 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import FormInput, { FormProtectedInput } from "../../components/FormInput";
 import HeaderWithBack from "../../components/HeaderWithBack";
 import PrimaryActionButton from "../../components/PrimaryActionButton";
@@ -29,7 +28,6 @@ const Signup = (props: Props): JSX.Element => {
   });
 
   const onSubmit = (data: FormValues) => console.log(data);
-  console.log(errors);
 
   return (
     <View style={styles.container}>
