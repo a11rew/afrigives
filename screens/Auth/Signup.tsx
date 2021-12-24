@@ -21,7 +21,7 @@ const Signup = (props: Props): JSX.Element => {
           label="Password"
           placeholder="Must be at least 8 characters"
         />
-        <View style={{ marginTop: 28 }}>
+        <View style={{ marginTop: 20 }}>
           <PrimaryActionButton>Start donating</PrimaryActionButton>
         </View>
       </View>

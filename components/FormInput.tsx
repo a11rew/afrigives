@@ -79,7 +79,7 @@ export const FormProtectedInput = ({ label, style, ...props }: Props) => {
               offset.value = 10;
             }
           }}
-          style={[{ width: "90%" }, style]}
+          style={[{ width: "90%", fontFamily: "ps" }, style]}
           placeholderTextColor={"#3B3B3B"}
           {...props}
         />
