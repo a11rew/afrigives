@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Button, StyleSheet, TouchableOpacity } from "react-native";
 import FormInput, { FormProtectedInput } from "../../components/FormInput";
 import HeaderWithBack from "../../components/HeaderWithBack";
 import PrimaryActionButton from "../../components/PrimaryActionButton";
@@ -96,7 +96,6 @@ const Signup = (props: Props): JSX.Element => {
           )}
         />
         {/* {errors.password && <Text style={styles.error}>{errors.password.message}</Text>} */}
-
         <View style={{ marginTop: 20 }}>
           <PrimaryActionButton onPress={handleSubmit(onSubmit)}>Start donating</PrimaryActionButton>
         </View>

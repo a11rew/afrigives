@@ -11,6 +11,7 @@ module.exports = {
     },
   },
   extends: [
+    "eslint:recommended",
     "plugin:react/recommended",
     "airbnb",
     "airbnb-typescript",
@@ -29,7 +30,7 @@ module.exports = {
     ecmaVersion: 13,
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint", "react-hooks", "prettier"],
+  plugins: ["react", "@typescript-eslint", "react-hooks", "prettier", "unused-imports"],
   rules: {
     "prettier/prettier": [
       "error",
