@@ -31,15 +31,9 @@ const Signup = (props: Props): JSX.Element => {
   });
 
   const dispatch = useDispatch();
-  const { error, loading, session, user } = useSelector((state: RootState) => state.auth);
-
-  console.log({
-    session,
-    user,
-  });
+  const { error, loading } = useSelector((state: RootState) => state.auth);
 
   const onSubmit = (data: FormValues) => {
-    console.log(data);
     dispatch(supabaseSignUp(data));
   };
 
@@ -109,7 +103,7 @@ const Signup = (props: Props): JSX.Element => {
             />
           )}
         />
-        {error && <Text style={styles.error}>{error}</Text>}
+        {error?.signUp && <Text style={styles.error}>{error.signUp}</Text>}
         <View style={{ marginTop: 20 }}>
           <PrimaryActionButton loading={loading} onPress={handleSubmit(onSubmit)}>
             Start donating

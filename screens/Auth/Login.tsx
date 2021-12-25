@@ -7,6 +7,9 @@ import { Text, View } from "../../components/Themed";
 import { useForm, Controller } from "react-hook-form";
 import normalize from "../../utils/normalize";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { supabaseSignIn } from "../../store/authSlice";
 
 interface Props {}
 
@@ -26,7 +29,13 @@ const Login = (props: Props): JSX.Element => {
       password: "",
     },
   });
-  const onSubmit = (data: FormValues) => console.log(data);
+
+  const dispatch = useDispatch();
+  const { error, loading } = useSelector((state: RootState) => state.auth);
+
+  const onSubmit = (data: FormValues) => {
+    dispatch(supabaseSignIn(data));
+  };
   const navigation = useNavigation();
 
   return (
@@ -76,9 +85,12 @@ const Login = (props: Props): JSX.Element => {
             />
           )}
         />
+        {error.signIn && <Text style={styles.error}>{error.signIn}</Text>}
 
         <View style={{ marginTop: 20 }}>
-          <PrimaryActionButton onPress={handleSubmit(onSubmit)}>Start donating</PrimaryActionButton>
+          <PrimaryActionButton loading={loading} onPress={handleSubmit(onSubmit)}>
+            Start donating
+          </PrimaryActionButton>
         </View>
 
         <TouchableOpacity style={{}}>
@@ -123,6 +135,13 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
     alignItems: "center",
     marginBottom: "5%",
+  },
+  error: {
+    fontFamily: "ps-bold",
+    marginTop: -8,
+    marginBottom: 4,
+    paddingLeft: 4,
+    color: "#ca6060",
   },
 });
 

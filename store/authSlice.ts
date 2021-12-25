@@ -6,14 +6,20 @@ export interface AuthState {
   user: User | null;
   session: Session | null;
   loading: boolean;
-  error: string | null;
+  error: {
+    signUp: string | null;
+    signIn: string | null;
+  };
 }
 
 const initialState: AuthState = {
   user: supabase.auth.user(),
   session: supabase.auth.session(),
   loading: false,
-  error: null,
+  error: {
+    signUp: null,
+    signIn: null,
+  },
 };
 
 export interface SignupParams {
@@ -71,6 +77,7 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(supabaseSignUp.pending, (state) => {
+      state.error.signUp = null;
       state.loading = true;
     });
 
@@ -81,11 +88,12 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(supabaseSignUp.rejected, (state, { payload }) => {
-      state.error = (payload as ApiError).message;
+      state.error.signUp = (payload as ApiError).message;
       state.loading = false;
     });
 
     builder.addCase(supabaseSignIn.pending, (state) => {
+      state.error.signIn = null;
       state.loading = true;
     });
 
@@ -96,7 +104,7 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(supabaseSignIn.rejected, (state, { payload }) => {
-      state.error = (payload as ApiError).message;
+      state.error.signIn = (payload as ApiError).message;
       state.loading = false;
     });
   },
