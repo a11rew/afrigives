@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Session, User } from "@supabase/supabase-js";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { ApiError, Session, User } from "@supabase/supabase-js";
 import { supabase } from "../services/supabase";
 
 export interface AuthState {
@@ -22,7 +22,7 @@ export interface SignupParams {
   password: string;
 }
 
-const supabaseSignUp = createAsyncThunk(
+export const supabaseSignUp = createAsyncThunk(
   "auth/signUp",
   async ({ email, name, password }: SignupParams, { rejectWithValue }) => {
     try {
@@ -47,20 +47,28 @@ const supabaseSignUp = createAsyncThunk(
   },
 );
 
+export const supabaseSignIn = createAsyncThunk(
+  "auth/signIn",
+  async ({ email, password }: Omit<SignupParams, "name">, { rejectWithValue }) => {
+    try {
+      const { user, session, error } = await supabase.auth.signIn({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
+      return { user, session, error };
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  },
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    signUp: (state, action: PayloadAction<AuthState>) => {
-      state.session = action.payload.session;
-      state.user = action.payload.user;
-    },
-
-    signOut: (state) => {
-      state.session = null;
-      state.user = null;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(supabaseSignUp.pending, (state) => {
       state.loading = true;
@@ -73,12 +81,25 @@ export const authSlice = createSlice({
     });
 
     builder.addCase(supabaseSignUp.rejected, (state, { payload }) => {
-      state.error = payload as any;
+      state.error = (payload as ApiError).message;
+      state.loading = false;
+    });
+
+    builder.addCase(supabaseSignIn.pending, (state) => {
+      state.loading = true;
+    });
+
+    builder.addCase(supabaseSignIn.fulfilled, (state, { payload }) => {
+      state.session = payload.session;
+      state.user = payload.user;
+      state.loading = false;
+    });
+
+    builder.addCase(supabaseSignIn.rejected, (state, { payload }) => {
+      state.error = (payload as ApiError).message;
       state.loading = false;
     });
   },
 });
-
-export const { signUp, signOut } = authSlice.actions;
 
 export default authSlice.reducer;

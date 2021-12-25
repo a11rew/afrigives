@@ -5,6 +5,9 @@ import HeaderWithBack from "../../components/HeaderWithBack";
 import PrimaryActionButton from "../../components/PrimaryActionButton";
 import { useForm, Controller } from "react-hook-form";
 import { Text, View } from "../../components/Themed";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { supabaseSignUp } from "../../store/authSlice";
 
 interface Props {}
 
@@ -27,7 +30,18 @@ const Signup = (props: Props): JSX.Element => {
     },
   });
 
-  const onSubmit = (data: FormValues) => console.log(data);
+  const dispatch = useDispatch();
+  const { error, loading, session, user } = useSelector((state: RootState) => state.auth);
+
+  console.log({
+    session,
+    user,
+  });
+
+  const onSubmit = (data: FormValues) => {
+    console.log(data);
+    dispatch(supabaseSignUp(data));
+  };
 
   return (
     <View style={styles.container}>
@@ -95,9 +109,11 @@ const Signup = (props: Props): JSX.Element => {
             />
           )}
         />
-        {/* {errors.password && <Text style={styles.error}>{errors.password.message}</Text>} */}
+        {error && <Text style={styles.error}>{error}</Text>}
         <View style={{ marginTop: 20 }}>
-          <PrimaryActionButton onPress={handleSubmit(onSubmit)}>Start donating</PrimaryActionButton>
+          <PrimaryActionButton loading={loading} onPress={handleSubmit(onSubmit)}>
+            Start donating
+          </PrimaryActionButton>
         </View>
       </View>
       <View style={styles.tos}>
@@ -133,7 +149,7 @@ const styles = StyleSheet.create({
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,
-    // color: "red",
+    color: "#ca6060",
   },
 });
 

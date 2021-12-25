@@ -5,13 +5,14 @@ import {
   StyleSheet,
   TouchableOpacityProps,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import { Text } from "./Themed";
 import normalize from "../utils/normalize";
 
-type Props = TouchableOpacityProps;
+type Props = TouchableOpacityProps & { loading?: boolean };
 
-const PrimaryActionButton: React.FC<Props> = ({ disabled, children, ...rest }) => (
+const PrimaryActionButton: React.FC<Props> = ({ loading, disabled, children, ...rest }) => (
   <TouchableOpacity
     style={{
       ...styles.button,
@@ -19,7 +20,7 @@ const PrimaryActionButton: React.FC<Props> = ({ disabled, children, ...rest }) =
     }}
     {...(rest as any)}
   >
-    <Text style={styles.text}>{children}</Text>
+    {loading ? <ActivityIndicator color={"white"} /> : <Text style={styles.text}>{children}</Text>}
   </TouchableOpacity>
 );
 
