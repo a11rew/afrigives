@@ -26,10 +26,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1 }}>
-          <Navigation initialAuth={{ user, session }} colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaView>
+        {/* <SafeAreaView style={{ flex: 1 }}> */}
+        <Navigation initialAuth={{ user, session }} colorScheme={colorScheme} />
+        <StatusBar />
+        {/* </SafeAreaView> */}
       </SafeAreaProvider>
     </Provider>
   );
