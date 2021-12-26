@@ -7,8 +7,10 @@ import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Session, User } from "@supabase/supabase-js";
 import * as React from "react";
 import { ColorSchemeName, Pressable } from "react-native";
+import { useSelector } from "react-redux";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -16,18 +18,31 @@ import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
+import { supabase } from "../services/supabase";
+import { RootState } from "../store";
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from "../types";
 import AuthStack from "./AuthStack";
 import LinkingConfiguration from "./LinkingConfiguration";
 
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+export default function Navigation({
+  colorScheme,
+  initialAuth,
+}: {
+  colorScheme: ColorSchemeName;
+  initialAuth: { session: Session | null; user: User | null };
+}) {
+  const { session, user } = useSelector((state: RootState) => state.auth);
+
   return (
     <NavigationContainer
       linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
-      {/* <RootNavigator /> */}
-      <AuthStack />
+      {(initialAuth.session || session) && (initialAuth.user || user) ? (
+        <RootNavigator />
+      ) : (
+        <AuthStack />
+      )}
     </NavigationContainer>
   );
 }

@@ -8,10 +8,14 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import { store } from "./store";
+import { supabase } from "./services/supabase";
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+
+  const user = supabase.auth.user();
+  const session = supabase.auth.session();
 
   // https://github.com/facebook/react-native/issues/12981
   LogBox.ignoreLogs(["Setting a timer"]);
@@ -23,7 +27,7 @@ export default function App() {
     <Provider store={store}>
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <Navigation colorScheme={colorScheme} />
+          <Navigation initialAuth={{ user, session }} colorScheme={colorScheme} />
           <StatusBar />
         </SafeAreaView>
       </SafeAreaProvider>

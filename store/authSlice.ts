@@ -74,7 +74,12 @@ export const supabaseSignIn = createAsyncThunk(
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    refreshAuth: (state) => {
+      state.user = supabase.auth.user();
+      state.session = supabase.auth.session();
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(supabaseSignUp.pending, (state) => {
       state.error.signUp = null;
@@ -109,5 +114,7 @@ export const authSlice = createSlice({
     });
   },
 });
+
+export const { refreshAuth } = authSlice.actions;
 
 export default authSlice.reducer;
