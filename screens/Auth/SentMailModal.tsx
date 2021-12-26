@@ -4,8 +4,12 @@ import { Platform, StyleSheet, Pressable, Image } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import normalize from "../../utils/normalize";
 import { Text, View } from "../../components/Themed";
+import { AuthStackScreenProps } from "../../types";
+import React from "react";
 
-const SentMailModal = () => {
+type Props = AuthStackScreenProps<"SentMailModal">;
+
+const SentMailModal: React.FC<Props> = ({ route }) => {
   const navigation = useNavigation();
 
   return (
@@ -26,7 +30,10 @@ const SentMailModal = () => {
       <View style={styles.logoContainer}>
         <Text style={styles.logo}>Check your mail</Text>
 
-        <Text style={styles.h1}>We sent you a password recovery link</Text>
+        <Text style={styles.h1}>
+          We sent a password recovery link to {route.params.email}. Follow the link in the email to
+          reset your password
+        </Text>
       </View>
       {/* Use a light status bar on iOS to account for the black space above the modal */}
       <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />

@@ -25,7 +25,7 @@ export type AuthStackParamList = {
   Onboarding: undefined;
   ForgotPassword: undefined;
   NewPassword: undefined;
-  SentMailModal: undefined;
+  SentMailModal: { email: string };
 };
 
 export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> = NativeStackScreenProps<

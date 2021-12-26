@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import FormInput from "../../components/FormInput";
 import HeaderWithBack from "../../components/HeaderWithBack";
-import { View } from "../../components/Themed";
+import { View, Text } from "../../components/Themed";
 import PrimaryActionButton from "../../components/PrimaryActionButton";
 import { useNavigation } from "@react-navigation/native";
+import { supabase } from "../../services/supabase";
 
 interface Props {}
 
@@ -14,6 +15,9 @@ interface FormValues {
 }
 
 const ForgotPassword = (props: Props) => {
+  const [resetState, setResetState] =
+    useState<Partial<{ loading: boolean; error: string | null; data: any }>>();
+
   const {
     control,
     handleSubmit,
@@ -21,19 +25,24 @@ const ForgotPassword = (props: Props) => {
   } = useForm({
     defaultValues: {
       email: "",
-      password: "",
     },
   });
   const navigation = useNavigation();
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    navigation.navigate("SentMailModal");
+  const onSubmit = async (values: FormValues) => {
+    setResetState((e) => ({ ...e, loading: true, error: null }));
+    const { data, error } = await supabase.auth.api.resetPasswordForEmail(values.email);
+    if (error) {
+      setResetState((e) => ({ ...e, loading: false, error: error.message }));
+      return;
+    }
+    setResetState((e) => ({ ...e, loading: false, data: data }));
+    navigation.navigate("SentMailModal", { email: values.email });
   };
   return (
     <View style={styles.container}>
       <HeaderWithBack title="Forgot password?">
-        That's okay. Enter the email used for Afrigives. We'll send you a password reset link
+        That's okay. Enter the email you used for Afrigives. We'll send you a password reset link
       </HeaderWithBack>
 
       <View style={styles.formContainer}>
@@ -59,9 +68,10 @@ const ForgotPassword = (props: Props) => {
             />
           )}
         />
+        {resetState?.error && <Text style={styles.error}>{resetState.error}</Text>}
 
         <View style={{ marginTop: 20 }}>
-          <PrimaryActionButton onPress={handleSubmit(onSubmit)}>
+          <PrimaryActionButton loading={resetState?.loading} onPress={handleSubmit(onSubmit)}>
             Send password reset link
           </PrimaryActionButton>
         </View>
@@ -87,7 +97,7 @@ const styles = StyleSheet.create({
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,
-    // color: "red",
+    color: "#ca6060",
   },
 });
 
