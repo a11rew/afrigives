@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { FormProtectedInput } from "../../components/FormInput";
 import HeaderWithBack from "../../components/HeaderWithBack";
-import { View } from "../../components/Themed";
+import { View, Text } from "../../components/Themed";
+import { supabase } from "../../services/supabase";
 import PrimaryActionButton from "../../components/PrimaryActionButton";
+import { AuthStackScreenProps } from "../../types";
+import parseAuthString from "../../utils/parseAuthString";
 
-interface Props {}
+type Props = AuthStackScreenProps<"NewPassword">;
 
 interface FormValues {
-  email: string;
+  password: string;
+  confirmPassword: string;
 }
 
-const NewPassword = (props: Props) => {
+const NewPassword = ({ route, navigation }: Props) => {
+  const [resetState, setResetState] =
+    useState<Partial<{ loading: boolean; error: string | null; data: any }>>();
+
   const {
     control,
     handleSubmit,
@@ -25,8 +32,28 @@ const NewPassword = (props: Props) => {
     },
   });
 
-  console.log(errors);
-  const onSubmit = (data: FormValues) => console.log(data);
+  useEffect(() => {
+    if (!route.path?.match("newpass/#") || !route.path?.match("type=recovery")) {
+      navigation.navigate("Signup");
+    }
+  }, []);
+
+  const queryParams = parseAuthString(route.path!);
+
+  const onSubmit = async (values: FormValues) => {
+    setResetState((e) => ({ ...e, loading: true, error: null }));
+
+    const { error, data } = await supabase.auth.api.updateUser(String(queryParams.access_token), {
+      password: values.password,
+    });
+
+    if (error) {
+      setResetState((e) => ({ ...e, loading: false, error: error.message }));
+      return;
+    }
+    setResetState((e) => ({ ...e, loading: false, data: data }));
+    navigation.navigate("Login");
+  };
   return (
     <View style={styles.container}>
       <HeaderWithBack title="New password?">Choose new login password</HeaderWithBack>
@@ -72,8 +99,10 @@ const NewPassword = (props: Props) => {
           )}
         />
 
+        {resetState?.error && <Text style={styles.error}>{resetState.error}</Text>}
+
         <View style={{ marginTop: 20 }}>
-          <PrimaryActionButton onPress={handleSubmit(onSubmit)}>
+          <PrimaryActionButton loading={resetState?.loading} onPress={handleSubmit(onSubmit)}>
             Send password reset link
           </PrimaryActionButton>
         </View>
@@ -99,7 +128,7 @@ const styles = StyleSheet.create({
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,
-    // color: "red",
+    color: "#ca6060",
   },
 });
 

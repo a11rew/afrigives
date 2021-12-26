@@ -24,7 +24,9 @@ export type AuthStackParamList = {
   Signup: undefined;
   Onboarding: undefined;
   ForgotPassword: undefined;
-  NewPassword: undefined;
+  NewPassword: {
+    str: string;
+  };
   SentMailModal: { email: string };
 };
 

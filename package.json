@@ -43,6 +43,7 @@
     "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
     "expo-web-browser": "~10.1.0",
+    "qs": "^6.10.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-hook-form": "^7.22.5",
@@ -62,6 +63,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/qs": "^6.9.7",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
     "@types/react-native-vector-icons": "^6.4.10",

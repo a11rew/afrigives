@@ -6,11 +6,11 @@
 
 import { LinkingOptions } from "@react-navigation/native";
 import * as Linking from "expo-linking";
+import { AuthStackParamList, RootStackParamList } from "../types";
 
-import { RootStackParamList } from "../types";
+const linking: LinkingOptions<RootStackParamList & AuthStackParamList> = {
+  prefixes: [Linking.createURL("/")],
 
-const linking: LinkingOptions<RootStackParamList> = {
-  prefixes: [Linking.makeUrl("/")],
   config: {
     screens: {
       Root: {
@@ -27,6 +27,13 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
+      NewPassword: {
+        path: "newpass/*",
+      },
+      ForgotPassword: "forgotpass",
+      Onboarding: "onboard",
+      Login: "login",
+      Signup: "signup",
       Modal: "modal",
       NotFound: "*",
     },

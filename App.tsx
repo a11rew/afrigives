@@ -1,4 +1,5 @@
 import "react-native-gesture-handler";
+import { LogBox } from "react-native";
 import { Provider } from "react-redux";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -11,6 +12,9 @@ import { store } from "./store";
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+
+  // https://github.com/facebook/react-native/issues/12981
+  LogBox.ignoreLogs(["Setting a timer"]);
 
   if (!isLoadingComplete) {
     return null;
