@@ -8,11 +8,15 @@ import { RootTabParamList, RootTabScreenProps } from "../types";
 import Colors from "../constants/Colors";
 
 import HomeIcon from "../assets/tabIcons/Home.svg";
+import HeartIcon from "../assets/tabIcons/Heart.svg";
+import PlacesIcon from "../assets/tabIcons/Places.svg";
+import MoreIcon from "../assets/tabIcons/More.svg";
 
 import TabOneScreen from "../screens/TabOneScreen";
 import Donate from "../screens/Donate";
 import Places from "../screens/Places";
 import More from "../screens/More";
+import normalize from "../utils/normalize";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -23,7 +27,18 @@ const BottomTabNavigator = () => {
     <BottomTab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarActiveTintColor: "#0C6D3D",
+        tabBarStyle: {
+          minHeight: "8%",
+          paddingTop: 10,
+          paddingBottom: 10,
+          borderTopWidth: 0,
+        },
+        tabBarLabelStyle: {
+          fontSize: normalize(14),
+          fontFamily: "ps-bold",
+        },
+        tabBarHideOnKeyboard: true,
       }}
     >
       <BottomTab.Screen
@@ -31,7 +46,19 @@ const BottomTabNavigator = () => {
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
           title: "Home",
-          tabBarIcon: ({ color, focused }) => <HomeIcon />,
+          tabBarIcon: ({ color, focused }) => (
+            <HomeIcon
+              stroke={color}
+              fill={focused ? color : undefined}
+              /** Mapped to variable names ["#001" , "#002"] in .svgrrc that are replaced in the svg at runtime
+               * Used here to achieve inner and outer paths changing color appropriately
+               */
+              inner={focused ? "#fff" : Colors[colorScheme].tabIconDefault}
+              outer={
+                focused ? Colors[colorScheme].tabIconSelected : Colors[colorScheme].tabIconDefault
+              }
+            />
+          ),
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate("Modal")}
@@ -54,7 +81,20 @@ const BottomTabNavigator = () => {
         component={Donate}
         options={{
           title: "Donate",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <HeartIcon
+              color={color}
+              stroke={color}
+              fill={focused ? color : undefined}
+              /** Mapped to variable names ["#001" , "#002"] in .svgrrc that are replaced in the svg at runtime
+               * Used here to achieve inner and outer paths changing color appropriately
+               */
+              inner={focused ? "#fff" : Colors[colorScheme].tabIconDefault}
+              outer={
+                focused ? Colors[colorScheme].tabIconSelected : Colors[colorScheme].tabIconDefault
+              }
+            />
+          ),
         }}
       />
       <BottomTab.Screen
@@ -62,7 +102,20 @@ const BottomTabNavigator = () => {
         component={Places}
         options={{
           title: "Places",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <PlacesIcon
+              color={color}
+              stroke={color}
+              fill={focused ? color : undefined}
+              /** Mapped to variable names ["#001" , "#002"] in .svgrrc that are replaced in the svg at runtime
+               * Used here to achieve inner and outer paths changing color appropriately
+               */
+              inner={focused ? "#fff" : Colors[colorScheme].tabIconDefault}
+              outer={
+                focused ? Colors[colorScheme].tabIconSelected : Colors[colorScheme].tabIconDefault
+              }
+            />
+          ),
         }}
       />
       <BottomTab.Screen
@@ -70,7 +123,20 @@ const BottomTabNavigator = () => {
         component={More}
         options={{
           title: "More",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color, focused }) => (
+            <MoreIcon
+              color={color}
+              stroke={color}
+              fill={focused ? color : undefined}
+              /** Mapped to variable names ["#001" , "#002"] in .svgrrc that are replaced in the svg at runtime
+               * Used here to achieve inner and outer paths changing color appropriately
+               */
+              inner={focused ? "#fff" : Colors[colorScheme].tabIconDefault}
+              outer={
+                focused ? Colors[colorScheme].tabIconSelected : Colors[colorScheme].tabIconDefault
+              }
+            />
+          ),
         }}
       />
     </BottomTab.Navigator>
