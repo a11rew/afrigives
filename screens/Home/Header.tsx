@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     flexDirection: "row",
+    backgroundColor: "white",
     paddingHorizontal: "3%",
     // Really never undefined in practice but could be useful on Ios where
     // StatusBar.currentHeight is not supported
