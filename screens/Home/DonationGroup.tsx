@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     paddingHorizontal: "4%",
-    minHeight: normalize(112),
+    minHeight: normalize(100),
     justifyContent: "space-between",
   },
   h1: {

@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   list: {
-    // width: "70%",
+    // width: "150%",
   },
   button: {
     backgroundColor: "#0C6D3D",
