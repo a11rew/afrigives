@@ -16,7 +16,9 @@ import TabOneScreen from "../screens/TabOneScreen";
 import Donate from "../screens/Donate";
 import Places from "../screens/Places";
 import More from "../screens/More";
+import HomeHeader from "../screens/Home/Header";
 import normalize from "../utils/normalize";
+import Home from "../screens/Home";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -43,9 +45,9 @@ const BottomTabNavigator = () => {
     >
       <BottomTab.Screen
         name="Home"
-        component={TabOneScreen}
+        component={Home}
         options={({ navigation }: RootTabScreenProps<"Home">) => ({
-          title: "Home",
+          header: HomeHeader,
           tabBarIcon: ({ color, focused }) => (
             <HomeIcon
               stroke={color}
