@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Session, User } from "@supabase/supabase-js";
 import * as React from "react";
 import { ColorSchemeName, Pressable } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
@@ -40,9 +40,9 @@ export default function Navigation({
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => (
-  <Stack.Navigator>
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-    <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
+    <Stack.Screen name="NotFound" component={NotFoundScreen} />
     <Stack.Group screenOptions={{ presentation: "modal" }}>
       <Stack.Screen name="Modal" component={ModalScreen} />
     </Stack.Group>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Pressable } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -19,11 +19,18 @@ import More from "../screens/More";
 import HomeHeader from "../screens/Home/Header";
 import normalize from "../utils/normalize";
 import Home from "../screens/Home";
+import { useDispatch } from "react-redux";
+import { refreshAuth } from "../store/authSlice";
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = () => {
   const colorScheme = useColorScheme();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshAuth());
+  }, []);
 
   return (
     <BottomTab.Navigator
@@ -146,11 +153,3 @@ const BottomTabNavigator = () => {
 };
 
 export default BottomTabNavigator;
-
-/**
- * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
- */
-var TabBarIcon = (props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) => <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;

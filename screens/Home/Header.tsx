@@ -4,17 +4,22 @@ import { View, Text } from "../../components/Themed";
 
 import Notif from "../../assets/svgs/Notif.svg";
 import normalize from "../../utils/normalize";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 // @refresh reset
 export default function HomeHeader(): React.ReactElement {
+  const name = useSelector((state: RootState) => state.auth.user?.user_metadata.name);
+
   return (
     <View style={styles.container}>
       <View style={styles.greeting}>
         <Image style={styles.avatar} source={require("../../assets/images/male.png")} />
         <View>
-          <Text style={styles.greetingText}>Hi, Eloke</Text>
+          <Text style={styles.greetingText}>Hi, {formatName(name)}</Text>
           <View style={styles.period}>
-            <Text style={styles.periodText}>Welcome 👋🏿</Text>
+            <Text style={styles.periodText}>Welcome </Text>
+            <Text style={{ fontSize: normalize(14) }}>👋🏿</Text>
           </View>
         </View>
       </View>
@@ -25,6 +30,8 @@ export default function HomeHeader(): React.ReactElement {
     </View>
   );
 }
+
+const formatName = (name: string) => name?.split(" ")[0];
 
 const styles = StyleSheet.create({
   container: {
@@ -60,8 +67,7 @@ const styles = StyleSheet.create({
   periodText: {
     fontSize: normalize(14),
     fontFamily: "ps-bold",
-    marginRight: 8,
-    opacity: 0.56,
+    color: "rgba(0, 0, 0, 0.56)",
   },
 });
 
