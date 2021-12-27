@@ -1,8 +1,9 @@
-import React from "react";
-import { StyleSheet, TextInput, TextInputProps } from "react-native";
+import React, { useState } from "react";
+import { Pressable, StyleSheet, TextInput, TextInputProps } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
 import { View, Text } from "./Themed";
 import normalize from "../utils/normalize";
+import PasswordOpen from "../assets/svgs/PasswordOpen.svg";
 import PasswordHidden from "../assets/svgs/PasswordHidden";
 
 interface Props extends TextInputProps {
@@ -36,6 +37,7 @@ const FormInput = ({ label, style, ...props }: Props) => {
 };
 
 export const FormProtectedInput = ({ label, style, ...props }: Props) => {
+  const [hidden, setHidden] = useState(true);
   const offset = useSharedValue(10);
   const focusAnimation = useAnimatedStyle(() => ({
     transform: [{ translateX: withTiming(offset.value) }, { translateY: withTiming(offset.value) }],
@@ -59,7 +61,7 @@ export const FormProtectedInput = ({ label, style, ...props }: Props) => {
       >
         <TextInput
           onFocus={() => (offset.value = 0)}
-          secureTextEntry
+          secureTextEntry={hidden}
           textContentType="password"
           onEndEditing={(e) => {
             if (!e.nativeEvent.text) {
@@ -70,7 +72,9 @@ export const FormProtectedInput = ({ label, style, ...props }: Props) => {
           placeholderTextColor="#3B3B3B"
           {...props}
         />
-        <PasswordHidden />
+        <Pressable onPress={() => setHidden((e) => !e)}>
+          {hidden ? <PasswordHidden /> : <PasswordOpen />}
+        </Pressable>
       </View>
     </View>
   );
