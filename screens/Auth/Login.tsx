@@ -1,32 +1,31 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import FormInput, { FormProtectedInput } from "../../components/FormInput";
-import HeaderWithBack from "../../components/HeaderWithBack";
-import PrimaryActionButton from "../../components/PrimaryActionButton";
-import { Text, View } from "../../components/Themed";
-import { useForm, Controller } from "react-hook-form";
-import normalize from "../../utils/normalize";
-import { useNavigation } from "@react-navigation/native";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { supabaseSignIn } from "../../store/authSlice";
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
-interface Props {}
+import FormInput, { FormProtectedInput } from '@components/FormInput';
+import HeaderWithBack from '@components/HeaderWithBack';
+import PrimaryActionButton from '@components/PrimaryActionButton';
+import { Text, View } from '@components/Themed';
+import normalize from '@utils/normalize';
+
+import { RootState } from '@store/index';
+import { supabaseSignIn } from '@store/authSlice';
 
 interface FormValues {
   email: string;
   password: string;
 }
 
-const Login = (props: Props): JSX.Element => {
+const Login = (): JSX.Element => {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -40,7 +39,7 @@ const Login = (props: Props): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <HeaderWithBack title="Login">Glad you're back</HeaderWithBack>
+      <HeaderWithBack title="Login">Glad you&apos;re back</HeaderWithBack>
       <View style={styles.formContainer}>
         <Controller
           control={control}
@@ -49,8 +48,8 @@ const Login = (props: Props): JSX.Element => {
             required: true,
             pattern: {
               value:
-                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Must be a valid email address",
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Must be a valid email address',
             },
           }}
           render={({ field: { onBlur, onChange, value } }) => (
@@ -60,7 +59,7 @@ const Login = (props: Props): JSX.Element => {
               value={value}
               label="Email"
               textContentType="emailAddress"
-              style={{ borderColor: errors.email ? "red" : "#CCC" }}
+              style={{ borderColor: errors.email ? 'red' : '#CCC' }}
             />
           )}
         />
@@ -81,14 +80,17 @@ const Login = (props: Props): JSX.Element => {
               onChangeText={onChange}
               value={value}
               label="Password"
-              style={{ borderColor: errors.password ? "red" : "#CCC" }}
+              style={{ borderColor: errors.password ? 'red' : '#CCC' }}
             />
           )}
         />
         {error.signIn && <Text style={styles.error}>{error.signIn}</Text>}
 
         <View style={{ marginTop: 20 }}>
-          <PrimaryActionButton loading={loading} onPress={handleSubmit(onSubmit)}>
+          <PrimaryActionButton
+            loading={loading}
+            onPress={handleSubmit(onSubmit)}
+          >
             Start donating
           </PrimaryActionButton>
         </View>
@@ -96,13 +98,13 @@ const Login = (props: Props): JSX.Element => {
         <TouchableOpacity style={{}}>
           <Text
             style={{
-              fontFamily: "ps-bold",
-              color: "#0C6D3D",
-              textAlign: "center",
+              fontFamily: 'ps-bold',
+              color: '#0C6D3D',
+              textAlign: 'center',
               fontSize: normalize(14),
               marginTop: normalize(36),
             }}
-            onPress={() => navigation.navigate("ForgotPassword")}
+            onPress={() => navigation.navigate('ForgotPassword')}
           >
             Forgotten password?
           </Text>
@@ -112,8 +114,8 @@ const Login = (props: Props): JSX.Element => {
         <TouchableOpacity style={{}}>
           <Text
             style={{
-              fontFamily: "ps-bold",
-              color: "#0C6D3D",
+              fontFamily: 'ps-bold',
+              color: '#0C6D3D',
             }}
           >
             Terms of Service and Privacy Policy
@@ -127,21 +129,21 @@ const Login = (props: Props): JSX.Element => {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   formContainer: {
-    marginHorizontal: "4%",
-    marginTop: "10%",
+    marginHorizontal: '4%',
+    marginTop: '10%',
   },
   tos: {
     flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginBottom: "5%",
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: '5%',
   },
   error: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,
-    color: "#ca6060",
+    color: '#ca6060',
   },
 });
 

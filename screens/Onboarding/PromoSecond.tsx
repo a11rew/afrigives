@@ -1,41 +1,43 @@
-import React from "react";
-import { Image, StyleSheet } from "react-native";
-import { View, Text } from "../../components/Themed";
-import normalize from "../../utils/normalize";
+import { Image, StyleSheet } from 'react-native';
+
+import { View, Text } from '@components/Themed';
+import normalize from '@utils/normalize';
 
 interface Props {}
 
-const PromoSecond = (props: Props) => (
+const PromoSecond = (props: Props): JSX.Element => (
   <View
     style={{
-      width: "100%",
-      justifyContent: "space-between",
+      width: '100%',
+      justifyContent: 'space-between',
     }}
   >
-    <Text style={styles.h1}>Donate in solidarity to support places in need</Text>
+    <Text style={styles.h1}>
+      Donate in solidarity to support places in need
+    </Text>
     <View style={styles.centerContainer}>
       <View style={styles.center}>
-        <View style={{ position: "relative" }}>
+        <View style={{ position: 'relative' }}>
           <Image
             style={{ zIndex: -10 }}
             resizeMode="cover"
-            source={require("../../assets/sprites/center.png")}
+            source={require('../../assets/sprites/center.png')}
           />
           <Image
             style={styles.promoImage}
             resizeMode="cover"
-            source={require("../../assets/stock/wrf.png")}
+            source={require('../../assets/stock/wrf.png')}
           />
         </View>
         <Image
           style={{
-            position: "absolute",
-            resizeMode: "contain",
+            position: 'absolute',
+            resizeMode: 'contain',
             height: normalize(260),
             aspectRatio: 1,
             bottom: 1,
           }}
-          source={require("../../assets/sprites/arms/arm_2.png")}
+          source={require('../../assets/sprites/arms/arm_2.png')}
         />
       </View>
 
@@ -49,29 +51,29 @@ const PromoSecond = (props: Props) => (
 
 const styles = StyleSheet.create({
   h1: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     paddingHorizontal: normalize(80),
-    textAlign: "center",
+    textAlign: 'center',
     // marginBottom: "15%",
   },
 
   h2: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
     opacity: 0,
   },
   centerContainer: {
-    position: "relative",
+    position: 'relative',
     // flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   center: {
-    position: "relative",
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "flex-end",
+    position: 'relative',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     height: normalize(314),
   },
 
@@ -80,27 +82,27 @@ const styles = StyleSheet.create({
     width: normalize(45),
     aspectRatio: 1,
     borderRadius: 999999,
-    position: "absolute",
+    position: 'absolute',
     top: normalize(40),
     right: 0,
     borderWidth: 2,
-    borderColor: "white",
+    borderColor: 'white',
   },
 
   promoText: {
-    marginTop: "10%",
+    marginTop: '10%',
   },
 
   promoH1: {
-    textAlign: "center",
-    fontFamily: "ps-bold",
+    textAlign: 'center',
+    fontFamily: 'ps-bold',
     marginBottom: 2,
   },
 
   promoH2: {
-    color: "#0C6D3D",
-    textAlign: "center",
-    fontFamily: "ps-bold",
+    color: '#0C6D3D',
+    textAlign: 'center',
+    fontFamily: 'ps-bold',
   },
 });
 

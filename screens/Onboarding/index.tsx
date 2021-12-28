@@ -1,26 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   BackHandler,
-  Button,
   Dimensions,
-  Easing,
   Pressable,
   StyleSheet,
   TouchableOpacity,
-} from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
+} from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 import Animated, {
-  interpolate,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { SharedElement } from "react-navigation-shared-element";
-import normalize from "../../utils/normalize";
-import { Text, View } from "../../components/Themed";
-import PromoView from "./PromoView";
+} from 'react-native-reanimated';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { SharedElement } from 'react-navigation-shared-element';
+import normalize from '@utils/normalize';
+import { Text, View } from '@components/Themed';
+import PromoView from './PromoView';
 
 interface Props {}
 
@@ -29,7 +26,7 @@ const Onbooarding = (props: Props): JSX.Element => {
   const navigation = useNavigation();
   const [position, setPosition] = useState(0);
 
-  const animWidth = useSharedValue((39 / 100) * Dimensions.get("screen").width);
+  const animWidth = useSharedValue((39 / 100) * Dimensions.get('screen').width);
   const widthAnimate = useAnimatedStyle(() => ({
     width: withTiming(animWidth.value),
   }));
@@ -52,10 +49,10 @@ const Onbooarding = (props: Props): JSX.Element => {
   // Carousel effect
   useEffect(() => {
     if (position === 2) {
-      animWidth.value = (90 / 100) * Dimensions.get("screen").width;
+      animWidth.value = (90 / 100) * Dimensions.get('screen').width;
       loginOpacity.value = 1;
     } else {
-      animWidth.value = (39 / 100) * Dimensions.get("screen").width;
+      animWidth.value = (39 / 100) * Dimensions.get('screen').width;
       loginOpacity.value = 0;
     }
 
@@ -64,36 +61,43 @@ const Onbooarding = (props: Props): JSX.Element => {
     } else {
       backOpacity.value = 0;
     }
-  }, [position]);
+  }, [animWidth, backOpacity, loginOpacity, position]);
+
+  // Carousel effect functions
+  const moveForward = useCallback(() => {
+    if (position < 2) {
+      setPosition((e) => {
+        offset.value = -((e + 1) * Dimensions.get('screen').width);
+        return e + 1;
+      });
+    }
+  }, [offset, position]);
+
+  const moveBackward = useCallback(() => {
+    if (position > 0) {
+      setPosition((e) => {
+        offset.value = (1 - e) * Dimensions.get('screen').width;
+        return e - 1;
+      });
+    } else {
+      //
+    }
+    return true;
+  }, [offset, position]);
 
   // Handle back button when focused and relinquish when not
   useFocusEffect(
     React.useCallback(() => {
-      const backHandler = BackHandler.addEventListener("hardwareBackPress", moveBackward);
+      const backHandler = BackHandler.addEventListener(
+        'hardwareBackPress',
+        moveBackward
+      );
 
       return () => backHandler.remove();
-    }, [position]),
+      // Disabling because the position directly affects the behavior of the listener registered here
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [position, moveBackward])
   );
-
-  // Carousel effect functions
-  const moveForward = () => {
-    if (position < 2) {
-      setPosition((e) => {
-        offset.value = -((e + 1) * Dimensions.get("screen").width);
-        return e + 1;
-      });
-    }
-  };
-  const moveBackward = () => {
-    if (position > 0) {
-      setPosition((e) => {
-        offset.value = (1 - e) * Dimensions.get("screen").width;
-        return e - 1;
-      });
-    } else {
-    }
-    return true;
-  };
 
   return (
     <View style={styles.container}>
@@ -108,23 +112,23 @@ const Onbooarding = (props: Props): JSX.Element => {
         </Animated.View>
       </View>
 
-      <PromoView offsetAnimate={offsetAnimate} position={position} />
+      <PromoView offsetAnimate={offsetAnimate} />
 
-      <View style={{ flex: 1, justifyContent: "space-evenly" }}>
+      <View style={{ flex: 1, justifyContent: 'space-evenly' }}>
         <View style={styles.carouselDots}>
           <CarouselDot active={position === 0} />
           <CarouselDot active={position === 1} />
           <CarouselDot active={position === 2} />
         </View>
 
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: 'center' }}>
           <Animated.View style={[widthAnimate]}>
             <TouchableOpacity
               style={styles.actionButton}
               onPress={
                 position === 2
                   ? () => {
-                      navigation.navigate("Signup");
+                      navigation.navigate('Signup');
                     }
                   : moveForward
               }
@@ -132,8 +136,8 @@ const Onbooarding = (props: Props): JSX.Element => {
               {position === 2 ? (
                 <Text
                   style={{
-                    color: "white",
-                    fontFamily: "ps-bold",
+                    color: 'white',
+                    fontFamily: 'ps-bold',
                     fontSize: normalize(14),
                   }}
                 >
@@ -149,7 +153,7 @@ const Onbooarding = (props: Props): JSX.Element => {
             <Pressable
               disabled={position !== 2}
               onPress={() => {
-                navigation.navigate("Login");
+                navigation.navigate('Login');
               }}
             >
               <Animated.Text style={[styles.loginText, loginAnimate]}>
@@ -167,50 +171,50 @@ const CarouselDot = ({ active }: { active?: boolean }) => (
   <View
     style={{
       ...styles.carouselDot,
-      backgroundColor: active ? "#0C6D3D" : "#DDDDDD",
+      backgroundColor: active ? '#0C6D3D' : '#DDDDDD',
     }}
   />
 );
 
 const styles = StyleSheet.create({
   logoContainer: {
-    position: "relative",
-    marginTop: "7%",
-    marginBottom: "2%",
-    alignItems: "center",
+    position: 'relative',
+    marginTop: '7%',
+    marginBottom: '2%',
+    alignItems: 'center',
     borderBottomWidth: 0,
     shadowOpacity: 0,
-    backgroundColor: "transparent",
+    backgroundColor: 'transparent',
   },
 
   backButton: {
-    position: "absolute",
-    height: "100%",
-    width: "100%",
-    justifyContent: "center",
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center',
     left: 10,
   },
 
   logo: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     fontSize: normalize(26),
-    color: "#0C6D3D",
-    textAlign: "center",
+    color: '#0C6D3D',
+    textAlign: 'center',
   },
   container: {
     flex: 1,
   },
 
   h1: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     paddingHorizontal: normalize(80),
-    textAlign: "center",
-    marginBottom: "15%",
+    textAlign: 'center',
+    marginBottom: '15%',
   },
 
   carouselDots: {
-    justifyContent: "center",
-    flexDirection: "row",
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
 
   carouselDot: {
@@ -221,17 +225,17 @@ const styles = StyleSheet.create({
   },
 
   loginText: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     fontSize: normalize(14),
-    marginTop: "12%",
+    marginTop: '12%',
   },
 
   actionButton: {
-    backgroundColor: "#0C6D3D",
+    backgroundColor: '#0C6D3D',
     paddingVertical: normalize(18),
-    marginHorizontal: "auto",
+    marginHorizontal: 'auto',
     borderRadius: 8,
-    alignItems: "center",
+    alignItems: 'center',
   },
 });
 

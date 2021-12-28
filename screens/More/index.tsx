@@ -1,9 +1,8 @@
-import React from "react";
-import { Text, View } from "../../components/Themed";
+import { Text, View } from '../../components/Themed';
 
 interface Props {}
 
-const More = (props: Props) => {
+const More = (props: Props): JSX.Element => {
   return (
     <View>
       <Text>More</Text>

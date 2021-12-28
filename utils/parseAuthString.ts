@@ -1,8 +1,8 @@
-import QueryString from "qs";
+import QueryString from 'qs';
 
-const parseAuthString = (path: string) => {
+const parseAuthString = (path: string): QueryString.ParsedQs => {
   // Remove unncessary path values
-  let str = path.replace("newpass/#", "");
+  const str = path.replace('newpass/#', '');
 
   return QueryString.parse(str);
 };

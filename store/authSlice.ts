@@ -1,6 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { ApiError, Session, User } from "@supabase/supabase-js";
-import { supabase } from "../services/supabase";
+/* eslint-disable no-param-reassign */
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { ApiError, Session, User } from '@supabase/supabase-js';
+import { supabase } from '../services/supabase';
 
 export interface AuthState {
   user: User | null;
@@ -29,7 +30,7 @@ export interface SignupParams {
 }
 
 export const supabaseSignUp = createAsyncThunk(
-  "auth/signUp",
+  'auth/signUp',
   async ({ email, name, password }: SignupParams, { rejectWithValue }) => {
     try {
       const { user, session, error } = await supabase.auth.signUp(
@@ -41,7 +42,7 @@ export const supabaseSignUp = createAsyncThunk(
           data: {
             name,
           },
-        },
+        }
       );
 
       if (error) throw error;
@@ -50,12 +51,15 @@ export const supabaseSignUp = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error);
     }
-  },
+  }
 );
 
 export const supabaseSignIn = createAsyncThunk(
-  "auth/signIn",
-  async ({ email, password }: Omit<SignupParams, "name">, { rejectWithValue }) => {
+  'auth/signIn',
+  async (
+    { email, password }: Omit<SignupParams, 'name'>,
+    { rejectWithValue }
+  ) => {
     try {
       const { user, session, error } = await supabase.auth.signIn({
         email,
@@ -68,11 +72,11 @@ export const supabaseSignIn = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error);
     }
-  },
+  }
 );
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     refreshAuth: (state) => {

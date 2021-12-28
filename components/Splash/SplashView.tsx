@@ -1,37 +1,25 @@
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { useEffect } from "react";
-import { SharedElement } from "react-navigation-shared-element";
-import { View, Text } from "../Themed";
-import normalize from "../../utils/normalize";
+import { useEffect } from 'react';
+import { Image, StyleSheet } from 'react-native';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
+import { SharedElement } from 'react-navigation-shared-element';
+import { useNavigation } from '@react-navigation/native';
 
-const SplashView: React.FC<{
-  exit: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ navigation }) => {
+import normalize from '@utils/normalize';
+import { View, Text } from '@Themed';
+
+const SplashView = (): JSX.Element => {
+  const navigation = useNavigation();
+
   const positions = useSharedValue({
     sp_1: normalize(-300),
     sp_2: normalize(-300),
     sp_3: normalize(-260),
     h2: 0,
   });
-
-  const move = () => {
-    positions.value = {
-      sp_1: normalize(-90),
-      sp_2: normalize(-150),
-      sp_3: normalize(-50),
-      h2: 1,
-    };
-  };
-
-  const reset = () => {
-    positions.value = {
-      sp_1: normalize(-300),
-      sp_2: normalize(-300),
-      sp_3: normalize(-300),
-      h2: 0,
-    };
-  };
 
   const Anim_1 = useAnimatedStyle(() => ({
     bottom: withTiming(positions.value.sp_1, {
@@ -58,9 +46,23 @@ const SplashView: React.FC<{
   }));
 
   useEffect(() => {
-    move();
-    setTimeout(() => reset(), 1200);
-    setTimeout(() => navigation.navigate("SplashOnboard"), 2000);
+    positions.value = {
+      sp_1: normalize(-90),
+      sp_2: normalize(-150),
+      sp_3: normalize(-50),
+      h2: 1,
+    };
+
+    setTimeout(() => {
+      positions.value = {
+        sp_1: normalize(-300),
+        sp_2: normalize(-300),
+        sp_3: normalize(-300),
+        h2: 0,
+      };
+    }, 1200);
+
+    setTimeout(() => navigation.navigate('SplashOnboard'), 2000);
   }, []);
 
   return (
@@ -71,14 +73,14 @@ const SplashView: React.FC<{
       <Animated.Text style={[styles.h2, Anim_Text]}>Community</Animated.Text>
       <Animated.Image
         style={[styles.sprite_1, Anim_1]}
-        source={require("../../assets/sprites/splash_flower.png")}
+        source={require('../../assets/sprites/splash_flower.png')}
       />
       <Animated.View style={[styles.sprite_2, Anim_2]}>
-        <Image source={require("../../assets/sprites/splash_flower.png")} />
+        <Image source={require('../../assets/sprites/splash_flower.png')} />
       </Animated.View>
       <Animated.Image
         style={[styles.sprite_3, Anim_3]}
-        source={require("../../assets/sprites/splash_flower.png")}
+        source={require('../../assets/sprites/splash_flower.png')}
       />
     </View>
   );
@@ -87,40 +89,40 @@ const SplashView: React.FC<{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   h1: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     fontSize: normalize(40),
-    color: "#0C6D3D",
+    color: '#0C6D3D',
   },
   h2: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
   },
   sprite_1: {
-    position: "absolute",
-    alignSelf: "center",
+    position: 'absolute',
+    alignSelf: 'center',
     bottom: normalize(-90),
   },
   sprite_2: {
-    position: "absolute",
-    width: "100%",
-    height: "100%",
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
     zIndex: -1,
     top: normalize(200),
-    left: "-40%",
-    justifyContent: "center",
-    transform: [{ rotate: "90deg" }],
+    left: '-40%',
+    justifyContent: 'center',
+    transform: [{ rotate: '90deg' }],
   },
 
   sprite_3: {
-    position: "absolute",
-    alignSelf: "flex-end",
+    position: 'absolute',
+    alignSelf: 'flex-end',
     top: normalize(-30),
     right: normalize(-50),
-    transform: [{ rotateX: "180deg" }],
+    transform: [{ rotateX: '180deg' }],
   },
 });
 

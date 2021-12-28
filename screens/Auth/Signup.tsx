@@ -1,15 +1,14 @@
-import React from "react";
-import { Button, StyleSheet, TouchableOpacity } from "react-native";
-import FormInput, { FormProtectedInput } from "../../components/FormInput";
-import HeaderWithBack from "../../components/HeaderWithBack";
-import PrimaryActionButton from "../../components/PrimaryActionButton";
-import { useForm, Controller } from "react-hook-form";
-import { Text, View } from "../../components/Themed";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store";
-import { supabaseSignUp } from "../../store/authSlice";
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useForm, Controller } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
-interface Props {}
+import FormInput, { FormProtectedInput } from '@components/FormInput';
+import HeaderWithBack from '@components/HeaderWithBack';
+import PrimaryActionButton from '@components/PrimaryActionButton';
+import { Text, View } from '@components/Themed';
+
+import { RootState } from '@store/index';
+import { supabaseSignUp } from '@store/authSlice';
 
 interface FormValues {
   name: string;
@@ -17,16 +16,16 @@ interface FormValues {
   password: string;
 }
 
-const Signup = (props: Props): JSX.Element => {
+const Signup = (): JSX.Element => {
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: "",
-      email: "",
-      password: "",
+      name: '',
+      email: '',
+      password: '',
     },
   });
 
@@ -39,7 +38,9 @@ const Signup = (props: Props): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <HeaderWithBack title="Register">Signup for an account to start donating</HeaderWithBack>
+      <HeaderWithBack title="Register">
+        Signup for an account to start donating
+      </HeaderWithBack>
       <View style={styles.formContainer}>
         <Controller
           control={control}
@@ -53,7 +54,7 @@ const Signup = (props: Props): JSX.Element => {
               onChangeText={onChange}
               value={value}
               label="Full name"
-              style={{ borderColor: errors.name ? "red" : "#CCC" }}
+              style={{ borderColor: errors.name ? 'red' : '#CCC' }}
             />
           )}
         />
@@ -65,8 +66,8 @@ const Signup = (props: Props): JSX.Element => {
             required: true,
             pattern: {
               value:
-                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: "Must be a valid email address",
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Must be a valid email address',
             },
           }}
           render={({ field: { onBlur, onChange, value } }) => (
@@ -76,7 +77,7 @@ const Signup = (props: Props): JSX.Element => {
               value={value}
               label="Email"
               textContentType="emailAddress"
-              style={{ borderColor: errors.email ? "red" : "#CCC" }}
+              style={{ borderColor: errors.email ? 'red' : '#CCC' }}
             />
           )}
         />
@@ -89,7 +90,7 @@ const Signup = (props: Props): JSX.Element => {
             required: true,
             minLength: {
               value: 8,
-              message: "Password must be at least 8 characters",
+              message: 'Password must be at least 8 characters',
             },
           }}
           render={({ field: { onBlur, onChange, value } }) => (
@@ -99,13 +100,16 @@ const Signup = (props: Props): JSX.Element => {
               value={value}
               label="Password"
               placeholder="Must be at least 8 characters"
-              style={{ borderColor: errors.password ? "red" : "#CCC" }}
+              style={{ borderColor: errors.password ? 'red' : '#CCC' }}
             />
           )}
         />
         {error?.signUp && <Text style={styles.error}>{error.signUp}</Text>}
         <View style={{ marginTop: 20 }}>
-          <PrimaryActionButton loading={loading} onPress={handleSubmit(onSubmit)}>
+          <PrimaryActionButton
+            loading={loading}
+            onPress={handleSubmit(onSubmit)}
+          >
             Start donating
           </PrimaryActionButton>
         </View>
@@ -114,8 +118,8 @@ const Signup = (props: Props): JSX.Element => {
         <TouchableOpacity style={{}}>
           <Text
             style={{
-              fontFamily: "ps-bold",
-              color: "#0C6D3D",
+              fontFamily: 'ps-bold',
+              color: '#0C6D3D',
             }}
           >
             Terms of Service and Privacy Policy
@@ -129,21 +133,21 @@ const Signup = (props: Props): JSX.Element => {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   formContainer: {
-    marginHorizontal: "4%",
-    marginTop: "10%",
+    marginHorizontal: '4%',
+    marginTop: '10%',
   },
   tos: {
     flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginBottom: "5%",
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginBottom: '5%',
   },
   error: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,
-    color: "#ca6060",
+    color: '#ca6060',
   },
 });
 

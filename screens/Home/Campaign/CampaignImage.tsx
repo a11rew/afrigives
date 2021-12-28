@@ -1,66 +1,16 @@
-import {
-  ImageBackground,
-  ImageSourcePropType,
-  Pressable,
-  StyleSheet,
-} from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { ImageBackground, ImageSourcePropType, StyleSheet } from 'react-native';
 
+import { View } from '@components/Themed';
 import normalize from '@utils/normalize';
-import { View, Text } from '@components/Themed';
-import campaigns from '@data/campaigns';
 
-const PopularCampaigns = (): JSX.Element => {
-  return (
-    <View>
-      <Text style={styles.h1}>Popular campaigns</Text>
-      {campaigns.map((item) => (
-        <CampaignCard
-          key={item.id}
-          id={item.id}
-          image={item.image}
-          name={item.name}
-          locale={item.locale}
-        />
-      ))}
-    </View>
-  );
-};
-
-interface CategoryProps {
-  name: string;
-  locale: string;
+const CampaignImageCard = ({
+  image,
+}: {
   image: ImageSourcePropType;
-  id: string;
-}
-
-const CampaignCard = ({ image, locale, name, id }: CategoryProps) => {
-  const navigation = useNavigation();
+}): JSX.Element => {
   return (
     <View style={styles.cardContainer}>
-      <ImageBackground source={image} style={styles.image}>
-        <Pressable
-          onPress={() =>
-            navigation.navigate('Root', {
-              screen: 'Home',
-              params: {
-                screen: 'Campaign',
-                params: { id },
-              },
-            })
-          }
-          style={styles.labelContainer}
-        >
-          <View style={{ backgroundColor: 'transparent' }}>
-            <Text style={styles.h2}>{locale}</Text>
-            <Text style={styles.h3}>{name}</Text>
-          </View>
-          <Pressable>
-            <AntDesign name="arrowright" size={24} color="white" />
-          </Pressable>
-        </Pressable>
-      </ImageBackground>
+      <ImageBackground source={image} style={styles.image} />
 
       <View style={styles.bgCardContainer}>
         <View style={styles.bgCard} />
@@ -68,6 +18,8 @@ const CampaignCard = ({ image, locale, name, id }: CategoryProps) => {
     </View>
   );
 };
+
+export default CampaignImageCard;
 
 const styles = StyleSheet.create({
   container: {},
@@ -145,5 +97,3 @@ const styles = StyleSheet.create({
     fontSize: normalize(24),
   },
 });
-
-export default PopularCampaigns;

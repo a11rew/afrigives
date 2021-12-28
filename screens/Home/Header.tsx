@@ -1,20 +1,24 @@
-import * as React from "react";
-import { StyleSheet, StatusBar, Image } from "react-native";
-import { View, Text } from "../../components/Themed";
+import * as React from 'react';
+import { StyleSheet, Image } from 'react-native';
+import { useSelector } from 'react-redux';
 
-import Notif from "../../assets/svgs/Notif.svg";
-import normalize from "../../utils/normalize";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import Notif from '@assets/svgs/Notif.svg';
+import normalize from '@utils/normalize';
+import { RootState } from '@store/index';
+import { View, Text } from '@components/Themed';
 
-// @refresh reset
-export default function HomeHeader(): React.ReactElement {
-  const name = useSelector((state: RootState) => state.auth.user?.user_metadata.name);
+const HomeHeader = (): React.ReactElement => {
+  const name = useSelector(
+    (state: RootState) => state.auth.user?.user_metadata.name
+  );
 
   return (
     <View style={styles.container}>
       <View style={styles.greeting}>
-        <Image style={styles.avatar} source={require("../../assets/images/male.png")} />
+        <Image
+          style={styles.avatar}
+          source={require('../../assets/images/male.png')}
+        />
         <View>
           <Text style={styles.greetingText}>Hi, {formatName(name)}</Text>
           <View style={styles.period}>
@@ -29,22 +33,19 @@ export default function HomeHeader(): React.ReactElement {
       </View>
     </View>
   );
-}
+};
 
-const formatName = (name: string) => name?.split(" ")[0];
+const formatName = (name: string) => name?.split(' ')[0];
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "space-between",
-    flexDirection: "row",
-    backgroundColor: "white",
-    paddingHorizontal: "3%",
-    // Really never undefined in practice but could be useful on Ios where
-    // StatusBar.currentHeight is not supported
-    paddingTop: (StatusBar.currentHeight || 24) * 1.5,
-    paddingBottom: "3%",
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    paddingHorizontal: '3%',
+    paddingVertical: '3%',
   },
   avatar: {
     width: normalize(43),
@@ -53,37 +54,22 @@ const styles = StyleSheet.create({
     borderRadius: 99999,
   },
   greeting: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   greetingText: {
     fontSize: normalize(16),
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
   },
   period: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   periodText: {
     fontSize: normalize(14),
-    fontFamily: "ps-bold",
-    color: "rgba(0, 0, 0, 0.56)",
+    fontFamily: 'ps-bold',
+    color: 'rgba(0, 0, 0, 0.56)',
   },
 });
 
-type Greeting = "Morning" | "Afternoon" | "Evening";
-
-function greeting(hours: number): Greeting {
-  if (hours < 0 || hours > 23) {
-    throw new Error(`The value ${hours} is not valid`);
-  }
-  if (hours < 12) {
-    return "Morning";
-  }
-
-  if (hours < 17) {
-    return "Afternoon";
-  }
-
-  return "Evening";
-}
+export default HomeHeader;

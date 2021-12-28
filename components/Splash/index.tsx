@@ -1,18 +1,21 @@
-import React from "react";
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
-import Onbooarding from "../../screens/Onboarding";
-import SplashView from "./SplashView";
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
+
+import Onbooarding from '@screens/Onboarding';
+import SplashView from './SplashView';
 
 const Stack = createSharedElementStackNavigator();
 
-const SplashStack = ({ children }: { children: React.ReactNode }) => (
-  <Stack.Navigator initialRouteName="SplashView" screenOptions={{ headerShown: false }}>
+const SplashStack = (): JSX.Element => (
+  <Stack.Navigator
+    initialRouteName="SplashView"
+    screenOptions={{ headerShown: false }}
+  >
     <Stack.Screen
       name="SplashView"
       component={SplashView}
       sharedElements={() => [
         {
-          id: "afriLogo",
+          id: 'afriLogo',
         },
       ]}
     />
@@ -21,7 +24,7 @@ const SplashStack = ({ children }: { children: React.ReactNode }) => (
       component={Onbooarding}
       sharedElements={() => [
         {
-          id: "afriLogo",
+          id: 'afriLogo',
         },
       ]}
     />

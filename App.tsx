@@ -1,16 +1,16 @@
-import "react-native-gesture-handler";
-import { LogBox } from "react-native";
-import { Provider } from "react-redux";
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import 'react-native-gesture-handler';
+import { LogBox } from 'react-native';
+import { Provider } from 'react-redux';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import useCachedResources from "./hooks/useCachedResources";
-import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
-import { store } from "./store";
-import { supabase } from "./services/supabase";
+import useCachedResources from './hooks/useCachedResources';
+import useColorScheme from './hooks/useColorScheme';
+import Navigation from './navigation';
+import { store } from './store';
+import { supabase } from './services/supabase';
 
-export default function App() {
+const App = (): JSX.Element | null => {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
@@ -18,19 +18,25 @@ export default function App() {
   const session = supabase.auth.session();
 
   // https://github.com/facebook/react-native/issues/12981
-  LogBox.ignoreLogs(["Setting a timer"]);
+  LogBox.ignoreLogs(['Setting a timer']);
 
   if (!isLoadingComplete) {
     return null;
   }
+
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        {/* <SafeAreaView style={{ flex: 1 }}> */}
-        <Navigation initialAuth={{ user, session }} colorScheme={colorScheme} />
-        <StatusBar />
-        {/* </SafeAreaView> */}
+        <SafeAreaView style={{ flex: 1 }}>
+          <Navigation
+            initialAuth={{ user, session }}
+            colorScheme={colorScheme}
+          />
+          <StatusBar />
+        </SafeAreaView>
       </SafeAreaProvider>
     </Provider>
   );
-}
+};
+
+export default App;

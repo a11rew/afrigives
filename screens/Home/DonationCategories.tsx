@@ -1,42 +1,39 @@
-import React from "react";
-import { FlatList, Image, StyleSheet, TouchableOpacity } from "react-native";
-import normalize from "../../utils/normalize";
-import { View, Text } from "../../components/Themed";
-
-interface Props {}
+import { FlatList, Image, ImageSourcePropType, StyleSheet } from 'react-native';
+import normalize from '@utils/normalize';
+import { View, Text } from '@components/Themed';
 
 const categories = [
   {
-    name: "Health",
+    name: 'Health',
     campaigns: 10,
-    image: require("../../assets/sprites/virus.png"),
+    image: require('../../assets/sprites/virus.png'),
     id: 1,
-    accent: "#ebb5b5",
+    accent: '#ebb5b5',
   },
   {
-    name: "Education",
+    name: 'Education',
     campaigns: 22,
-    image: require("../../assets/sprites/wallet.png"),
+    image: require('../../assets/sprites/wallet.png'),
     id: 2,
-    accent: "#f9d8be",
+    accent: '#f9d8be',
   },
   {
-    name: "Health",
+    name: 'Health',
     campaigns: 10,
-    image: require("../../assets/sprites/virus.png"),
+    image: require('../../assets/sprites/virus.png'),
     id: 3,
-    accent: "#ebb5b5",
+    accent: '#ebb5b5',
   },
   {
-    name: "Education",
+    name: 'Education',
     campaigns: 22,
-    image: require("../../assets/sprites/wallet.png"),
+    image: require('../../assets/sprites/wallet.png'),
     id: 4,
-    accent: "#f9d8be",
+    accent: '#f9d8be',
   },
 ];
 
-const DonationCategories = (props: Props) => {
+const DonationCategories = (): JSX.Element => {
   return (
     <View>
       <Text style={styles.h1}>Donation Categories</Text>
@@ -62,7 +59,7 @@ const DonationCategories = (props: Props) => {
 interface CategoryProps {
   title: string;
   campaigns: number;
-  image: any;
+  image: ImageSourcePropType;
   accent: string;
 }
 
@@ -82,15 +79,15 @@ const CategoryCard = ({ image, title, campaigns, accent }: CategoryProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    flexDirection: "row",
-    paddingHorizontal: "4%",
-    justifyContent: "space-between",
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: '4%',
+    justifyContent: 'space-between',
   },
   cardContainer: {
-    backgroundColor: "#F5F5F5",
+    backgroundColor: '#F5F5F5',
     borderRadius: 16,
-    flexDirection: "row",
+    flexDirection: 'row',
     padding: 16,
     minWidth: normalize(252),
     marginRight: normalize(16),
@@ -99,11 +96,11 @@ const styles = StyleSheet.create({
     padding: normalize(16),
     borderRadius: normalize(16),
     marginRight: normalize(16),
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   h1: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
     marginBottom: normalize(16),
   },
@@ -112,31 +109,31 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   h2: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     fontSize: normalize(17),
     lineHeight: normalize(24),
   },
   h3: {
-    fontFamily: "ps",
+    fontFamily: 'ps',
     fontSize: normalize(14),
   },
   labelContainer: {
-    backgroundColor: "transparent",
-    justifyContent: "center",
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
   },
   list: {
     // width: "150%",
   },
   button: {
-    backgroundColor: "#0C6D3D",
+    backgroundColor: '#0C6D3D',
     borderRadius: 16,
-    height: "40%",
+    height: '40%',
     aspectRatio: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   buttonText: {
-    color: "white",
+    color: 'white',
     fontSize: normalize(24),
   },
 });

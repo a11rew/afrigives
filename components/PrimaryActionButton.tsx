@@ -1,41 +1,51 @@
-import React from "react";
+import React from 'react';
 import {
-  Pressable,
-  PressableProps,
   StyleSheet,
   TouchableOpacityProps,
   TouchableOpacity,
   ActivityIndicator,
-} from "react-native";
-import { Text } from "./Themed";
-import normalize from "../utils/normalize";
+} from 'react-native';
+
+import normalize from '@utils/normalize';
+import { Text } from '@Themed';
 
 type Props = TouchableOpacityProps & { loading?: boolean };
 
-const PrimaryActionButton: React.FC<Props> = ({ loading, disabled, children, ...rest }) => (
+const PrimaryActionButton: React.FC<Props> = ({
+  loading,
+  disabled,
+  children,
+  ...rest
+}) => (
   <TouchableOpacity
     style={{
       ...styles.button,
-      backgroundColor: disabled ? "rgba(12, 109, 61, 0.4)" : "rgba(12, 109, 61, 1)",
+      backgroundColor: disabled
+        ? 'rgba(12, 109, 61, 0.4)'
+        : 'rgba(12, 109, 61, 1)',
     }}
-    {...(rest as any)}
+    {...(rest as TouchableOpacityProps)}
   >
-    {loading ? <ActivityIndicator color={"white"} /> : <Text style={styles.text}>{children}</Text>}
+    {loading ? (
+      <ActivityIndicator color="white" />
+    ) : (
+      <Text style={styles.text}>{children}</Text>
+    )}
   </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "ps-bold",
+    fontFamily: 'ps-bold',
     fontSize: normalize(14),
-    color: "white",
+    color: 'white',
   },
   button: {
-    backgroundColor: "#0C6D3D",
+    backgroundColor: '#0C6D3D',
     paddingVertical: normalize(18),
-    marginHorizontal: "auto",
+    marginHorizontal: 'auto',
     borderRadius: 8,
-    alignItems: "center",
+    alignItems: 'center',
   },
 });
 
