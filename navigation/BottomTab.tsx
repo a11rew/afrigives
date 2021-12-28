@@ -15,8 +15,7 @@ import MoreIcon from '@assets/tabIcons/More.svg';
 import Donate from '@screens/Donate';
 import Places from '@screens/Places';
 import More from '@screens/More';
-import { HomeStack } from '@screens/Home';
-
+import HomeStack from './HomeStack';
 import { RootTabParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();

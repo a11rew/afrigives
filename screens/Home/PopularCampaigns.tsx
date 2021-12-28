@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native';
 import normalize from '@utils/normalize';
 import { View, Text } from '@components/Themed';
 import campaigns from '@data/campaigns';
+import { SharedElement } from 'react-navigation-shared-element';
 
 const PopularCampaigns = (): JSX.Element => {
   return (
@@ -22,50 +23,62 @@ const PopularCampaigns = (): JSX.Element => {
           image={item.image}
           name={item.name}
           locale={item.locale}
+          display={false}
         />
       ))}
     </View>
   );
 };
 
-interface CategoryProps {
-  name: string;
-  locale: string;
+type Props = {
+  name?: string;
+  locale?: string;
   image: ImageSourcePropType;
   id: string;
-}
+  display: boolean;
+};
 
-const CampaignCard = ({ image, locale, name, id }: CategoryProps) => {
+export const CampaignCard = ({
+  image,
+  locale,
+  name,
+  display,
+  id,
+}: Props): JSX.Element => {
   const navigation = useNavigation();
-  return (
-    <View style={styles.cardContainer}>
-      <ImageBackground source={image} style={styles.image}>
-        <Pressable
-          onPress={() =>
-            navigation.navigate('Root', {
-              screen: 'Home',
-              params: {
-                screen: 'Campaign',
-                params: { id },
-              },
-            })
-          }
-          style={styles.labelContainer}
-        >
-          <View style={{ backgroundColor: 'transparent' }}>
-            <Text style={styles.h2}>{locale}</Text>
-            <Text style={styles.h3}>{name}</Text>
-          </View>
-          <Pressable>
-            <AntDesign name="arrowright" size={24} color="white" />
-          </Pressable>
-        </Pressable>
-      </ImageBackground>
 
-      <View style={styles.bgCardContainer}>
-        <View style={styles.bgCard} />
+  return (
+    <SharedElement id={`image.${id}`}>
+      <View style={styles.cardContainer}>
+        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+          <Pressable
+            disabled={Boolean(display)}
+            onPress={() =>
+              navigation.navigate('Root', {
+                screen: 'Home',
+                params: {
+                  screen: 'Campaign',
+                  params: { id },
+                },
+              })
+            }
+            style={[styles.labelContainer, { opacity: display ? 0 : 1 }]}
+          >
+            <View style={{ backgroundColor: 'transparent' }}>
+              <Text style={styles.h2}>{locale}</Text>
+              <Text style={styles.h3}>{name}</Text>
+            </View>
+            <Pressable>
+              <AntDesign name="arrowright" size={24} color="white" />
+            </Pressable>
+          </Pressable>
+        </ImageBackground>
+
+        <View style={styles.bgCardContainer}>
+          <View style={styles.bgCard} />
+        </View>
       </View>
-    </View>
+    </SharedElement>
   );
 };
 
@@ -90,7 +103,7 @@ const styles = StyleSheet.create({
     height: normalize(228),
     borderRadius: 16,
     overflow: 'hidden',
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     justifyContent: 'flex-end',
   },
   h2: {

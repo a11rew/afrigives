@@ -10,21 +10,14 @@ const SplashStack = (): JSX.Element => (
     initialRouteName="SplashView"
     screenOptions={{ headerShown: false }}
   >
-    <Stack.Screen
-      name="SplashView"
-      component={SplashView}
-      sharedElements={() => [
-        {
-          id: 'afriLogo',
-        },
-      ]}
-    />
+    <Stack.Screen name="SplashView" component={SplashView} />
     <Stack.Screen
       name="SplashOnboard"
       component={Onbooarding}
       sharedElements={() => [
         {
           id: 'afriLogo',
+          animation: 'fade',
         },
       ]}
     />

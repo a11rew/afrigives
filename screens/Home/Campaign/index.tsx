@@ -6,8 +6,9 @@ import PrimaryActionButton from '@components/PrimaryActionButton';
 import { findCampaign } from '@data/campaigns';
 import normalize from '@utils/normalize';
 
-import CampaignImageCard from './CampaignImage';
-import { HomeStackScreenProps } from '../../../types';
+import { SharedElement } from 'react-navigation-shared-element';
+import { HomeStackScreenProps } from 'types';
+import { CampaignCard } from '../PopularCampaigns';
 
 type Props = HomeStackScreenProps<'Campaign'>;
 
@@ -22,9 +23,15 @@ const Campaign = ({ route }: Props): JSX.Element => {
           <Text style={styles.name}>{campaign?.name}</Text>
           <Text style={styles.date}>Started on {campaign?.date}</Text>
         </View>
-        <View style={styles.imageContainer}>
-          <CampaignImageCard image={campaign?.image as ImageSourcePropType} />
-        </View>
+        <SharedElement id={`image.${campaign?.id}`}>
+          <View style={styles.imageContainer}>
+            <CampaignCard
+              id={campaign?.id || 'image.0'}
+              display
+              image={campaign?.image as ImageSourcePropType}
+            />
+          </View>
+        </SharedElement>
         <View>
           <Text style={styles.about}>About</Text>
           <Text style={styles.description}>{campaign?.about}</Text>
