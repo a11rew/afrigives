@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from 'react-native';
+
 const categories: Category[] = [
   {
     name: 'Health',
@@ -112,7 +114,7 @@ const categories: Category[] = [
 interface Category {
   name: string;
   campaigns: number;
-  image: any;
+  image: ImageSourcePropType;
   id: string;
   accent: string;
   description: string;

@@ -2,6 +2,8 @@ const tintColorLight = '#0C6D3D';
 const tintColorDark = '#fff';
 
 export default {
+  primary: '#0C6D3D',
+  error: '#C63636',
   light: {
     text: '#000',
     background: '#fff',

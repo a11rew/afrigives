@@ -17,6 +17,7 @@ import Places from '@screens/Places';
 import More from '@screens/More';
 import HomeStack from './HomeStack';
 import { RootTabParamList } from '../types';
+import PlacesStack from './PlacesStack';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -38,7 +39,7 @@ const BottomTabNavigator = (): JSX.Element => {
           minHeight: '8%',
           paddingTop: 10,
           paddingBottom: 10,
-          borderTopWidth: 0,
+          borderTopWidth: 0.5,
         },
         tabBarLabelStyle: {
           fontSize: normalize(14),
@@ -95,7 +96,7 @@ const BottomTabNavigator = (): JSX.Element => {
       />
       <BottomTab.Screen
         name="Places"
-        component={Places}
+        component={PlacesStack}
         options={{
           headerShown: false,
           title: 'Places',

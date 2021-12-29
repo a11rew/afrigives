@@ -45,6 +45,13 @@ export type HomeStackParamList = {
   };
 };
 
+export type PlacesStackParamList = {
+  PlacesScreen: undefined;
+  PlacesDetail: {
+    id: string;
+  };
+};
+
 export type HomeStackScreenProps<Screen extends keyof HomeStackParamList> =
   NativeStackScreenProps<HomeStackParamList, Screen>;
 
@@ -53,6 +60,9 @@ export type AuthStackScreenProps<Screen extends keyof AuthStackParamList> =
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
+
+export type PlacesStackScreenProps<Screen extends keyof PlacesStackParamList> =
+  NativeStackScreenProps<PlacesStackParamList, Screen>;
 
 export type RootTabParamList = {
   Home: NavigatorScreenParams<HomeStackParamList> | undefined;

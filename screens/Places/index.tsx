@@ -6,6 +6,8 @@ import { useState } from 'react';
 import normalize from '@utils/normalize';
 import StatusIcon from '@assets/svgs/Status.svg';
 import PrimaryActionButton from '@components/PrimaryActionButton';
+import trendingPlaces from '@data/places';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {}
 
@@ -22,22 +24,14 @@ const Places = (props: Props): JSX.Element => {
           placeholder="Search places"
         />
         <Text style={styles.h1}>Trending places</Text>
-        <TrendingPlaceCard
-          name="Random African Country"
-          event="3.5 magnitude earthquake"
-        />
-        <TrendingPlaceCard
-          name="Random African Country"
-          event="3.5 magnitude earthquake"
-        />
-        <TrendingPlaceCard
-          name="Random African Country"
-          event="3.5 magnitude earthquake"
-        />
-        <TrendingPlaceCard
-          name="Random African Country"
-          event="3.5 magnitude earthquake"
-        />
+        {trendingPlaces.map((item) => (
+          <TrendingPlaceCard
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            event={item.event}
+          />
+        ))}
       </ScrollView>
     </View>
   );
@@ -46,20 +40,38 @@ const Places = (props: Props): JSX.Element => {
 interface TrendingPlaceCardProps {
   name: string;
   event: string;
+  id: string;
 }
 
-const TrendingPlaceCard = ({ name, event }: TrendingPlaceCardProps) => (
-  <View style={styles.cardContainer}>
-    <View style={styles.status}>
-      <StatusIcon />
+const TrendingPlaceCard = ({ name, event, id }: TrendingPlaceCardProps) => {
+  const navigation = useNavigation();
+  return (
+    <View style={styles.cardContainer}>
+      <View style={styles.status}>
+        <StatusIcon />
+      </View>
+      <View style={{ width: '90%' }}>
+        <Text style={styles.cardH1}>{name}</Text>
+        <Text style={styles.cardH2}>{event}</Text>
+        <PrimaryActionButton
+          onPress={() =>
+            navigation.navigate('Root', {
+              screen: 'Places',
+              params: {
+                screen: 'PlacesDetail',
+                params: {
+                  id,
+                },
+              },
+            })
+          }
+        >
+          Donate
+        </PrimaryActionButton>
+      </View>
     </View>
-    <View style={{ width: '90%' }}>
-      <Text style={styles.cardH1}>{name}</Text>
-      <Text style={styles.cardH2}>{event}</Text>
-      <PrimaryActionButton>Donate</PrimaryActionButton>
-    </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -91,6 +103,7 @@ const styles = StyleSheet.create({
   },
   status: {
     marginRight: normalize(16),
+    paddingTop: normalize(2),
   },
 });
 
