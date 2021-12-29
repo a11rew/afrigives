@@ -29,9 +29,12 @@ const HomeStack = (): JSX.Element => (
     <Stack.Screen
       name="CategoryCampaignList"
       component={CategoryCampaignList}
-      sharedElements={(route) => {
-        const { id } = route.params;
-        return [{ id: `banner-image.${id}` }];
+      sharedElements={(route, otherRoute) => {
+        if (otherRoute.name === 'HomeScreen') {
+          const { id } = route.params;
+          return [{ id: `banner-image.${id}` }];
+        }
+        return undefined;
       }}
     />
   </Stack.Navigator>

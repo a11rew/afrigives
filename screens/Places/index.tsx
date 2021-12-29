@@ -1,3 +1,4 @@
+import { StyleSheet } from 'react-native';
 import { View, Text } from '@Themed';
 
 interface Props {}
@@ -9,5 +10,11 @@ const Places = (props: Props): JSX.Element => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
 
 export default Places;
