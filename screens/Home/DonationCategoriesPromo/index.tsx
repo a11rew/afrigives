@@ -9,12 +9,22 @@ import normalize from '@utils/normalize';
 import { View, Text } from '@components/Themed';
 import { useNavigation } from '@react-navigation/native';
 import categories from '@data/categories';
+import { SharedElement } from 'react-navigation-shared-element';
 
 const DonationCategoriesPromo = (): JSX.Element => {
   const navigation = useNavigation();
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('Root', {
+            screen: 'Home',
+            params: {
+              screen: 'Categories',
+            },
+          })
+        }
+      >
         <Text style={styles.h1}>Donation Categories</Text>
       </TouchableOpacity>
       <FlatList
@@ -28,6 +38,7 @@ const DonationCategoriesPromo = (): JSX.Element => {
             image={item.image}
             title={item.name}
             campaigns={item.campaigns}
+            id={item.id}
           />
         )}
         style={styles.list}
@@ -41,19 +52,42 @@ interface CategoryProps {
   campaigns: number;
   image: ImageSourcePropType;
   accent: string;
+  id: string;
 }
 
-const CategoryCard = ({ image, title, campaigns, accent }: CategoryProps) => {
+const CategoryCard = ({
+  image,
+  title,
+  campaigns,
+  accent,
+  id,
+}: CategoryProps) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.cardContainer}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('Root', {
+          screen: 'Home',
+          params: {
+            screen: 'CategoryCampaignList',
+            params: {
+              id,
+            },
+          },
+        })
+      }
+      style={styles.cardContainer}
+    >
       <View style={[styles.spriteContainer, { backgroundColor: accent }]}>
-        <Image source={image} style={styles.sprite} />
+        <SharedElement id={`banner-image.${id}`}>
+          <Image source={image} style={styles.sprite} />
+        </SharedElement>
       </View>
       <View style={styles.labelContainer}>
         <Text style={styles.h2}>{title}</Text>
         <Text style={styles.h3}>{campaigns} campaigns</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

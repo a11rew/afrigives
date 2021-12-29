@@ -1,4 +1,4 @@
-const categories = [
+const categories: Category[] = [
   {
     name: 'Health',
     campaigns: 10,
@@ -7,6 +7,24 @@ const categories = [
     accent: '#ebb5b5',
     description:
       'Donate cloths to refugees and internally displaced persons across Africa',
+    categoryCampaigns: [
+      {
+        name: 'Help the Refugees',
+        donationCount: 100,
+      },
+      {
+        name: 'Syria Refugees',
+        donationCount: 48,
+      },
+      {
+        name: 'Donate to Refugees',
+        donationCount: 232,
+      },
+      {
+        name: 'Change4Refugees',
+        donationCount: 104,
+      },
+    ],
   },
   {
     name: 'Education',
@@ -15,7 +33,26 @@ const categories = [
     id: '2',
     accent: '#f9d8be',
     description: 'Donate cloths to aid sport related campaigns across Africa',
+    categoryCampaigns: [
+      {
+        name: 'Help the Refugees',
+        donationCount: 100,
+      },
+      {
+        name: 'Syria Refugees',
+        donationCount: 48,
+      },
+      {
+        name: 'Donate to Refugees',
+        donationCount: 232,
+      },
+      {
+        name: 'Change4Refugees',
+        donationCount: 104,
+      },
+    ],
   },
+
   {
     name: 'Refugees',
     campaigns: 4,
@@ -24,7 +61,26 @@ const categories = [
     accent: '#ebb5b5',
     description:
       'Donate cloths to campaigns helping the education sector in Africa',
+    categoryCampaigns: [
+      {
+        name: 'Help the Refugees',
+        donationCount: 100,
+      },
+      {
+        name: 'Syria Refugees',
+        donationCount: 48,
+      },
+      {
+        name: 'Donate to Refugees',
+        donationCount: 232,
+      },
+      {
+        name: 'Change4Refugees',
+        donationCount: 104,
+      },
+    ],
   },
+
   {
     name: 'Sports',
     campaigns: 8,
@@ -32,6 +88,24 @@ const categories = [
     id: '4',
     accent: '#f9d8be',
     description: 'Donate cloths to religious bodies in need across Africa',
+    categoryCampaigns: [
+      {
+        name: 'Help the Refugees',
+        donationCount: 100,
+      },
+      {
+        name: 'Syria Refugees',
+        donationCount: 48,
+      },
+      {
+        name: 'Donate to Refugees',
+        donationCount: 232,
+      },
+      {
+        name: 'Change4Refugees',
+        donationCount: 104,
+      },
+    ],
   },
 ];
 
@@ -42,6 +116,10 @@ interface Category {
   id: string;
   accent: string;
   description: string;
+  categoryCampaigns: {
+    name: string;
+    donationCount: number;
+  }[];
 }
 
 export const findCategory = (id: string): Category | undefined => {

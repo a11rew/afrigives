@@ -4,6 +4,7 @@ import Categories from '@screens/Home/Categories';
 import ScreenHeader from '@components/ScreenHeader';
 import { HomeStackParamList } from 'types';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
+import CategoryCampaignList from '@screens/Home/Categories/CategoryCampaignList';
 
 const Stack = createSharedElementStackNavigator<HomeStackParamList>();
 
@@ -25,6 +26,14 @@ const HomeStack = (): JSX.Element => (
       }}
     />
     <Stack.Screen name="Categories" component={Categories} />
+    <Stack.Screen
+      name="CategoryCampaignList"
+      component={CategoryCampaignList}
+      sharedElements={(route) => {
+        const { id } = route.params;
+        return [{ id: `banner-image.${id}` }];
+      }}
+    />
   </Stack.Navigator>
 );
 

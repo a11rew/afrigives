@@ -39,6 +39,10 @@ export type HomeStackParamList = {
     id: string;
   };
   Categories: undefined;
+  // Don't judge me naming is hard
+  CategoryCampaignList: {
+    id: string;
+  };
 };
 
 export type HomeStackScreenProps<Screen extends keyof HomeStackParamList> =

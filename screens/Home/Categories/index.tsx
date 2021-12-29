@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ScreenHeader from '@components/ScreenHeader';
 import SearchBar from '@components/SearchBar';
 import { Text, View } from '@Themed';
@@ -27,7 +27,7 @@ const Categories = (): JSX.Element => {
               <CategoryCard
                 name={category.name}
                 description={category.description}
-                id="1"
+                id={category.id}
               />
             </View>
           ))}
@@ -58,7 +58,18 @@ const CategoryCard = ({ name, description, id }: CategoryCardProps) => {
           alignItems: 'flex-end',
         }}
       >
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('Root', {
+              screen: 'Home',
+              params: {
+                screen: 'CategoryCampaignList',
+                params: { id },
+              },
+            })
+          }
+          style={styles.button}
+        >
           <AntDesign name="right" size={normalize(14)} color="black" />
         </TouchableOpacity>
       </View>
