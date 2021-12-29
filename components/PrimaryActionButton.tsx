@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0C6D3D',
     paddingVertical: normalize(18),
     marginHorizontal: 'auto',
-    borderRadius: normalize(16),
+    borderRadius: normalize(14),
     alignItems: 'center',
   },
 });

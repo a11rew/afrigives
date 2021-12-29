@@ -26,7 +26,8 @@ const BottomTabNavigator = (): JSX.Element => {
 
   useEffect(() => {
     dispatch(refreshAuth());
-  }, [dispatch]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <BottomTab.Navigator
@@ -72,6 +73,7 @@ const BottomTabNavigator = (): JSX.Element => {
         name="Donate"
         component={Donate}
         options={{
+          headerShown: false,
           title: 'Donate',
           tabBarIcon: ({ color, focused }) => (
             <HeartIcon
@@ -95,6 +97,7 @@ const BottomTabNavigator = (): JSX.Element => {
         name="Places"
         component={Places}
         options={{
+          headerShown: false,
           title: 'Places',
           tabBarIcon: ({ color, focused }) => (
             <PlacesIcon
@@ -118,6 +121,7 @@ const BottomTabNavigator = (): JSX.Element => {
         name="More"
         component={More}
         options={{
+          headerShown: false,
           title: 'More',
           tabBarIcon: ({ color, focused }) => (
             <MoreIcon

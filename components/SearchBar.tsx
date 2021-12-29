@@ -7,9 +7,10 @@ import normalize from '@utils/normalize';
 interface Props {
   filter: string;
   setFilter: React.Dispatch<React.SetStateAction<string>>;
+  placeholder?: string;
 }
 
-const SearchBar = ({ filter, setFilter }: Props): JSX.Element => {
+const SearchBar = ({ filter, setFilter, placeholder }: Props): JSX.Element => {
   return (
     <View style={styles.wrapper}>
       <SearchIcon style={styles.searchIcon} />
@@ -17,7 +18,7 @@ const SearchBar = ({ filter, setFilter }: Props): JSX.Element => {
         value={filter}
         onChangeText={(text) => setFilter(text)}
         style={styles.input}
-        placeholder="Search categories"
+        placeholder={placeholder || 'Search categories'}
       />
     </View>
   );

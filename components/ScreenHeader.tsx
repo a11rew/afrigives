@@ -8,24 +8,27 @@ import normalize from '@utils/normalize';
 
 interface Props {
   title: string;
+  noBack?: boolean;
 }
 
-const ScreenHeader: React.FC<Props> = ({ title }) => {
+const ScreenHeader: React.FC<Props> = ({ title, noBack }) => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <View style={styles.backButton}>
-          <Pressable
-            style={styles.backButton}
-            onPress={() => {
-              navigation.goBack();
-            }}
-          >
-            <Icon name="arrowleft" size={20} />
-          </Pressable>
-        </View>
-        <Text style={styles.logo}>{title}</Text>
+        {!noBack && (
+          <View style={styles.backButton}>
+            <Pressable
+              style={styles.backButton}
+              onPress={() => {
+                navigation.goBack();
+              }}
+            >
+              <Icon name="arrowleft" size={20} />
+            </Pressable>
+          </View>
+        )}
+        <Text style={[styles.logo, { left: noBack ? 10 : 45 }]}>{title}</Text>
       </View>
     </View>
   );
@@ -49,7 +52,6 @@ const styles = StyleSheet.create({
   logo: {
     fontFamily: 'ps-bold',
     fontSize: normalize(20),
-    left: 45,
   },
 });
 

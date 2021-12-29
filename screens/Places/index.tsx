@@ -1,19 +1,96 @@
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { View, Text } from '@Themed';
+import ScreenHeader from '@components/ScreenHeader';
+import SearchBar from '@components/SearchBar';
+import { useState } from 'react';
+import normalize from '@utils/normalize';
+import StatusIcon from '@assets/svgs/Status.svg';
+import PrimaryActionButton from '@components/PrimaryActionButton';
 
 interface Props {}
 
 const Places = (props: Props): JSX.Element => {
+  const [filter, setFilter] = useState('');
+
   return (
     <View>
-      <Text>Places</Text>
+      <ScreenHeader noBack title="Places" />
+      <ScrollView contentContainerStyle={styles.container}>
+        <SearchBar
+          filter={filter}
+          setFilter={setFilter}
+          placeholder="Search places"
+        />
+        <Text style={styles.h1}>Trending places</Text>
+        <TrendingPlaceCard
+          name="Random African Country"
+          event="3.5 magnitude earthquake"
+        />
+        <TrendingPlaceCard
+          name="Random African Country"
+          event="3.5 magnitude earthquake"
+        />
+        <TrendingPlaceCard
+          name="Random African Country"
+          event="3.5 magnitude earthquake"
+        />
+        <TrendingPlaceCard
+          name="Random African Country"
+          event="3.5 magnitude earthquake"
+        />
+      </ScrollView>
     </View>
   );
 };
 
+interface TrendingPlaceCardProps {
+  name: string;
+  event: string;
+}
+
+const TrendingPlaceCard = ({ name, event }: TrendingPlaceCardProps) => (
+  <View style={styles.cardContainer}>
+    <View style={styles.status}>
+      <StatusIcon />
+    </View>
+    <View style={{ width: '90%' }}>
+      <Text style={styles.cardH1}>{name}</Text>
+      <Text style={styles.cardH2}>{event}</Text>
+      <PrimaryActionButton>Donate</PrimaryActionButton>
+    </View>
+  </View>
+);
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingHorizontal: '3%',
+    paddingVertical: normalize(20),
+  },
+  h1: {
+    color: '#0C6D3D',
+    fontFamily: 'ps-bold',
+    fontSize: normalize(16),
+    marginBottom: normalize(24),
+    marginTop: normalize(32),
+  },
+
+  cardContainer: {
+    flexDirection: 'row',
+    marginBottom: normalize(40),
+  },
+  cardH1: {
+    fontFamily: 'ps-bold',
+    fontSize: normalize(16),
+  },
+  cardH2: {
+    fontFamily: 'ps-bold',
+    fontSize: normalize(14),
+    color: '#C63636',
+    marginTop: normalize(4),
+    marginBottom: normalize(16),
+  },
+  status: {
+    marginRight: normalize(16),
   },
 });
 

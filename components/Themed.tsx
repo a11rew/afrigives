@@ -3,6 +3,7 @@
  * https://docs.expo.io/guides/color-schemes/
  */
 
+import normalize from '@utils/normalize';
 import { Text as DefaultText, View as DefaultView } from 'react-native';
 
 // import Colors from '../constants/Colors';
@@ -34,7 +35,12 @@ export const Text = ({ style, ...otherProps }: TextProps): JSX.Element => {
   // const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
   const color = '#3B3B3B';
 
-  return <DefaultText style={[{ color }, style]} {...otherProps} />;
+  return (
+    <DefaultText
+      style={[{ color, fontSize: normalize(14) }, style]}
+      {...otherProps}
+    />
+  );
 };
 
 export const View = ({ style, ...otherProps }: ViewProps): JSX.Element => {
