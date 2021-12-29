@@ -1,42 +1,22 @@
-import { FlatList, Image, ImageSourcePropType, StyleSheet } from 'react-native';
+import {
+  FlatList,
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import normalize from '@utils/normalize';
 import { View, Text } from '@components/Themed';
+import { useNavigation } from '@react-navigation/native';
+import categories from '@data/categories';
 
-const categories = [
-  {
-    name: 'Health',
-    campaigns: 10,
-    image: require('../../../assets/sprites/virus.png'),
-    id: 1,
-    accent: '#ebb5b5',
-  },
-  {
-    name: 'Education',
-    campaigns: 22,
-    image: require('../../../assets/sprites/wallet.png'),
-    id: 2,
-    accent: '#f9d8be',
-  },
-  {
-    name: 'Refugees',
-    campaigns: 4,
-    image: require('../../../assets/sprites/heart.png'),
-    id: 3,
-    accent: '#ebb5b5',
-  },
-  {
-    name: 'Sports',
-    campaigns: 8,
-    image: require('../../../assets/sprites/target.png'),
-    id: 4,
-    accent: '#f9d8be',
-  },
-];
-
-const DonationCategories = (): JSX.Element => {
+const DonationCategoriesPromo = (): JSX.Element => {
+  const navigation = useNavigation();
   return (
     <View>
-      <Text style={styles.h1}>Donation Categories</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Categories')}>
+        <Text style={styles.h1}>Donation Categories</Text>
+      </TouchableOpacity>
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -138,4 +118,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DonationCategories;
+export default DonationCategoriesPromo;

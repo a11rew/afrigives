@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { View } from '@components/Themed';
 import normalize from '@utils/normalize';
 
-import DonationCategories from './DonationCategories';
+import DonationCategories from './DonationCategoriesPromo';
 import DonationGroup from './DonationGroup';
 import HomeHeader from './Header';
 import PopularCampaigns from './PopularCampaigns';
