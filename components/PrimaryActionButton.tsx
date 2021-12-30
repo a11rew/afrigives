@@ -5,9 +5,9 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
-
 import normalize from '@utils/normalize';
 import { Text } from '@Themed';
+import { SquircleView } from 'react-native-figma-squircle';
 
 type Props = TouchableOpacityProps & { loading?: boolean };
 
@@ -17,20 +17,21 @@ const PrimaryActionButton: React.FC<Props> = ({
   children,
   ...rest
 }) => (
-  <TouchableOpacity
-    style={{
-      ...styles.button,
-      backgroundColor: disabled
-        ? 'rgba(12, 109, 61, 0.4)'
-        : 'rgba(12, 109, 61, 1)',
-    }}
-    {...(rest as TouchableOpacityProps)}
-  >
-    {loading ? (
-      <ActivityIndicator color="white" />
-    ) : (
-      <Text style={styles.text}>{children}</Text>
-    )}
+  <TouchableOpacity {...(rest as TouchableOpacityProps)}>
+    <SquircleView
+      style={styles.button}
+      squircleParams={{
+        cornerSmoothing: 1,
+        fillColor: '#0C6D3D',
+        cornerRadius: normalize(16),
+      }}
+    >
+      {loading ? (
+        <ActivityIndicator color="white" />
+      ) : (
+        <Text style={styles.text}>{children}</Text>
+      )}
+    </SquircleView>
   </TouchableOpacity>
 );
 

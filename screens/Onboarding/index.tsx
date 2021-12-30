@@ -13,6 +13,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { SquircleView } from 'react-native-figma-squircle';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { SharedElement } from 'react-navigation-shared-element';
 import normalize from '@utils/normalize';
@@ -124,7 +125,6 @@ const Onbooarding = (props: Props): JSX.Element => {
         <View style={{ alignItems: 'center' }}>
           <Animated.View style={[widthAnimate]}>
             <TouchableOpacity
-              style={styles.actionButton}
               onPress={
                 position === 2
                   ? () => {
@@ -133,19 +133,28 @@ const Onbooarding = (props: Props): JSX.Element => {
                   : moveForward
               }
             >
-              {position === 2 ? (
-                <Text
-                  style={{
-                    color: 'white',
-                    fontFamily: 'ps-bold',
-                    fontSize: normalize(14),
-                  }}
-                >
-                  Register to donate
-                </Text>
-              ) : (
-                <Icon name="arrowright" color="#fff" size={20} />
-              )}
+              <SquircleView
+                style={styles.actionButton}
+                squircleParams={{
+                  cornerSmoothing: 1,
+                  cornerRadius: 8,
+                  fillColor: '#0C6D3D',
+                }}
+              >
+                {position === 2 ? (
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontFamily: 'ps-bold',
+                      fontSize: normalize(14),
+                    }}
+                  >
+                    Register to donate
+                  </Text>
+                ) : (
+                  <Icon name="arrowright" color="#fff" size={20} />
+                )}
+              </SquircleView>
             </TouchableOpacity>
           </Animated.View>
 
@@ -231,10 +240,8 @@ const styles = StyleSheet.create({
   },
 
   actionButton: {
-    backgroundColor: '#0C6D3D',
     paddingVertical: normalize(18),
     marginHorizontal: 'auto',
-    borderRadius: 8,
     alignItems: 'center',
   },
 });

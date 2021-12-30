@@ -4509,6 +4509,11 @@ fbjs@^3.0.0:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.30"
 
+figma-squircle@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/figma-squircle/-/figma-squircle-0.2.0.tgz#7f077549d1591a02ef5f46af51a35876f9032a8f"
+  integrity sha512-vjQ+StXbyGURq7Q1TNrLTWG3oRoc7tV7lcOR/4rhAVqH7R4X8IwslTmKHvultgmcU9qCF9kV4rKiyjYInkJ59w==
+
 file-entry-cache@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-6.0.1.tgz"
@@ -7567,6 +7572,13 @@ react-native-dotenv@^3.3.1:
   integrity sha512-gAKXout1XCwCqJ3QPGoQAF2eRzOHgOnwg3x19z+ssow8bDIksJeKBqvoHDyGziVilAIP1J0bEC9Jf+VF8nFang==
   dependencies:
     dotenv "^10.0.0"
+
+react-native-figma-squircle@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-figma-squircle/-/react-native-figma-squircle-0.2.0.tgz#4561956d8867cfc333a4dda44347d78a05834a06"
+  integrity sha512-BJK4c1GWwwPNAyu3AVqgh4w8GjqnzcZbR81EzyZwzQnMlvjw3TgOK5UyoUvKg/9MYMn4SfgjO2XXRbclKmMzWQ==
+  dependencies:
+    figma-squircle "^0.2.0"
 
 react-native-gesture-handler@~2.1.0:
   version "2.1.0"
