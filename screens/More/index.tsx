@@ -24,7 +24,18 @@ const More = (): JSX.Element => {
     <View style={{ flex: 1 }}>
       <ScreenHeader noBack title="More" />
       <ScrollView>
-        <MoreCard title="Donation groups" icon={<CupIcon />} />
+        <MoreCard
+          title="Donation groups"
+          icon={<CupIcon />}
+          onPress={() =>
+            navigation.navigate('Root', {
+              screen: 'More',
+              params: {
+                screen: 'DonationGroups',
+              },
+            })
+          }
+        />
         <MoreCard title="Invite friends" icon={<InviteIcon />} />
         <MoreCard title="Donation stats" icon={<RankingIcon />} />
         <MoreCard title="FAQs" icon={<FAQIcon />} />
