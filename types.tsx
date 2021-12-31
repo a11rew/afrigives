@@ -33,13 +33,22 @@ export type AuthStackParamList = {
   SentMailModal: { email: string };
 };
 
+export type MoreStackParamList = {
+  MoreScreen: undefined;
+  DonationGroups: undefined;
+  InviteFriends: undefined;
+  DonationStats: undefined;
+  FAQs: undefined;
+  AppSettings: undefined;
+};
+
 export type HomeStackParamList = {
   HomeScreen: undefined;
   Campaign: {
     id: string;
   };
   Categories: undefined;
-  // Don't judge me naming is hard
+  // Don't judge, naming is hard
   CategoryCampaignList: {
     id: string;
   };
@@ -63,6 +72,9 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 export type PlacesStackScreenProps<Screen extends keyof PlacesStackParamList> =
   NativeStackScreenProps<PlacesStackParamList, Screen>;
+
+export type MoreStackScreenProps<Screen extends keyof MoreStackParamList> =
+  NativeStackScreenProps<MoreStackParamList, Screen>;
 
 export type RootTabParamList = {
   Home: NavigatorScreenParams<HomeStackParamList> | undefined;

@@ -18,6 +18,7 @@ import More from '@screens/More';
 import HomeStack from './HomeStack';
 import { RootTabParamList } from '../types';
 import PlacesStack from './PlacesStack';
+import MoreStack from './MoreStack';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -120,7 +121,7 @@ const BottomTabNavigator = (): JSX.Element => {
       />
       <BottomTab.Screen
         name="More"
-        component={More}
+        component={MoreStack}
         options={{
           headerShown: false,
           title: 'More',
