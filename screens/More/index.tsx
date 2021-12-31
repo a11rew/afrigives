@@ -36,7 +36,18 @@ const More = (): JSX.Element => {
             })
           }
         />
-        <MoreCard title="Invite friends" icon={<InviteIcon />} />
+        <MoreCard
+          title="Invite friends"
+          icon={<InviteIcon />}
+          onPress={() =>
+            navigation.navigate('Root', {
+              screen: 'More',
+              params: {
+                screen: 'InviteFriends',
+              },
+            })
+          }
+        />
         <MoreCard title="Donation stats" icon={<RankingIcon />} />
         <MoreCard title="FAQs" icon={<FAQIcon />} />
         <MoreCard title="App settings" icon={<SettingsIcon />} />
