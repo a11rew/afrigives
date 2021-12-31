@@ -15,7 +15,7 @@ export default {
     text: '#fff',
     background: '#000',
     tint: tintColorDark,
-    tabIconDefault: '#ccc',
+    tabIconDefault: '#3B3B3B',
     tabIconSelected: tintColorDark,
   },
 };
