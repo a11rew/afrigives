@@ -35,7 +35,7 @@ const HomeHeader = (): React.ReactElement => {
   );
 };
 
-const formatName = (name: string) => name?.split(' ')[0];
+export const formatName = (name: string) => name?.split(' ')[0];
 
 const styles = StyleSheet.create({
   container: {

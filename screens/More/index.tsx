@@ -48,7 +48,18 @@ const More = (): JSX.Element => {
             })
           }
         />
-        <MoreCard title="Donation stats" icon={<RankingIcon />} />
+        <MoreCard
+          title="Donation stats"
+          icon={<RankingIcon />}
+          onPress={() =>
+            navigation.navigate('Root', {
+              screen: 'More',
+              params: {
+                screen: 'DonationStats',
+              },
+            })
+          }
+        />
         <MoreCard title="FAQs" icon={<FAQIcon />} />
         <MoreCard title="App settings" icon={<SettingsIcon />} />
       </ScrollView>
