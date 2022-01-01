@@ -1,6 +1,7 @@
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
+import { DateTime } from 'luxon';
 
 import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
@@ -14,9 +15,8 @@ import Colors from '@constants/Colors';
 interface Props {}
 
 const DonationStats = (props: Props): JSX.Element => {
-  const name = useSelector(
-    (state: RootState) => state.auth.user?.user_metadata.name
-  );
+  const user = useSelector((state: RootState) => state.auth.user);
+  console.log(user);
 
   return (
     <View style={{ flex: 1 }}>
@@ -28,7 +28,9 @@ const DonationStats = (props: Props): JSX.Element => {
             source={require('../../assets/images/male.png')}
           />
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={styles.name}>{formatName(name)}</Text>
+            <Text style={styles.name}>
+              {formatName(user?.user_metadata.name)}
+            </Text>
             <EditIcon />
           </View>
         </View>
@@ -36,7 +38,11 @@ const DonationStats = (props: Props): JSX.Element => {
         <View style={styles.statBlock}>
           <View>
             <Text style={styles.heading}>Member since</Text>
-            <Text style={styles.content}>23 May, 2021</Text>
+            <Text style={styles.content}>
+              {DateTime.fromISO(user!.created_at).toLocaleString(
+                DateTime.DATE_FULL
+              )}
+            </Text>
           </View>
         </View>
         <View style={styles.statBlock}>

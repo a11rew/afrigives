@@ -1,4 +1,6 @@
 import 'react-native-gesture-handler';
+import 'intl';
+import 'intl/locale-data/jsonp/en';
 import { LogBox } from 'react-native';
 import { Provider } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
