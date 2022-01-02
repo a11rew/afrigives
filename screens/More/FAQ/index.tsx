@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { Pressable, ScrollView, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { View, Text } from '@components/Themed';
 import ScreenHeader from '@components/ScreenHeader';
@@ -18,8 +13,21 @@ const FAQ = (): JSX.Element => {
         <Disclosure title="What is Afrigives">
           Afrigives allows you to blah blah
         </Disclosure>
-        <Disclosure title="What is Afrigives" />
-        <Disclosure title="What is Afrigives" />
+        <Disclosure title="How do cloth donations work">
+          Afrigives allows you to blah blah
+        </Disclosure>
+        <Disclosure title="Who are Afri-Agents?">
+          Afrigives allows you to blah blah
+        </Disclosure>
+        <Disclosure title="What are Donation Groups">
+          Afrigives allows you to blah blah
+        </Disclosure>
+        <Disclosure title="Invite link expired?">
+          Afrigives allows you to blah blah
+        </Disclosure>
+        <Disclosure title="What can I donate?">
+          Afrigives allows you to blah blah
+        </Disclosure>
       </ScrollView>
     </View>
   );
@@ -39,7 +47,11 @@ const Disclosure: React.FC<{ title: string }> = ({
       <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text style={styles.h1}>{title}</Text>
         <View>
-          <AntDesign name="down" size={normalize(20)} color="black" />
+          <AntDesign
+            name={open ? 'up' : 'down'}
+            size={normalize(20)}
+            color="black"
+          />
         </View>
       </View>
       {open && (
