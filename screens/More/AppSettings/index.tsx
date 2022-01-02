@@ -15,14 +15,23 @@ import { AntDesign } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import { logout } from '@store/authSlice';
 import { supabase } from '@services/supabase';
+import { useNavigation } from '@react-navigation/native';
+import Language from './Language';
 
 const AppSettings = (): JSX.Element => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (!error) {
-      dispatch(logout());
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (!error) {
+        dispatch(logout());
+      } else {
+        throw error;
+      }
+    } catch (error) {
+      //  Error reporting later on
     }
   };
 
@@ -31,7 +40,12 @@ const AppSettings = (): JSX.Element => {
       <ScreenHeader title="Settings" />
       <ScrollView contentContainerStyle={{ padding: '3%' }}>
         <Text style={styles.heading}>App settings</Text>
-        <SettingsCard title="Change language">English</SettingsCard>
+        <SettingsCard
+          title="Change language"
+          onPress={() => navigation.navigate('Language')}
+        >
+          English
+        </SettingsCard>
         <SettingsCard title="Notification preference">
           Choose notifications to recieve
         </SettingsCard>
@@ -89,6 +103,7 @@ const AppSettingsStack = (): JSX.Element => (
     screenOptions={{ headerShown: false }}
   >
     <Stack.Screen name="Settings" component={AppSettings} />
+    <Stack.Screen name="Language" component={Language} />
   </Stack.Navigator>
 );
 
