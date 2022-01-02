@@ -83,6 +83,10 @@ export const authSlice = createSlice({
       state.user = supabase.auth.user();
       state.session = supabase.auth.session();
     },
+    logout: (state) => {
+      state.user = null;
+      state.session = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(supabaseSignUp.pending, (state) => {
@@ -119,6 +123,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { refreshAuth } = authSlice.actions;
+export const { refreshAuth, logout } = authSlice.actions;
 
 export default authSlice.reducer;

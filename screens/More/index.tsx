@@ -72,7 +72,18 @@ const More = (): JSX.Element => {
             })
           }
         />
-        <MoreCard title="App settings" icon={<SettingsIcon />} />
+        <MoreCard
+          title="App settings"
+          icon={<SettingsIcon />}
+          onPress={() =>
+            navigation.navigate('Root', {
+              screen: 'More',
+              params: {
+                screen: 'AppSettings',
+              },
+            })
+          }
+        />
       </ScrollView>
     </View>
   );
