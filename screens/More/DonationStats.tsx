@@ -16,7 +16,6 @@ interface Props {}
 
 const DonationStats = (props: Props): JSX.Element => {
   const user = useSelector((state: RootState) => state.auth.user);
-  console.log(user);
 
   return (
     <View style={{ flex: 1 }}>

@@ -17,6 +17,7 @@ import { logout } from '@store/authSlice';
 import { supabase } from '@services/supabase';
 import { useNavigation } from '@react-navigation/native';
 import Language from './Language';
+import Notifications from './Notifications';
 
 const AppSettings = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -46,7 +47,10 @@ const AppSettings = (): JSX.Element => {
         >
           English
         </SettingsCard>
-        <SettingsCard title="Notification preference">
+        <SettingsCard
+          title="Notification preference"
+          onPress={() => navigation.navigate('Notifications')}
+        >
           Choose notifications to recieve
         </SettingsCard>
         <View
@@ -104,6 +108,7 @@ const AppSettingsStack = (): JSX.Element => (
   >
     <Stack.Screen name="Settings" component={AppSettings} />
     <Stack.Screen name="Language" component={Language} />
+    <Stack.Screen name="Notifications" component={Notifications} />
   </Stack.Navigator>
 );
 
