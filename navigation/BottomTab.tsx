@@ -17,6 +17,7 @@ import HomeStack from './HomeStack';
 import { RootTabParamList } from '../types';
 import PlacesStack from './PlacesStack';
 import MoreStack from './MoreStack';
+import DonateStack from './DonateStack';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
@@ -71,7 +72,7 @@ const BottomTabNavigator = (): JSX.Element => {
       />
       <BottomTab.Screen
         name="Donate"
-        component={Donate}
+        component={DonateStack}
         options={{
           headerShown: false,
           title: 'Donate',
