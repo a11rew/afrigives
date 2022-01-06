@@ -11,8 +11,12 @@ import Colors from '@constants/Colors';
 import CalendarIcon from '@assets/icons/calendar.svg';
 import FormInput from '@components/FormInput';
 import { AntDesign } from '@expo/vector-icons';
+import { useState } from 'react';
+import DonationDateModal from './DonationDateModal';
 
 const DonationDetails = (): JSX.Element => {
+  const [dateSelectorShow, setDateSelectorShow] = useState(false);
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
       <ScreenHeader title="Donate clothes" />
@@ -46,7 +50,10 @@ const DonationDetails = (): JSX.Element => {
           <View>
             <FormInput label="Mobile number" />
           </View>
-          <TouchableOpacity style={styles.pickupButton}>
+          <TouchableOpacity
+            style={styles.pickupButton}
+            onPress={() => setDateSelectorShow((e) => !e)}
+          >
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <CalendarIcon style={{ marginRight: normalize(16) }} />
               <Text style={{ fontFamily: 'ps-bold', fontSize: normalize(16) }}>
@@ -57,6 +64,10 @@ const DonationDetails = (): JSX.Element => {
           </TouchableOpacity>
         </View>
         <PrimaryActionButton>Continue</PrimaryActionButton>
+        <DonationDateModal
+          dateSelectorShow={dateSelectorShow}
+          setDateSelectorShow={setDateSelectorShow}
+        />
       </View>
     </KeyboardAvoidingView>
   );
