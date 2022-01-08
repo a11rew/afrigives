@@ -1,19 +1,8 @@
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import Colors from '@constants/Colors';
 import normalize from '@utils/normalize';
-import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import React from 'react';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface Props {
   dateSelectorShow: boolean;
@@ -24,66 +13,67 @@ const DonationDateModal: React.FC<Props> = ({
   dateSelectorShow,
   setDateSelectorShow,
 }): JSX.Element => {
-  const toggleShow = useSharedValue(0);
-  const showAnimation = useAnimatedStyle(() => ({
-    transform: [{ translateY: withTiming(toggleShow.value) }],
-  }));
-
-  useEffect(() => {
-    if (dateSelectorShow) {
-      toggleShow.value = 0;
-    }
-    if (!dateSelectorShow) {
-      toggleShow.value = 400;
-    }
-  }, [dateSelectorShow, toggleShow]);
+  const closeModal = () => setDateSelectorShow(false);
 
   return (
-    <Animated.View style={[styles.container, showAnimation]}>
-      <View>
-        <Text style={styles.h1}>Choose a pickup date</Text>
-        <Text style={styles.h2}>Must be within 7 days from today</Text>
-      </View>
-      <View>
-        <View style={{ marginTop: '5%' }}>
-          <Text style={styles.heading}>May 2021</Text>
-        </View>
-        <View
-          style={{
-            marginTop: '5%',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <DayCard day="Thursday" date={24} />
-          <DayCard day="Thursday" date={24} />
-          <DayCard day="Thursday" date={24} />
-          <DayCard day="Thursday" date={24} />
-          <DayCard day="Thursday" date={24} />
-          <DayCard day="Thursday" date={24} />
-          <DayCard day="Thursday" date={24} />
-        </View>
-      </View>
-      <View>
-        <Text
-          style={{
-            fontFamily: 'ps-bold',
-            marginBottom: '5%',
-          }}
-        >
-          We&apos;ll send a mail confirming your donation pickup request within
-          the hour
-        </Text>
-        <PrimaryActionButton
-          onPress={() => {
-            toggleShow.value = 400;
-            setDateSelectorShow(false);
-          }}
-        >
-          Confirm preferred pickup date
-        </PrimaryActionButton>
-      </View>
-    </Animated.View>
+    <Modal
+      hardwareAccelerated
+      onRequestClose={closeModal}
+      transparent
+      visible={dateSelectorShow}
+      animationType="slide"
+    >
+      <TouchableOpacity
+        style={{ flex: 1 }}
+        activeOpacity={1}
+        onPress={closeModal}
+      >
+        <TouchableOpacity activeOpacity={1} style={styles.container}>
+          <View>
+            <Text style={styles.h1}>Choose a pickup date</Text>
+            <Text style={styles.h2}>Must be within 7 days from today</Text>
+          </View>
+          <View>
+            <View style={{ marginTop: '5%' }}>
+              <Text style={styles.heading}>May 2021</Text>
+            </View>
+            <View
+              style={{
+                marginTop: '5%',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <DayCard day="Thursday" date={24} />
+              <DayCard day="Thursday" date={24} />
+              <DayCard day="Thursday" date={24} />
+              <DayCard day="Thursday" date={24} />
+              <DayCard day="Thursday" date={24} />
+              <DayCard day="Thursday" date={24} />
+              <DayCard day="Thursday" date={24} />
+            </View>
+          </View>
+          <View>
+            <Text
+              style={{
+                fontFamily: 'ps-bold',
+                marginBottom: '5%',
+              }}
+            >
+              We&apos;ll send a mail confirming your donation pickup request
+              within the hour
+            </Text>
+            <PrimaryActionButton
+              onPress={() => {
+                setDateSelectorShow(false);
+              }}
+            >
+              Confirm preferred pickup date
+            </PrimaryActionButton>
+          </View>
+        </TouchableOpacity>
+      </TouchableOpacity>
+    </Modal>
   );
 };
 
@@ -140,15 +130,15 @@ const styles = StyleSheet.create({
   container: {
     elevation: 60,
     shadowColor: 'black',
-    height: '60%',
+    height: '55%',
     backgroundColor: 'white',
     position: 'absolute',
     left: 0,
     bottom: 0,
     right: 0,
-    width: '106%',
+    width: '100%',
     paddingHorizontal: '3%',
-    paddingTop: '3%',
+    paddingTop: '5%',
     borderRadius: 18,
     alignSelf: 'center',
     marginHorizontal: 'auto',

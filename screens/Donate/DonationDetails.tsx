@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ScreenHeader from '@components/ScreenHeader';
 import {
   StyleSheet,
@@ -11,7 +12,6 @@ import Colors from '@constants/Colors';
 import CalendarIcon from '@assets/icons/calendar.svg';
 import FormInput from '@components/FormInput';
 import { AntDesign } from '@expo/vector-icons';
-import { useState } from 'react';
 import DonationDateModal from './DonationDateModal';
 
 const DonationDetails = (): JSX.Element => {
@@ -20,15 +20,8 @@ const DonationDetails = (): JSX.Element => {
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
       <ScreenHeader title="Donate clothes" />
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'space-between',
-          padding: '3%',
-          paddingBottom: '5%',
-        }}
-      >
-        <View style={styles.container}>
+      <View style={styles.container}>
+        <View>
           <Text style={styles.h1}>Three-step donation process</Text>
           <Text style={styles.h2}>
             Donate clothes to any locations in Africa in 3 easy steps
@@ -76,6 +69,12 @@ const DonationDetails = (): JSX.Element => {
 export default DonationDetails;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-between',
+    padding: '3%',
+    paddingBottom: '5%',
+  },
   h1: {
     fontFamily: 'ps-bold',
     fontSize: normalize(16),
@@ -85,9 +84,7 @@ const styles = StyleSheet.create({
     fontFamily: 'ps-bold',
     opacity: 0.56,
   },
-  container: {
-    flex: 1,
-  },
+
   stepCard: {
     borderWidth: 1,
     borderColor: '#CCCCCC',
