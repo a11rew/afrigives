@@ -1,8 +1,11 @@
+import React from 'react';
+import { Modal, StyleSheet, TouchableOpacity } from 'react-native';
+import dayjs, { Dayjs } from 'dayjs';
+
+import { View, Text } from '@components/Themed';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import Colors from '@constants/Colors';
 import normalize from '@utils/normalize';
-import React from 'react';
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface Props {
   dateSelectorShow: boolean;
@@ -35,7 +38,7 @@ const DonationDateModal: React.FC<Props> = ({
           </View>
           <View>
             <View style={{ marginTop: '5%' }}>
-              <Text style={styles.heading}>May 2021</Text>
+              <Text style={styles.heading}>{dayjs().format('MMMM, YYYY')}</Text>
             </View>
             <View
               style={{
@@ -44,13 +47,9 @@ const DonationDateModal: React.FC<Props> = ({
                 justifyContent: 'space-between',
               }}
             >
-              <DayCard day="Thursday" date={24} />
-              <DayCard day="Thursday" date={24} />
-              <DayCard day="Thursday" date={24} />
-              <DayCard day="Thursday" date={24} />
-              <DayCard day="Thursday" date={24} />
-              <DayCard day="Thursday" date={24} />
-              <DayCard day="Thursday" date={24} />
+              {[...Array(7)].map((_, idx) => {
+                return <DayCard day={dayjs().add(idx, 'day')} />;
+              })}
             </View>
           </View>
           <View>
@@ -78,11 +77,13 @@ const DonationDateModal: React.FC<Props> = ({
 };
 
 interface DayCardProps {
-  day: string;
-  date: number;
+  day: Dayjs;
 }
 
-const DayCard: React.FC<DayCardProps> = () => {
+const DayCard: React.FC<DayCardProps> = ({ day }) => {
+  // Check if card is for today
+  const disabled = dayjs().isSame(day, 'day');
+
   return (
     <View>
       <Text
@@ -92,10 +93,22 @@ const DayCard: React.FC<DayCardProps> = () => {
           fontFamily: 'ps-bold',
         }}
       >
-        M
+        {day.format('dd')}
       </Text>
-      <TouchableOpacity style={styles.button}>
-        <Text style={{ fontFamily: 'ps-bold' }}>25</Text>
+      <TouchableOpacity
+        style={[
+          styles.button,
+          {
+            backgroundColor: disabled
+              ? 'transparent'
+              : 'rgba(12, 109, 61, 0.161)',
+          },
+        ]}
+        disabled={disabled}
+      >
+        <Text style={{ fontFamily: 'ps-bold', textAlign: 'center' }}>
+          {day.format('D')}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -105,7 +118,6 @@ export default DonationDateModal;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'rgba(12, 109, 61, 0.161)',
     borderRadius: 16,
     width: normalize(40),
     aspectRatio: 1,
