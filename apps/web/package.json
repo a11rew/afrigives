@@ -25,8 +25,8 @@
     "tailwindcss-animation-delay": "^1.0.7"
   },
   "devDependencies": {
-    "@acme/eslint-config": "^0.1.0",
-    "@acme/tailwind-config": "^0.1.0",
+    "@afrigives/eslint-config": "^0.1.0",
+    "@afrigives/tailwind-config": "^0.1.0",
     "@types/node": "17.0.18",
     "@types/react": "17.0.39",
     "autoprefixer": "^10.4.2",
