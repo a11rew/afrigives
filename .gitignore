@@ -20,6 +20,13 @@ next-env.d.ts
 # expo
 .expo/
 dist/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
 
 # production
 build
@@ -46,3 +53,6 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+# macOS
+.DS_Store

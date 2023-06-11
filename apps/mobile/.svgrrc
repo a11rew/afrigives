@@ -1,0 +1,7 @@
+{
+  "replaceAttrValues": {
+    "#141414": "currentColor",
+    "#001": "{props.inner}",
+    "#002": "{props.outer}"
+  }
+}
