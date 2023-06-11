@@ -1,4 +1,4 @@
 packages:
-  - apps/expo
-  - apps/nextjs
+  - apps/mobile
+  - apps/web
   - packages/config/*
