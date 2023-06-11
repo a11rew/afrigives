@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import Carousel from "react-multi-carousel";
-import Image from "next/image";
+
 import "react-multi-carousel/lib/styles.css";
 
 import StockGirls from "../../assets/images/girls.jpg";
@@ -64,7 +64,7 @@ const ImageCarousel = () => {
       <div>
         <div className="mx-2">
           <img
-            className="min-w-[60vw] object-cover sm:min-w-[27.5vw] h-[392px]  overflow-hidden relative"
+            className="relative h-[392px] min-w-[60vw] overflow-hidden  object-cover sm:min-w-[27.5vw]"
             src={StockGirls.src}
             alt="Image of smiling kids"
           />
@@ -73,7 +73,7 @@ const ImageCarousel = () => {
       <div>
         <div className="mx-2">
           <img
-            className="min-w-[60vw] object-cover sm:min-w-[27.5vw] h-[392px]  overflow-hidden relative"
+            className="relative h-[392px] min-w-[60vw] overflow-hidden  object-cover sm:min-w-[27.5vw]"
             src={StockKids.src}
             alt="Image of school kids in uniform"
           />
@@ -82,7 +82,7 @@ const ImageCarousel = () => {
       <div>
         <div className="mx-2">
           <img
-            className="min-w-[60vw] object-cover sm:min-w-[27.5vw] h-[392px]  overflow-hidden relative"
+            className="relative h-[392px] min-w-[60vw] overflow-hidden  object-cover sm:min-w-[27.5vw]"
             src={StockTrad.src}
             alt="Image of celebrating women"
           />
@@ -91,7 +91,7 @@ const ImageCarousel = () => {
       <div>
         <div className="mx-2">
           <img
-            className="min-w-[60vw] object-cover sm:min-w-[27.5vw] h-[392px]  overflow-hidden relative"
+            className="relative h-[392px] min-w-[60vw] overflow-hidden  object-cover sm:min-w-[27.5vw]"
             src={StockWomen.src}
             alt="Image of women in traditional garb"
           />

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 const HowItWorks = () => {
@@ -39,6 +40,7 @@ const HowItWorks = () => {
       setActive(4);
       setCompleted([...completed, 4]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView1, inView2, inView3, inView4]);
 
   return (
@@ -50,7 +52,7 @@ const HowItWorks = () => {
         <div className="hidden grid-rows-4 md:grid ">
           <div
             ref={ref2}
-            className={`flex flex-col justify-center row-span-1 row-start-2 text-right translate-y-full opacity-0 fill-mode-forwards ${
+            className={`fill-mode-forwards row-span-1 row-start-2 flex translate-y-full flex-col justify-center text-right opacity-0 ${
               completed.includes(2) && "animate-slideIn"
             }`}
           >
@@ -62,7 +64,7 @@ const HowItWorks = () => {
           </div>
           <div
             ref={ref4}
-            className={`flex flex-col justify-center row-span-1 row-start-4 text-right translate-y-full opacity-0 fill-mode-forwards ${
+            className={`fill-mode-forwards row-span-1 row-start-4 flex translate-y-full flex-col justify-center text-right opacity-0 ${
               completed.includes(4) && "animate-slideIn"
             }`}
           >
@@ -74,13 +76,14 @@ const HowItWorks = () => {
           </div>
         </div>
 
-        <div className="grid grid-rows-4 bg-[#E0E0E0] w-1 mr-8 md:mx-16 gap-8 transition-all duration-200">
+        <div className="mr-8 grid w-1 grid-rows-4 gap-8 bg-[#E0E0E0] transition-all duration-200 md:mx-16">
+          {/* eslint-disable-next-line @typescript-eslint/no-unsafe-assignment */}
           {[...Array(4)].map((_, idx) => (
             <div
               key={idx + 1}
               className={`row-start-${
                 idx + 1
-              } row-span-1 animate-in slide-in-from-top-0 slide-out-to-bottom-full duration-500 fade-in-100 fade-out-100 ${
+              } animate-in slide-in-from-top-0 slide-out-to-bottom-full fade-in-100 fade-out-100 row-span-1 duration-500 ${
                 active === idx + 1 && "bg-[#006633]"
               }`}
             />
@@ -89,8 +92,8 @@ const HowItWorks = () => {
         <div className="grid grid-rows-4">
           <div
             ref={ref1}
-            className={`flex flex-col justify-center row-span-1 row-start-1
-             translate-y-full opacity-0 fill-mode-forwards ${
+            className={`fill-mode-forwards row-span-1 row-start-1 flex translate-y-full
+             flex-col justify-center opacity-0 ${
                completed.includes(1) && "animate-slideIn"
              }`}
           >
@@ -105,7 +108,7 @@ const HowItWorks = () => {
 
           <div
             ref={ref3}
-            className={`flex flex-col justify-center row-span-1 row-start-3 translate-y-full opacity-0 fill-mode-forwards ${
+            className={`fill-mode-forwards row-span-1 row-start-3 flex translate-y-full flex-col justify-center opacity-0 ${
               completed.includes(3) && "animate-slideIn"
             }`}
           >
@@ -121,7 +124,7 @@ const HowItWorks = () => {
             <>
               <div
                 ref={ref2}
-                className={`flex flex-col justify-center row-span-1 row-start-2 md:hidden translate-y-full opacity-0 fill-mode-forwards ${
+                className={`fill-mode-forwards row-span-1 row-start-2 flex translate-y-full flex-col justify-center opacity-0 md:hidden ${
                   completed.includes(2) && "animate-slideIn"
                 }`}
               >
@@ -135,7 +138,7 @@ const HowItWorks = () => {
               </div>
               <div
                 ref={ref4}
-                className={`flex flex-col justify-center row-span-1 row-start-4 md:hidden translate-y-full opacity-0 fill-mode-forwards ${
+                className={`fill-mode-forwards row-span-1 row-start-4 flex translate-y-full flex-col justify-center opacity-0 md:hidden ${
                   completed.includes(4) && "animate-slideIn"
                 }`}
               >

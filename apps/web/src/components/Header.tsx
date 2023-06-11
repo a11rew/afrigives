@@ -1,21 +1,19 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { IoReorderThree } from "react-icons/io5";
 
 import Logo from "../assets/logo.png";
 
-type Props = {};
-
-const Header = (props: Props) => {
+const Header = () => {
   return (
-    <div className="px-[7%] py-8 w-full flex justify-between">
+    <div className="flex w-full justify-between px-[7%] py-8">
       <Link href="/" passHref>
         <a className="flex items-center gap-3">
           <Image
             src={Logo}
             alt="Afrigives logo"
-            className="rounded-[4px] mr-3"
+            className="mr-3 rounded-[4px]"
             width={24}
             height={24}
           />
@@ -23,7 +21,7 @@ const Header = (props: Props) => {
         </a>
       </Link>
 
-      <nav className="hidden md:flex gap-[48px] font-medium opacity-[0.48]">
+      <nav className="hidden gap-[48px] font-medium opacity-[0.48] md:flex">
         <Link href="/">About</Link>
         <Link href="/">Product</Link>
         <Link href="/">Blog</Link>

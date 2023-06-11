@@ -1,9 +1,9 @@
-import { useState, useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useMediaQuery = (width: number) => {
   const [targetReached, setTargetReached] = useState(false);
 
-  const updateTarget = useCallback((e) => {
+  const updateTarget = useCallback((e: { matches: boolean }) => {
     if (e.matches) {
       setTargetReached(true);
     } else {
@@ -21,7 +21,7 @@ export const useMediaQuery = (width: number) => {
     }
 
     return () => media.removeListener(updateTarget);
-  }, []);
+  }, [updateTarget, width]);
 
   return targetReached;
 };
