@@ -4,17 +4,18 @@
   "main": "node_modules/expo/AppEntry.js",
   "icon": "./assets/images/icon.png",
   "scripts": {
-    "start": "expo start",
-    "dev": "expo start --ios",
-    "dev:ios": "expo start --ios",
-    "dev:android": "expo start --android",
+    "start": "pnpm with-env expo start",
+    "dev": "pnpm with-env expo start --ios",
+    "dev:ios": "pnpm with-env expo start --ios",
+    "dev:android": "pnpm with-env expo start --android",
     "eject": "expo eject",
     "test": "jest --watchAll",
     "lint": "eslint . --fix",
     "format": "prettier --check .",
     "lint:fix": "pnpm lint --fix",
     "type-check": "tsc --noEmit",
-    "clean": "git clean -xdf .expo .turbo node_modules"
+    "clean": "git clean -xdf .expo .turbo node_modules",
+    "with-env": "dotenv -e ../../.env --"
   },
   "jest": {
     "preset": "jest-expo"
@@ -82,6 +83,7 @@
     "@typescript-eslint/eslint-plugin": "^5.8.0",
     "@typescript-eslint/parser": "^5.8.0",
     "eslint": "^8.5.0",
+    "dotenv-cli": "^7.2.1",
     "eslint-config-airbnb": "^19.0.2",
     "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-config-airbnb-typescript-prettier": "^5.0.0",
