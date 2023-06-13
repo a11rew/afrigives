@@ -1,16 +1,20 @@
+import PrimaryActionButton from '@components/PrimaryActionButton';
 import ScreenHeader from '@components/ScreenHeader';
+import { findCategory } from '@data/categories';
 import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
 import { Image, ScrollView, StyleSheet } from 'react-native';
-import { findCategory } from '@data/categories';
-import { type HomeStackScreenProps } from 'types';
-import PrimaryActionButton from '@components/PrimaryActionButton';
 import { SharedElement } from 'react-navigation-shared-element';
+import { type HomeStackScreenProps } from 'types';
 
 type Props = HomeStackScreenProps<'CategoryCampaignList'>;
 
 const CategoryCampaignList = ({ route }: Props): JSX.Element => {
   const category = findCategory(route.params.id);
+
+  if (!category) {
+    return <View />;
+  }
 
   return (
     <View style={{ flex: 1 }}>

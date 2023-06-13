@@ -1,11 +1,11 @@
+import NoDonationGroup from '@assets/sprites/NoDonationGroup.svg';
+import PrimaryActionButton from '@components/PrimaryActionButton';
 import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
-import NoDonationGroup from '@assets/sprites/NoDonationGroup.svg';
-import { StyleSheet } from 'react-native';
-import PrimaryActionButton from '@components/PrimaryActionButton';
-import normalize from '@utils/normalize';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import normalize from '@utils/normalize';
+import { StyleSheet } from 'react-native';
 import JoinDonationGroup from './JoinDonationGroup';
 
 const Stack = createNativeStackNavigator();
@@ -36,6 +36,7 @@ const DonationGroups = (): JSX.Element => {
         </View>
         <PrimaryActionButton
           onPress={() =>
+            // @ts-expect-error - screen name not registered right
             navigation.navigate('Root', {
               screen: 'More',
               params: {
