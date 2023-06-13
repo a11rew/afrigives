@@ -1,21 +1,19 @@
+import Hyperlink from '@assets/svgs/Hyperlink.svg';
+import PrimaryActionButton from '@components/PrimaryActionButton';
+import ScreenHeader from '@components/ScreenHeader';
+import { Text, View } from '@components/Themed';
+import Colors from '@constants/Colors';
+import { findTrendingPlace } from '@data/places';
+import { AntDesign } from '@expo/vector-icons';
+import normalize from '@utils/normalize';
+import { openBrowserAsync } from 'expo-web-browser';
 import {
-  KeyboardAvoidingView,
   ScrollView,
   StyleSheet,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { openBrowserAsync } from 'expo-web-browser';
-import { AntDesign } from '@expo/vector-icons';
-
-import ScreenHeader from '@components/ScreenHeader';
-import { Text, View } from '@components/Themed';
-import Colors from '@constants/Colors';
-import { findTrendingPlace } from '@data/places';
-import normalize from '@utils/normalize';
-import Hyperlink from '@assets/svgs/Hyperlink.svg';
-import { PlacesStackScreenProps } from 'types';
-import PrimaryActionButton from '@components/PrimaryActionButton';
+import { type PlacesStackScreenProps } from 'types';
 import DonationTargetDisplay from './DonationTargetDisplay';
 
 type Props = PlacesStackScreenProps<'PlacesDetail'>;

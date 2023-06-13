@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { PlacesStackParamList } from 'types';
 import Places from '@screens/Places';
 import PlacesDetail from '@screens/Places/PlacesDetail';
+import type { PlacesStackParamList } from 'types';
 
 const Stack = createNativeStackNavigator<PlacesStackParamList>();
 

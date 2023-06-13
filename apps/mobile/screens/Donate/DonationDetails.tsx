@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import ScreenHeader from '@components/ScreenHeader';
-import {
-  StyleSheet,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-} from 'react-native';
-import { View, Text } from '@components/Themed';
-import PrimaryActionButton from '@components/PrimaryActionButton';
-import normalize from '@utils/normalize';
-import Colors from '@constants/Colors';
 import CalendarIcon from '@assets/icons/calendar.svg';
 import FormInput from '@components/FormInput';
+import PrimaryActionButton from '@components/PrimaryActionButton';
+import ScreenHeader from '@components/ScreenHeader';
+import { Text, View } from '@components/Themed';
+import Colors from '@constants/Colors';
 import { AntDesign } from '@expo/vector-icons';
+import normalize from '@utils/normalize';
+import { useState } from 'react';
+import {
+  KeyboardAvoidingView,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import DonationDateModal from './DonationDateModal';
 
 const DonationDetails = (): JSX.Element => {
@@ -74,6 +74,8 @@ const DonationDetails = (): JSX.Element => {
         <DonationDateModal
           dateSelectorShow={dateSelectorShow}
           setDateSelectorShow={setDateSelectorShow}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
         />
       </View>
     </KeyboardAvoidingView>

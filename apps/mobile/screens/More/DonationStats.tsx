@@ -1,24 +1,21 @@
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
-import { AntDesign } from '@expo/vector-icons';
-import { DateTime } from 'luxon';
-
+import EditIcon from '@assets/icons/edit.svg';
 import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
-import { formatName } from '@screens/Home/Header';
-import { RootState } from '@store/index';
-import normalize from '@utils/normalize';
-
-import EditIcon from '@assets/icons/edit.svg';
 import Colors from '@constants/Colors';
+import { AntDesign } from '@expo/vector-icons';
+import { formatName } from '@screens/Home/Header';
+import { type RootState } from '@store/index';
+import normalize from '@utils/normalize';
+import { DateTime } from 'luxon';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
-interface Props {}
-
-const DonationStats = (props: Props): JSX.Element => {
+const DonationStats = (): JSX.Element => {
   const user = useSelector((state: RootState) => state.auth.user);
   const name =
-    useSelector((state: RootState) => state.auth.user?.user_metadata.name) ||
-    'Stranger';
+    useSelector(
+      (state: RootState) => state.auth.user?.user_metadata.name as string
+    ) || 'Stranger';
 
   return (
     <View style={{ flex: 1 }}>

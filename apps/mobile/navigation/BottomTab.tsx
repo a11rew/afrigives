@@ -1,23 +1,19 @@
-import { useEffect } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useDispatch } from 'react-redux';
-
-import useColorScheme from '@hooks/useColorScheme';
+import HeartIcon from '@assets/tabIcons/Heart.svg';
+import HomeIcon from '@assets/tabIcons/Home.svg';
+import MoreIcon from '@assets/tabIcons/More.svg';
+import PlacesIcon from '@assets/tabIcons/Places.svg';
 import Colors from '@constants/Colors';
+import useColorScheme from '@hooks/useColorScheme';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { refreshAuth } from '@store/authSlice';
 import normalize from '@utils/normalize';
-
-import HomeIcon from '@assets/tabIcons/Home.svg';
-import HeartIcon from '@assets/tabIcons/Heart.svg';
-import PlacesIcon from '@assets/tabIcons/Places.svg';
-import MoreIcon from '@assets/tabIcons/More.svg';
-
-import Donate from '@screens/Donate';
-import HomeStack from './HomeStack';
-import { RootTabParamList } from '../types';
-import PlacesStack from './PlacesStack';
-import MoreStack from './MoreStack';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import type { RootTabParamList } from '../types';
 import DonateStack from './DonateStack';
+import HomeStack from './HomeStack';
+import MoreStack from './MoreStack';
+import PlacesStack from './PlacesStack';
 
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 

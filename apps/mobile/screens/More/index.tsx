@@ -1,21 +1,15 @@
-import {
-  TouchableOpacity,
-  StyleSheet,
-  GestureResponderEvent,
-  ScrollView,
-} from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import normalize from '@utils/normalize';
-import { Text, View } from '@Themed';
-import ScreenHeader from '@components/ScreenHeader';
-
-import InviteIcon from '@assets/icons/invite.svg';
 import CupIcon from '@assets/icons/cup.svg';
 import FAQIcon from '@assets/icons/faq.svg';
+import InviteIcon from '@assets/icons/invite.svg';
 import RankingIcon from '@assets/icons/ranking.svg';
 import SettingsIcon from '@assets/icons/settings.svg';
+import ScreenHeader from '@components/ScreenHeader';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { Text, View } from '@Themed';
+import normalize from '@utils/normalize';
 import React from 'react';
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 
 const More = (): JSX.Element => {
   const navigation = useNavigation();
@@ -28,6 +22,7 @@ const More = (): JSX.Element => {
           title="Donation groups"
           icon={<CupIcon />}
           onPress={() =>
+            // @ts-expect-error - screen name not registered right
             navigation.navigate('Root', {
               screen: 'More',
               params: {
@@ -40,6 +35,7 @@ const More = (): JSX.Element => {
           title="Invite friends"
           icon={<InviteIcon />}
           onPress={() =>
+            // @ts-expect-error - screen name not registered right
             navigation.navigate('Root', {
               screen: 'More',
               params: {
@@ -52,6 +48,7 @@ const More = (): JSX.Element => {
           title="Donation stats"
           icon={<RankingIcon />}
           onPress={() =>
+            // @ts-expect-error - screen name not registered right
             navigation.navigate('Root', {
               screen: 'More',
               params: {
@@ -64,6 +61,7 @@ const More = (): JSX.Element => {
           title="FAQs"
           icon={<FAQIcon />}
           onPress={() =>
+            // @ts-expect-error - screen name not registered right
             navigation.navigate('Root', {
               screen: 'More',
               params: {
@@ -76,6 +74,7 @@ const More = (): JSX.Element => {
           title="App settings"
           icon={<SettingsIcon />}
           onPress={() =>
+            // @ts-expect-error - screen name not registered right
             navigation.navigate('Root', {
               screen: 'More',
               params: {

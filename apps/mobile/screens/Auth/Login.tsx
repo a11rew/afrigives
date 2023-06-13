@@ -1,16 +1,14 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-
 import FormInput, { FormProtectedInput } from '@components/FormInput';
 import HeaderWithBack from '@components/HeaderWithBack';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import { Text, View } from '@components/Themed';
-import normalize from '@utils/normalize';
-
-import { RootState } from '@store/index';
+import { useNavigation } from '@react-navigation/native';
 import { skipAuth, supabaseSignIn } from '@store/authSlice';
+import { type RootState } from '@store/index';
+import normalize from '@utils/normalize';
+import { Controller, useForm } from 'react-hook-form';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface FormValues {
   email: string;

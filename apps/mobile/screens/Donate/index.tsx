@@ -21,6 +21,7 @@ const Donate = (): JSX.Element => {
       pickImage();
       return;
     }
+    // @ts-expect-error - screen name not registered right
     navigation.navigate('DonationDetails');
   };
 

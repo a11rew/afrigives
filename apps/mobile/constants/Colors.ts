@@ -1,7 +1,7 @@
 const tintColorLight = '#0C6D3D';
 const tintColorDark = '#fff';
 
-export default {
+const colors = {
   primary: '#0C6D3D',
   error: '#C63636',
   light: {
@@ -19,3 +19,5 @@ export default {
     tabIconSelected: tintColorDark,
   },
 };
+
+export default colors;

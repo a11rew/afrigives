@@ -1,17 +1,15 @@
-import { ScrollView, StyleSheet } from 'react-native';
-import { View, Text } from '@Themed';
-import ScreenHeader from '@components/ScreenHeader';
-import SearchBar from '@components/SearchBar';
-import { useState } from 'react';
-import normalize from '@utils/normalize';
 import StatusIcon from '@assets/svgs/Status.svg';
 import PrimaryActionButton from '@components/PrimaryActionButton';
+import ScreenHeader from '@components/ScreenHeader';
+import SearchBar from '@components/SearchBar';
 import trendingPlaces from '@data/places';
 import { useNavigation } from '@react-navigation/native';
+import { Text, View } from '@Themed';
+import normalize from '@utils/normalize';
+import { useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 
-interface Props {}
-
-const Places = (props: Props): JSX.Element => {
+const Places = (): JSX.Element => {
   const [filter, setFilter] = useState('');
 
   return (
@@ -55,6 +53,7 @@ const TrendingPlaceCard = ({ name, event, id }: TrendingPlaceCardProps) => {
         <Text style={styles.cardH2}>{event}</Text>
         <PrimaryActionButton
           onPress={() =>
+            // @ts-expect-error - screen name not registered right
             navigation.navigate('Root', {
               screen: 'Places',
               params: {

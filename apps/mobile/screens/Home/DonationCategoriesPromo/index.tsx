@@ -1,7 +1,7 @@
 import {
   FlatList,
   Image,
-  ImageSourcePropType,
+  type ImageSourcePropType,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';

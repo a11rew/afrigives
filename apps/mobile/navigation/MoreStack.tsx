@@ -1,12 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { MoreStackParamList } from 'types';
-
 import More from '@screens/More';
+import AppSettingsStack from '@screens/More/AppSettings';
 import DonationGroups from '@screens/More/DonationGroups';
-import InviteFriends from '@screens/More/InviteFriends';
 import DonationStats from '@screens/More/DonationStats';
 import FAQ from '@screens/More/FAQ';
-import AppSettingsStack from '@screens/More/AppSettings';
+import InviteFriends from '@screens/More/InviteFriends';
+import type { MoreStackParamList } from 'types';
 
 const Stack = createNativeStackNavigator<MoreStackParamList>();
 

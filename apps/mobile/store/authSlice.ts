@@ -1,6 +1,6 @@
-/* eslint-disable no-param-reassign */
+ 
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ApiError, Session, User } from '@supabase/supabase-js';
+import { type ApiError, type Session, type User } from '@supabase/supabase-js';
 import { supabase } from '../services/supabase';
 
 export interface AuthState {

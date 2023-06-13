@@ -1,13 +1,12 @@
-import { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
-import { useNavigation } from '@react-navigation/native';
-
 import FormInput from '@components/FormInput';
 import HeaderWithBack from '@components/HeaderWithBack';
-import { View, Text } from '@components/Themed';
 import PrimaryActionButton from '@components/PrimaryActionButton';
+import { Text, View } from '@components/Themed';
+import { useNavigation } from '@react-navigation/native';
 import { supabase } from '@services/supabase';
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { StyleSheet } from 'react-native';
 
 interface FormValues {
   email: string;
@@ -29,6 +28,8 @@ const ForgotPassword = (): JSX.Element => {
     },
   });
   const navigation = useNavigation();
+
+  console.log('resetState', resetState);
 
   const onSubmit = async (values: FormValues) => {
     setResetState((e) => ({ ...e, loading: true, error: null }));

@@ -1,21 +1,21 @@
 import ScreenHeader from '@components/ScreenHeader';
-import Colors from '@constants/Colors';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
 import { Text, View } from '@components/Themed';
+import Colors from '@constants/Colors';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { supabase } from '@services/supabase';
+import { logout } from '@store/authSlice';
+import normalize from '@utils/normalize';
+import React from 'react';
 import {
   ScrollView,
   Share,
   StyleSheet,
   TouchableOpacity,
-  TouchableOpacityProps,
+  type TouchableOpacityProps,
 } from 'react-native';
-import normalize from '@utils/normalize';
-import { AntDesign } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
-import { logout } from '@store/authSlice';
-import { supabase } from '@services/supabase';
-import { useNavigation } from '@react-navigation/native';
 import Language from './Language';
 import Notifications from './Notifications';
 
@@ -43,12 +43,14 @@ const AppSettings = (): JSX.Element => {
         <Text style={styles.heading}>App settings</Text>
         <SettingsCard
           title="Change language"
+          // @ts-expect-error - screen name not registered right
           onPress={() => navigation.navigate('Language')}
         >
           English
         </SettingsCard>
         <SettingsCard
           title="Notification preference"
+          // @ts-expect-error - screen name not registered right
           onPress={() => navigation.navigate('Notifications')}
         >
           Choose notifications to recieve

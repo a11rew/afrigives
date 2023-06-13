@@ -1,11 +1,9 @@
 import Colors from '@constants/Colors';
-import { View, Text } from '@Themed';
+import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
 import { StyleSheet } from 'react-native';
 
-interface Props {}
-
-const DonationTargetDisplay = (props: Props): JSX.Element => {
+const DonationTargetDisplay = (): JSX.Element => {
   return (
     <View>
       <View style={styles.progressContainer}>

@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { useForm, Controller } from 'react-hook-form';
-
 import { FormProtectedInput } from '@components/FormInput';
 import HeaderWithBack from '@components/HeaderWithBack';
-import { View, Text } from '@components/Themed';
-import { supabase } from '@services/supabase';
 import PrimaryActionButton from '@components/PrimaryActionButton';
+import { Text, View } from '@components/Themed';
+import { supabase } from '@services/supabase';
 import parseAuthString from '@utils/parseAuthString';
-
-import { AuthStackScreenProps } from '../../types';
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { StyleSheet } from 'react-native';
+import { type AuthStackScreenProps } from '../../types';
 
 type Props = AuthStackScreenProps<'NewPassword'>;
 
@@ -43,9 +41,17 @@ const NewPassword = ({ route, navigation }: Props): JSX.Element => {
     ) {
       navigation.navigate('Signup');
     }
-  }, []);
+  }, [route.path, navigation]);
 
-  const queryParams = parseAuthString(route.path!);
+  if (!route.path) {
+    return (
+      <View>
+        <Text>Invalid URL</Text>
+      </View>
+    );
+  }
+
+  const queryParams = parseAuthString(route.path);
 
   const onSubmit = async (values: FormValues) => {
     setResetState((e) => ({ ...e, loading: true, error: null }));

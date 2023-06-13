@@ -1,11 +1,8 @@
+import { Text, View } from '@components/Themed';
+import normalize from '@utils/normalize';
 import { Image, StyleSheet } from 'react-native';
 
-import { View, Text } from '@components/Themed';
-import normalize from '@utils/normalize';
-
-interface Props {}
-
-const PromoFirst = (props: Props): JSX.Element => (
+const PromoFirst = (): JSX.Element => (
   <View style={{ width: '100%', justifyContent: 'space-between' }}>
     <Text style={styles.h1}>
       Donate clothes easily to countries across Africa

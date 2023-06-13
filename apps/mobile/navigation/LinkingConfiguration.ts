@@ -1,6 +1,6 @@
+import type { LinkingOptions } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
-import { LinkingOptions } from '@react-navigation/native';
-import { AuthStackParamList, RootStackParamList } from '../types';
+import type { AuthStackParamList, RootStackParamList } from '../types';
 
 const linking: LinkingOptions<RootStackParamList & AuthStackParamList> = {
   prefixes: [Linking.createURL('/')],

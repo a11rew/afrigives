@@ -10,7 +10,7 @@ const useCachedResources = (): boolean => {
   useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
-        SplashScreen.preventAutoHideAsync();
+        await SplashScreen.preventAutoHideAsync();
 
         // Load fonts
         await Font.loadAsync({
@@ -34,11 +34,11 @@ const useCachedResources = (): boolean => {
         // console.warn(e);
       } finally {
         setLoadingComplete(true);
-        SplashScreen.hideAsync();
+        await SplashScreen.hideAsync();
       }
     }
 
-    loadResourcesAndDataAsync();
+    void loadResourcesAndDataAsync();
   }, []);
 
   return isLoadingComplete;

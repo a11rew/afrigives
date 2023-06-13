@@ -1,10 +1,8 @@
-import { Image, StyleSheet } from 'react-native';
-import { View, Text } from '@components/Themed';
+import { Text, View } from '@components/Themed';
 import normalize from '@utils/normalize';
+import { Image, StyleSheet } from 'react-native';
 
-interface Props {}
-
-const PromoThird = (props: Props): JSX.Element => (
+const PromoThird = (): JSX.Element => (
   <View style={{ width: '100%', justifyContent: 'space-between' }}>
     <Text style={styles.h1}>
       Donate with family and friends in donation groups

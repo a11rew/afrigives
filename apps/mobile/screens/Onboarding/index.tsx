@@ -1,3 +1,6 @@
+import { Text, View } from '@components/Themed';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import normalize from '@utils/normalize';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   BackHandler,
@@ -6,23 +9,17 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-
+import { SquircleView } from 'react-native-figma-squircle';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { SquircleView } from 'react-native-figma-squircle';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import { SharedElement } from 'react-navigation-shared-element';
-import normalize from '@utils/normalize';
-import { Text, View } from '@components/Themed';
 import PromoView from './PromoView';
 
-interface Props {}
-
-const Onbooarding = (props: Props): JSX.Element => {
+const Onbooarding = (): JSX.Element => {
   // Element animations
   const navigation = useNavigation();
   const [position, setPosition] = useState(0);

@@ -1,3 +1,6 @@
+import { useNavigation } from '@react-navigation/native';
+import { Text, View } from '@Themed';
+import normalize from '@utils/normalize';
 import { useEffect } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import Animated, {
@@ -6,10 +9,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { SharedElement } from 'react-navigation-shared-element';
-import { useNavigation } from '@react-navigation/native';
-
-import normalize from '@utils/normalize';
-import { View, Text } from '@Themed';
 
 const SplashView = (): JSX.Element => {
   const navigation = useNavigation();
@@ -62,7 +61,9 @@ const SplashView = (): JSX.Element => {
       };
     }, 1200);
 
+    // @ts-expect-error - screen name not registered right
     setTimeout(() => navigation.navigate('SplashOnboard'), 2000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

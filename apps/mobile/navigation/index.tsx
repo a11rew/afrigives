@@ -1,24 +1,17 @@
-import { ColorSchemeName } from 'react-native';
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Session, User } from '@supabase/supabase-js';
-import { useSelector } from 'react-redux';
-
 import ModalScreen from '@screens/ModalScreen';
 import NotFoundScreen from '@screens/NotFoundScreen';
-import { RootState } from '@store/index';
-
+import { type RootState } from '@store/index';
+import { type Session, type User } from '@supabase/supabase-js';
+import { type ColorSchemeName } from 'react-native';
+import { useSelector } from 'react-redux';
+import { type RootStackParamList } from '../types';
 import AuthStack from './AuthStack';
 import BottomTabNavigator from './BottomTab';
 import LinkingConfiguration from './LinkingConfiguration';
-import { RootStackParamList } from '../types';
 
 const Navigation = ({
-  colorScheme,
   initialAuth,
 }: {
   colorScheme: ColorSchemeName;

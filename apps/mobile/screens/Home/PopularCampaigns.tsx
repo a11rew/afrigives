@@ -1,6 +1,6 @@
 import {
   ImageBackground,
-  ImageSourcePropType,
+  type ImageSourcePropType,
   Pressable,
   StyleSheet,
 } from 'react-native';

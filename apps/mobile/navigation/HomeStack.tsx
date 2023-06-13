@@ -1,10 +1,10 @@
+import ScreenHeader from '@components/ScreenHeader';
 import Home from '@screens/Home';
 import Campaign from '@screens/Home/Campaign';
 import Categories from '@screens/Home/Categories';
-import ScreenHeader from '@components/ScreenHeader';
-import { HomeStackParamList } from 'types';
-import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import CategoryCampaignList from '@screens/Home/Categories/CategoryCampaignList';
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
+import type { HomeStackParamList } from 'types';
 
 const Stack = createSharedElementStackNavigator<HomeStackParamList>();
 

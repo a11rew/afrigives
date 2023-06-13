@@ -1,13 +1,11 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import Login from '@screens/Auth/Login';
-import Signup from '@screens/Auth/Signup';
 import SplashStack from '@components/Splash';
-import NewPassword from '@screens/Auth/NewPassword';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ForgotPassword from '@screens/Auth/ForgotPassword';
+import Login from '@screens/Auth/Login';
+import NewPassword from '@screens/Auth/NewPassword';
 import SentMailModal from '@screens/Auth/SentMailModal';
-
-import { AuthStackParamList } from '../types';
+import Signup from '@screens/Auth/Signup';
+import type { AuthStackParamList } from '../types';
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
 

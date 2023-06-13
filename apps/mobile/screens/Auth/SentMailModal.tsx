@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import React from 'react';
 import normalize from '../../utils/normalize';
 import { Text, View } from '../../components/Themed';
-import { AuthStackScreenProps } from '../../types';
+import { type AuthStackScreenProps } from '../../types';
 
 type Props = AuthStackScreenProps<'SentMailModal'>;
 

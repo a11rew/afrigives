@@ -1,4 +1,4 @@
-import { ImageBackground, ImageSourcePropType, StyleSheet } from 'react-native';
+import { ImageBackground, type ImageSourcePropType, StyleSheet } from 'react-native';
 
 import { View } from '@components/Themed';
 import normalize from '@utils/normalize';

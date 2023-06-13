@@ -3,12 +3,12 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { type BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import {
-  CompositeScreenProps,
-  NavigatorScreenParams,
+  type CompositeScreenProps,
+  type NavigatorScreenParams,
 } from '@react-navigation/native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { type NativeStackScreenProps } from '@react-navigation/native-stack';
 
 declare global {
   namespace ReactNavigation {

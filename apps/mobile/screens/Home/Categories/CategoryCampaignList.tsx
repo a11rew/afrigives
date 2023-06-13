@@ -3,7 +3,7 @@ import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
 import { Image, ScrollView, StyleSheet } from 'react-native';
 import { findCategory } from '@data/categories';
-import { HomeStackScreenProps } from 'types';
+import { type HomeStackScreenProps } from 'types';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import { SharedElement } from 'react-navigation-shared-element';
 

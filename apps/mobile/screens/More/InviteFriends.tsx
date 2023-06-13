@@ -1,14 +1,12 @@
-import { Share, StyleSheet, TouchableOpacity } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
 import ScreenHeader from '@components/ScreenHeader';
 import Colors from '@constants/Colors';
-import { View, Text } from '@Themed';
+import { AntDesign } from '@expo/vector-icons';
+import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
+import { Share, StyleSheet, TouchableOpacity } from 'react-native';
 import QRCode from 'react-qr-code';
 
-interface Props {}
-
-const InviteFriends = (props: Props): JSX.Element => {
+const InviteFriends = (): JSX.Element => {
   return (
     <View style={{ flex: 1 }}>
       <ScreenHeader title="Invite friends" />

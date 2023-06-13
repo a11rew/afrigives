@@ -1,24 +1,21 @@
-import React from 'react';
-import { Modal, StyleSheet, TouchableOpacity } from 'react-native';
-import dayjs, { Dayjs } from 'dayjs';
-
-import { View, Text } from '@components/Themed';
 import PrimaryActionButton from '@components/PrimaryActionButton';
+import { Text, View } from '@components/Themed';
 import Colors from '@constants/Colors';
 import normalize from '@utils/normalize';
+import dayjs, { type Dayjs } from 'dayjs';
+import React from 'react';
+import { Modal, StyleSheet, TouchableOpacity } from 'react-native';
 
 interface Props {
   dateSelectorShow: boolean;
   setDateSelectorShow: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedDate: any;
-  setSelectedDate: () => void;
+  selectedDate: string;
+  setSelectedDate: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const DonationDateModal: React.FC<Props> = ({
   dateSelectorShow,
   setDateSelectorShow,
-  selectedDate,
-  setSelectedDate,
 }): JSX.Element => {
   const closeModal = () => setDateSelectorShow(false);
 
@@ -52,9 +49,7 @@ const DonationDateModal: React.FC<Props> = ({
               }}
             >
               {[...Array(7)].map((_, idx) => {
-                return (
-                  <DayCard key={idx as any} day={dayjs().add(idx, 'day')} />
-                );
+                return <DayCard key={idx} day={dayjs().add(idx, 'day')} />;
               })}
             </View>
           </View>

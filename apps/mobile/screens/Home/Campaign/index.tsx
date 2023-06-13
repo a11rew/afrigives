@@ -1,4 +1,4 @@
-import { ImageSourcePropType, ScrollView, StyleSheet } from 'react-native';
+import { type ImageSourcePropType, ScrollView, StyleSheet } from 'react-native';
 
 import { Text, View } from '@components/Themed';
 import ScreenHeader from '@components/ScreenHeader';
@@ -7,7 +7,7 @@ import { findCampaign } from '@data/campaigns';
 import normalize from '@utils/normalize';
 
 import { SharedElement } from 'react-navigation-shared-element';
-import { HomeStackScreenProps } from 'types';
+import { type HomeStackScreenProps } from 'types';
 import { CampaignCard } from '../PopularCampaigns';
 
 type Props = HomeStackScreenProps<'Campaign'>;

@@ -1,11 +1,8 @@
+import { Text, View } from '@components/Themed';
+import normalize from '@utils/normalize';
 import { Image, StyleSheet } from 'react-native';
 
-import { View, Text } from '@components/Themed';
-import normalize from '@utils/normalize';
-
-interface Props {}
-
-const PromoSecond = (props: Props): JSX.Element => (
+const PromoSecond = (): JSX.Element => (
   <View
     style={{
       width: '100%',
