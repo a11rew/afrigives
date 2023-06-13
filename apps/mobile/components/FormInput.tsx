@@ -1,15 +1,19 @@
+import PasswordHidden from '@assets/svgs/PasswordHidden';
+import PasswordOpen from '@assets/svgs/PasswordOpen.svg';
+import { View } from '@Themed';
+import normalize from '@utils/normalize';
 import { useState } from 'react';
-import { Pressable, StyleSheet, TextInput, TextInputProps } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  TextInput,
+  type TextInputProps,
+} from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-
-import normalize from '@utils/normalize';
-import PasswordOpen from '@assets/svgs/PasswordOpen.svg';
-import PasswordHidden from '@assets/svgs/PasswordHidden';
-import { View } from '@Themed';
 
 interface Props extends TextInputProps {
   label: string;

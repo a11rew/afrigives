@@ -1,19 +1,18 @@
+import { Text } from '@Themed';
+import normalize from '@utils/normalize';
 import React from 'react';
 import {
-  StyleSheet,
-  TouchableOpacityProps,
-  TouchableOpacity,
   ActivityIndicator,
+  StyleSheet,
+  TouchableOpacity,
+  type TouchableOpacityProps,
 } from 'react-native';
-import normalize from '@utils/normalize';
-import { Text } from '@Themed';
 import { SquircleView } from 'react-native-figma-squircle';
 
 type Props = TouchableOpacityProps & { loading?: boolean };
 
 const PrimaryActionButton: React.FC<Props> = ({
   loading,
-  disabled,
   children,
   ...rest
 }) => (

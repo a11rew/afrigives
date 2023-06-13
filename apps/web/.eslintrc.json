@@ -1,11 +1,11 @@
 {
-  "extends": ["next/core-web-vitals"],
+  "extends": ["@afrigives/eslint-config"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
-      "parserOptions": {
-        "project": ["./tsconfig.json"]
-      },
+      // "parserOptions": {
+      //   "project": ["./tsconfig.json"]
+      // },
       "rules": {
         "no-empty-function": "off",
         "@typescript-eslint/no-empty-function": "off"

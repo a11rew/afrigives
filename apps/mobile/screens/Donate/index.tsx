@@ -1,15 +1,15 @@
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import ScreenHeader from '@components/ScreenHeader';
 import Colors from '@constants/Colors';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { moveForward, setImage } from '@store/donationSlice';
+import { type RootState } from '@store/index';
 import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
-import { AntDesign } from '@expo/vector-icons';
-import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@store/index';
-import { moveForward, setImage } from '@store/donationSlice';
-import { useNavigation } from '@react-navigation/native';
 
 const Donate = (): JSX.Element => {
   const dispatch = useDispatch();

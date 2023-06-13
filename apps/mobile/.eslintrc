@@ -1,51 +1,5 @@
 {
-  "extends": [
-    "airbnb-typescript-prettier",
-    "plugin:import/typescript",
-    "plugin:react/jsx-runtime"
-  ],
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "parserOptions": {
-        "project": ["./tsconfig.json"]
-      },
-      "rules": {
-        "no-unused-vars": "warn",
-        "prettier/prettier": ["error", { "singleQuote": true }],
-        "no-use-before-define": "off",
-        "@typescript-eslint/no-use-before-define": "off",
-        "import/extensions": "off",
-        "camelcase": "off",
-        "global-require": "off",
-        "react/jsx-props-no-spreading": "off",
-        "react/require-default-props": "off",
-        "react/no-unstable-nested-components": [
-          "error",
-          {
-            "allowAsProps": true
-          }
-        ],
-        "react/function-component-definition": [
-          1,
-          {
-            "namedComponents": "arrow-function",
-            "unnamedComponents": "arrow-function"
-          }
-        ],
-        "@typescript-eslint/no-namespace": "off",
-        "@typescript-eslint/no-empty-interface": "off",
-        "@typescript-eslint/no-unused-vars": "warn",
-        "@typescript-eslint/explicit-module-boundary-types": [
-          "error",
-          {
-            "allowedNames": ["_"]
-          }
-        ]
-      }
-    }
-  ],
-  "parser": "@typescript-eslint/parser",
+  "extends": ["@afrigives/eslint-config", "plugin:import/typescript"],
   "settings": {
     "import/resolver": {
       "typescript": {},
