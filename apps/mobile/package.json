@@ -2,6 +2,7 @@
   "name": "@afrigives/mobile",
   "version": "1.0.0",
   "main": "index.js",
+  "packageManager": "pnpm@8.1.1",
   "icon": "./assets/images/icon.png",
   "scripts": {
     "start": "pnpm with-env expo start",
