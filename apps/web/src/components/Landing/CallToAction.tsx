@@ -7,10 +7,15 @@ const CallToAction = ({
   reverse,
   image,
   text,
+  cta,
 }: {
   reverse?: boolean;
   image: StaticImageData;
   text: string;
+  cta: {
+    text: string;
+    link: string;
+  };
 }) => {
   return (
     <div
@@ -25,30 +30,32 @@ const CallToAction = ({
               reverse
                 ? "-left-[110px] -scale-x-100 scale-y-100"
                 : "-right-[110px]"
-            } -top-7`}
+            } -top-2`}
           >
             <CTAStroke />
           </div>
 
-          <div className="absolute -top-[35%] left-0 right-0 mx-auto my-0 w-fit scale-[80%]">
+          <div className="scae-[80%] absolute -top-[35%] left-0 right-0 mx-auto my-0 w-fit max-w-[298px]">
             <Image src={image} alt="Screenshot of the Afrigives app" />
           </div>
         </div>
       </div>
 
       <div
-        className={`flex items-center text-center md:w-1/2 md:pl-28 md:text-left ${
-          reverse && "md:justify-end md:pl-0 md:pr-28 md:text-right"
+        className={`flex items-center justify-center text-center md:w-1/2 md:justify-start md:text-left ${
+          reverse ? "md:justify-end md:pr-28 md:text-right" : "md:pl-28"
         }`}
       >
-        <div className={`mt-[30%] sm:mt-[20%] md:mt-0`}>
+        <div className={`mt-[40%] max-w-[293px] sm:mt-[30%] md:mt-0`}>
           <h3 className="mb-8 text-2xl leading-[39.58px] text-[#006633] lg:max-w-[330px] lg:text-[1.9rem]">
             {text}
           </h3>
-          <div className={`flex ${reverse && "justify-end"}`}>
-            <button className="flex w-full items-center justify-center bg-[#006633] py-8 text-white outline outline-1 md:max-w-[293px]">
-              See Figma Prototype
-            </button>
+          <div className={`flex ${reverse && "md:justify-end"}`}>
+            <a href={cta.link} className="w-full">
+              <button className="flex w-full items-center justify-center bg-[#006633] py-8 text-white outline outline-1">
+                {cta.text}
+              </button>
+            </a>
           </div>
         </div>
       </div>

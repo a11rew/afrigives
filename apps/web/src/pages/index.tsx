@@ -27,6 +27,10 @@ const Home: NextPage = () => {
         <CallToAction
           image={CampaignPromo}
           text="Find causes you care about easily"
+          cta={{
+            text: "Download",
+            link: "#download",
+          }}
         />
       </div>
 
@@ -35,6 +39,10 @@ const Home: NextPage = () => {
           reverse
           image={DonationPromo}
           text="Create a donation group, raise support for your cause"
+          cta={{
+            text: "Read the case study",
+            link: "https://bootcamp.uxdesign.cc/ui-ux-case-study-online-clothe-donation-5fde02f49b4",
+          }}
         />
       </div>
 
@@ -42,6 +50,10 @@ const Home: NextPage = () => {
         <CallToAction
           image={DonationStats}
           text="Make a difference, track your impact"
+          cta={{
+            text: "See the code",
+            link: "https://github.com/a11rew/afrigives",
+          }}
         />
       </div>
 

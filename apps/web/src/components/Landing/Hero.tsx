@@ -1,26 +1,25 @@
 import React from "react";
-
+import { isAndroid, isIOS } from "react-device-detect";
 import { FaAndroid } from "react-icons/fa";
 import { GrAppleAppStore } from "react-icons/gr";
-import { isAndroid, isIOS } from "react-device-detect";
 
 const CallToAction = () => {
   return (
-    <div className="max-w-[594px]">
-      <h2 className="font-medium text-3xl md:text-5xl leading-[56px] text-center">
+    <div id="download" className="max-w-[594px]">
+      <h2 className="text-center text-3xl font-medium leading-[56px] md:text-5xl">
         Make cloth donations to{" "}
         <span className="text-[#346734]">anywhere in Africa</span> easily with
         Afrigives
       </h2>
-      <div className="flex flex-col mt-12 space-y-5 sm:space-y-0 sm:space-x-5 sm:flex-row">
+      <div className="mt-12 flex flex-col space-y-5 sm:flex-row sm:space-x-5 sm:space-y-0">
         {!isIOS && (
-          <button className="flex items-center justify-center gap-[18px] outline outline-1 py-8 w-full">
+          <button className="flex w-full items-center justify-center gap-[18px] py-8 outline outline-1">
             <FaAndroid size={24} />
             <p className="font-medium">Download on Playstore</p>
           </button>
         )}
         {!isAndroid && (
-          <button className="flex items-center justify-center gap-[18px] outline outline-1 py-8 w-full">
+          <button className="flex w-full items-center justify-center gap-[18px] py-8 outline outline-1">
             <GrAppleAppStore size={24} />
             <p className="font-medium">Get on App Store</p>
           </button>

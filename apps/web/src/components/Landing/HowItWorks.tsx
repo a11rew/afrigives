@@ -59,7 +59,7 @@ const HowItWorks = () => {
             <h1 className="text-xl font-medium md:text-2xl">Find a cause</h1>
 
             <p className="font-medium opacity-[48%]">
-              Discover causes and organizations making a positive impact.
+              Discover people and organizations making a positive impact.
             </p>
           </div>
           <div
@@ -134,7 +134,7 @@ const HowItWorks = () => {
                 </h1>
 
                 <p className="font-medium opacity-[48%]">
-                  Purus a, ut consequat vulputate sit volutpat.
+                  Discover people and organizations making a positive impact.
                 </p>
               </div>
               <div
@@ -146,7 +146,7 @@ const HowItWorks = () => {
                 <h1 className="text-xl font-medium md:text-2xl">Donate</h1>
 
                 <p className="font-medium opacity-[48%]">
-                  Diam viverra gravida dis commodo ipsum. Tellus.
+                  Make a difference by completing your donation securely.
                 </p>
               </div>
             </>
