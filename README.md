@@ -3,6 +3,16 @@
 Afrigives is a platform that connects donors to fictive charities in
 Africa in cash and kind.
 
+## Overview
+
+This is a monorepo containing the source code for the Afrigives mobile application and website.
+
+The mobile application is built with [Expo](https://expo.dev/) and [React Native](https://reactnative.dev/). The web application is built with [Next.js](https://nextjs.org/) and [Tailwind CSS](https://tailwindcss.com/) for styling, deployed on [Vercel](https://vercel.com/).
+
+The [Repository Structure](#repo-structure) section below contains more information about the structure of the repository. The [Getting Started](#getting-started) section contains instructions for setting up the development environment.
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
 ## Download
 
 [Play Store](https://play.google.com/store/apps/details?id=com.afrigives)
