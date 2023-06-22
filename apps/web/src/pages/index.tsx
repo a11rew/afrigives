@@ -12,7 +12,7 @@ import ImageCarousel from "../components/Landing/ImageCarousel";
 
 const Home: NextPage = () => {
   return (
-    <div className="">
+    <div>
       <Head>
         <title>Afrigives</title>
       </Head>
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
           text="Create a donation group, raise support for your cause"
           cta={{
             text: "Read the case study",
-            link: "https://bootcamp.uxdesign.cc/ui-ux-case-study-online-clothe-donation-5fde02f49b4",
+            link: "#download",
           }}
         />
       </div>

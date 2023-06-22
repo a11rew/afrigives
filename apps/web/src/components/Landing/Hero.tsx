@@ -5,7 +5,7 @@ import { GrAppleAppStore } from "react-icons/gr";
 
 const CallToAction = () => {
   return (
-    <div id="download" className="max-w-[594px]">
+    <div className="max-w-[594px]" id="download">
       <h2 className="text-center text-3xl font-medium leading-[56px] md:text-5xl">
         Make cloth donations to{" "}
         <span className="text-[#346734]">anywhere in Africa</span> easily with
