@@ -13,13 +13,13 @@ const CallToAction = () => {
       </h2>
       <div className="mt-12 flex flex-col space-y-5 sm:flex-row sm:space-x-5 sm:space-y-0">
         {!isIOS && (
-          <button className="flex w-full items-center justify-center gap-[18px] py-8 outline outline-1">
+          <button className="hover:bg-primary-green flex w-full items-center justify-center gap-[18px] py-8 outline outline-1 transition-colors duration-300 ease-in-out hover:text-white">
             <FaAndroid size={24} />
             <p className="font-medium">Download on Playstore</p>
           </button>
         )}
         {!isAndroid && (
-          <button className="flex w-full items-center justify-center gap-[18px] py-8 outline outline-1">
+          <button className="hover:bg-primary-green flex w-full items-center justify-center gap-[18px] py-8 outline outline-1 transition-colors duration-300 ease-in-out hover:text-white">
             <GrAppleAppStore size={24} />
             <p className="font-medium">Get on App Store</p>
           </button>

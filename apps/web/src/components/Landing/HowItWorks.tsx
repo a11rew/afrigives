@@ -46,7 +46,7 @@ const HowItWorks = () => {
   return (
     <div>
       <h3 className="mb-16 text-[1.9rem] leading-[39.58px] md:text-center">
-        See <span className="text-[#006633]">how Afrigives works</span>
+        See <span className="text-primary-green">how Afrigives works</span>
       </h3>
       <div className="flex h-[800px] md:justify-center">
         <div className="hidden grid-rows-4 md:grid ">
@@ -84,7 +84,7 @@ const HowItWorks = () => {
               className={`row-start-${
                 idx + 1
               } animate-in slide-in-from-top-0 slide-out-to-bottom-full fade-in-100 fade-out-100 row-span-1 duration-500 ${
-                active === idx + 1 && "bg-[#006633]"
+                active === idx + 1 && "bg-primary-green"
               }`}
             />
           ))}

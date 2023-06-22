@@ -9,14 +9,14 @@ const Footer = () => {
         <div className="lg:w-1/2">
           <h1 className="text-2xl leading-8 text-white lg:text-5xl lg:leading-[56px]">
             Download the <br />{" "}
-            <span className="text-[#006633]">Afrigives</span> mobile app
+            <span className="text-primary-green">Afrigives</span> mobile app
           </h1>
           <div className="mt-12 flex flex-col gap-5 lg:flex-row">
-            <button className="flex w-full items-center justify-center gap-[18px] bg-white py-8 outline outline-1">
+            <button className="hover:bg-primary-green hover:outline-primary-green flex w-full items-center justify-center gap-[18px] bg-white px-4 py-8 outline outline-1 transition-colors duration-300 ease-in-out hover:text-white">
               <FaAndroid size={24} />
               <p className="font-medium">Download on Playstore</p>
             </button>
-            <button className="flex w-full items-center justify-center gap-[18px] bg-white py-8 outline outline-1">
+            <button className="hover:bg-primary-green hover:outline-primary-green flex w-full items-center justify-center gap-[18px] bg-white px-4 py-8 outline outline-1 transition-colors duration-300 ease-in-out hover:text-white">
               <GrAppleAppStore size={24} />
               <p className="font-medium">Get on App Store</p>
             </button>

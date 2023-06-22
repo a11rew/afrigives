@@ -47,12 +47,12 @@ const CallToAction = ({
         }`}
       >
         <div className={`mt-[40%] max-w-[293px] sm:mt-[30%] md:mt-0`}>
-          <h3 className="mb-8 text-2xl leading-[39.58px] text-[#006633] lg:max-w-[330px] lg:text-[1.9rem]">
+          <h3 className="text-primary-green mb-8 text-2xl leading-[39.58px] lg:max-w-[330px] lg:text-[1.9rem]">
             {text}
           </h3>
           <div className={`flex ${reverse && "md:justify-end"}`}>
             <a href={cta.link} className="w-full">
-              <button className="flex w-full items-center justify-center bg-[#006633] py-8 text-white outline outline-1">
+              <button className="bg-primary-green flex w-full items-center justify-center py-8 text-white outline outline-1">
                 {cta.text}
               </button>
             </a>

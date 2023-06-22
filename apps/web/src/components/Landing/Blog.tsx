@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { HiArrowRight } from "react-icons/hi";
 import { BsArrowRight } from "react-icons/bs";
+import { HiArrowRight } from "react-icons/hi";
 
-import BlogGirls from "../../assets/images/blog/blog-girls.jpg";
 import BlogBoys from "../../assets/images/blog/blog-boys.jpeg";
+import BlogGirls from "../../assets/images/blog/blog-girls.jpg";
 import BlogTrad from "../../assets/images/blog/blog-trad.jpg";
 import BlogWoman from "../../assets/images/blog/blog-woman.jpeg";
 
@@ -15,21 +15,21 @@ const Blog = () => {
       <div className="flex justify-between">
         <h3 className="mb-14 mt-4 max-w-[374px] text-[1.9rem] leading-[39.58px]">
           Read some stories on the
-          <span className="text-[#006633]"> impact </span>
+          <span className="text-primary-green"> impact </span>
           we&apos;re making
         </h3>
         <div className="flex items-center gap-8 font-medium text-white">
           Read all stories
-          <button className="p-3 bg-[#006633] rounded-full">
+          <button className="bg-primary-green rounded-full p-3">
             <HiArrowRight className="text-white" />
           </button>
         </div>
       </div>
 
       <div>
-        <div className="flex flex-col md:flex-row md:h-[392px] gap-5">
-          <div className="h-[268px] md:h-[392px] relative md:w-[59.25%]">
-            <div className="relative w-full h-full">
+        <div className="flex flex-col gap-5 md:h-[392px] md:flex-row">
+          <div className="relative h-[268px] md:h-[392px] md:w-[59.25%]">
+            <div className="relative h-full w-full">
               <Image
                 alt="Image of little kids"
                 src={BlogGirls}
@@ -37,7 +37,7 @@ const Blog = () => {
                 objectFit="cover"
               />
             </div>
-            <div className="absolute bottom-0 w-full h-[38.01%] bg-[#0C6D3D] bg-opacity-[56%] flex justify-between items-center px-[5.6%] text-white">
+            <div className="absolute bottom-0 flex h-[38.01%] w-full items-center justify-between bg-[#0C6D3D] bg-opacity-[56%] px-[5.6%] text-white">
               <div className="flex flex-col gap-1 md:gap-2">
                 <h1 className="text-lg font-bold md:text-2xl">
                   Story Headline
@@ -51,8 +51,8 @@ const Blog = () => {
               </div>
             </div>
           </div>
-          <div className="h-[268px] md:h-[392px] relative md:w-[40.74%]">
-            <div className="relative w-full h-full">
+          <div className="relative h-[268px] md:h-[392px] md:w-[40.74%]">
+            <div className="relative h-full w-full">
               <Image
                 alt="Image of woman in traditional garb"
                 src={BlogWoman}
@@ -60,7 +60,7 @@ const Blog = () => {
                 objectFit="cover"
               />
             </div>
-            <div className="absolute bottom-0 w-full h-[38.01%] bg-[#0C6D3D] bg-opacity-[56%] flex justify-between items-center px-[5.6%] text-white">
+            <div className="absolute bottom-0 flex h-[38.01%] w-full items-center justify-between bg-[#0C6D3D] bg-opacity-[56%] px-[5.6%] text-white">
               <div className="flex flex-col gap-1 md:gap-2">
                 <h1 className="text-lg font-bold md:text-2xl">
                   Story Headline
@@ -75,9 +75,9 @@ const Blog = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row md:h-[392px] gap-5 mt-5">
-          <div className="h-[268px] md:h-[392px] relative md:w-[40.74%]">
-            <div className="relative w-full h-full">
+        <div className="mt-5 flex flex-col gap-5 md:h-[392px] md:flex-row">
+          <div className="relative h-[268px] md:h-[392px] md:w-[40.74%]">
+            <div className="relative h-full w-full">
               <Image
                 alt="Image of school boys"
                 src={BlogBoys}
@@ -85,7 +85,7 @@ const Blog = () => {
                 objectFit="cover"
               />
             </div>
-            <div className="absolute bottom-0 w-full h-[38.01%] bg-[#0C6D3D] bg-opacity-[56%] flex justify-between items-center px-[5.6%] text-white">
+            <div className="absolute bottom-0 flex h-[38.01%] w-full items-center justify-between bg-[#0C6D3D] bg-opacity-[56%] px-[5.6%] text-white">
               <div className="flex flex-col gap-1 md:gap-2">
                 <h1 className="text-lg font-bold md:text-2xl">
                   Story Headline
@@ -99,8 +99,8 @@ const Blog = () => {
               </div>
             </div>
           </div>
-          <div className="h-[268px] md:h-[392px] relative md:w-[59.25%]">
-            <div className="relative w-full h-full">
+          <div className="relative h-[268px] md:h-[392px] md:w-[59.25%]">
+            <div className="relative h-full w-full">
               <Image
                 alt="Image of women in traditional garb"
                 src={BlogTrad}
@@ -108,7 +108,7 @@ const Blog = () => {
                 objectFit="cover"
               />
             </div>
-            <div className="absolute bottom-0 w-full h-[38.01%] bg-[#0C6D3D] bg-opacity-[56%] flex justify-between items-center px-[5.6%] text-white">
+            <div className="absolute bottom-0 flex h-[38.01%] w-full items-center justify-between bg-[#0C6D3D] bg-opacity-[56%] px-[5.6%] text-white">
               <div className="flex flex-col gap-1 md:gap-2">
                 <h1 className="text-lg font-bold md:text-2xl">
                   Story Headline
