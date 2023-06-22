@@ -8,6 +8,11 @@ const defineConfig = (): ExpoConfig => ({
   icon: './assets/images/icon.png',
   scheme: 'afrigives',
   userInterfaceStyle: 'automatic',
+  extra: {
+    eas: {
+      projectId: 'fb8be00b-91b4-4b8d-bc65-b50ef02c1186',
+    },
+  },
   splash: {
     image: './assets/images/splash.png',
     resizeMode: 'contain',
@@ -19,6 +24,7 @@ const defineConfig = (): ExpoConfig => ({
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: false,
+    bundleIdentifier: 'com.andrewglago.afrigives',
   },
   android: {
     adaptiveIcon: {
