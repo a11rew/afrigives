@@ -1,16 +1,15 @@
 import 'react-native-gesture-handler';
 import 'intl';
 import 'intl/locale-data/jsonp/en';
-import { LogBox } from 'react-native';
-import { Provider } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
+import { LogBox, Platform } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-
+import { Provider } from 'react-redux';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
-import { store } from './store';
 import { supabase } from './services/supabase';
+import { store } from './store';
 
 const App = (): JSX.Element | null => {
   const isLoadingComplete = useCachedResources();
@@ -34,7 +33,11 @@ const App = (): JSX.Element | null => {
             initialAuth={{ user, session }}
             colorScheme={colorScheme}
           />
-          <StatusBar />
+          <StatusBar
+            translucent={false}
+            backgroundColor="#000"
+            style={Platform.OS === 'ios' ? 'auto' : 'light'}
+          />
         </SafeAreaView>
       </SafeAreaProvider>
     </Provider>
