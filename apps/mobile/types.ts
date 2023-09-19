@@ -40,6 +40,7 @@ export type MoreStackParamList = {
 
 export type HomeStackParamList = {
   HomeScreen: undefined;
+  DonationGroups: undefined;
   Campaign: {
     id: string;
   };

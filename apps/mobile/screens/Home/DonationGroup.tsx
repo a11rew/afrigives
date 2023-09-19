@@ -1,10 +1,12 @@
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-
 import { Text, View } from '@components/Themed';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import normalize from '@utils/normalize';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
 const DonationGroup = (): JSX.Element => {
+  const navigation = useNavigation();
+
   return (
     <View>
       <Text style={styles.h1}>Donation group</Text>
@@ -12,7 +14,17 @@ const DonationGroup = (): JSX.Element => {
         <Text style={styles.h2}>
           Join a group to donate together with friends and family
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            navigation.navigate('Root', {
+              screen: 'Home',
+              params: {
+                screen: 'DonationGroups',
+              },
+            })
+          }
+        >
           <AntDesign name="plus" size={normalize(20)} color="white" />
         </TouchableOpacity>
       </View>

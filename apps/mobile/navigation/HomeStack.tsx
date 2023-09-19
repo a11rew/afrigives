@@ -3,6 +3,7 @@ import Home from '@screens/Home';
 import Campaign from '@screens/Home/Campaign';
 import Categories from '@screens/Home/Categories';
 import CategoryCampaignList from '@screens/Home/Categories/CategoryCampaignList';
+import DonationGroups from '@screens/More/DonationGroups';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import type { HomeStackParamList } from 'types';
 
@@ -14,6 +15,7 @@ const HomeStack = (): JSX.Element => (
     screenOptions={{ headerShown: false }}
   >
     <Stack.Screen name="HomeScreen" component={Home} />
+    <Stack.Screen name="DonationGroups" component={DonationGroups} />
     <Stack.Screen
       name="Campaign"
       component={Campaign}
