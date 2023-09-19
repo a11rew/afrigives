@@ -1,0 +1,13 @@
+diff --git a/android/lib/src/main/java/com/swmansion/gesturehandler/PanGestureHandler.kt b/android/lib/src/main/java/com/swmansion/gesturehandler/PanGestureHandler.kt
+index 382934f37e15d0da53ba511ac24951391d483565..3e7a60389e34d76b18c6d58517fdcc3a060fd5c9 100644
+--- a/android/lib/src/main/java/com/swmansion/gesturehandler/PanGestureHandler.kt
++++ b/android/lib/src/main/java/com/swmansion/gesturehandler/PanGestureHandler.kt
+@@ -54,7 +54,7 @@ class PanGestureHandler(context: Context?) : GestureHandler<PanGestureHandler>()
+    * position of all the fingers will remain still while doing a rotation gesture.
+    */
+   init {
+-    val vc = ViewConfiguration.get(context)
++    val vc = ViewConfiguration.get(context!!)
+     val touchSlop = vc.scaledTouchSlop
+     defaultMinDistSq = (touchSlop * touchSlop).toFloat()
+     minDistSq = defaultMinDistSq
