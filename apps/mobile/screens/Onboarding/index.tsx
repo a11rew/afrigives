@@ -1,4 +1,5 @@
 import { Text, View } from '@components/Themed';
+import { useSwipe } from '@hooks/useSwipe';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import normalize from '@utils/normalize';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -97,6 +98,8 @@ const Onbooarding = (): JSX.Element => {
     }, [position, moveBackward])
   );
 
+  const { onTouchStart, onTouchEnd } = useSwipe(moveForward, moveBackward, 6);
+
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -110,62 +113,76 @@ const Onbooarding = (): JSX.Element => {
         </Animated.View>
       </View>
 
-      <PromoView offsetAnimate={offsetAnimate} />
-
-      <View style={{ flex: 1, justifyContent: 'space-evenly' }}>
-        <View style={styles.carouselDots}>
-          <CarouselDot active={position === 0} />
-          <CarouselDot active={position === 1} />
-          <CarouselDot active={position === 2} />
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'space-between',
+          paddingBottom: '3%',
+        }}
+      >
+        <View onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          <PromoView offsetAnimate={offsetAnimate} />
         </View>
 
-        <View style={{ alignItems: 'center' }}>
-          <Animated.View style={[widthAnimate]}>
-            <TouchableOpacity
-              onPress={
-                position === 2
-                  ? () => {
-                      navigation.navigate('Signup');
-                    }
-                  : moveForward
-              }
-            >
-              <SquircleView
-                style={styles.actionButton}
-                squircleParams={{
-                  cornerSmoothing: 1,
-                  cornerRadius: 8,
-                  fillColor: '#0C6D3D',
+        <View
+          style={{
+            height: '19%',
+          }}
+        >
+          <View style={styles.carouselDots}>
+            <CarouselDot active={position === 0} />
+            <CarouselDot active={position === 1} />
+            <CarouselDot active={position === 2} />
+          </View>
+
+          <View style={{ alignItems: 'center' }}>
+            <Animated.View style={[widthAnimate]}>
+              <TouchableOpacity
+                onPress={
+                  position === 2
+                    ? () => {
+                        navigation.navigate('Signup');
+                      }
+                    : moveForward
+                }
+              >
+                <SquircleView
+                  style={styles.actionButton}
+                  squircleParams={{
+                    cornerSmoothing: 1,
+                    cornerRadius: 8,
+                    fillColor: '#0C6D3D',
+                  }}
+                >
+                  {position === 2 ? (
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontFamily: 'ps-bold',
+                        fontSize: normalize(14),
+                      }}
+                    >
+                      Register to donate
+                    </Text>
+                  ) : (
+                    <Icon name="arrowright" color="#fff" size={20} />
+                  )}
+                </SquircleView>
+              </TouchableOpacity>
+            </Animated.View>
+
+            <View>
+              <Pressable
+                disabled={position !== 2}
+                onPress={() => {
+                  navigation.navigate('Login');
                 }}
               >
-                {position === 2 ? (
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontFamily: 'ps-bold',
-                      fontSize: normalize(14),
-                    }}
-                  >
-                    Register to donate
-                  </Text>
-                ) : (
-                  <Icon name="arrowright" color="#fff" size={20} />
-                )}
-              </SquircleView>
-            </TouchableOpacity>
-          </Animated.View>
-
-          <View>
-            <Pressable
-              disabled={position !== 2}
-              onPress={() => {
-                navigation.navigate('Login');
-              }}
-            >
-              <Animated.Text style={[styles.loginText, loginAnimate]}>
-                Already have an account? Login
-              </Animated.Text>
-            </Pressable>
+                <Animated.Text style={[styles.loginText, loginAnimate]}>
+                  Already have an account? Login
+                </Animated.Text>
+              </Pressable>
+            </View>
           </View>
         </View>
       </View>
@@ -221,6 +238,7 @@ const styles = StyleSheet.create({
   carouselDots: {
     justifyContent: 'center',
     flexDirection: 'row',
+    marginBottom: normalize(32),
   },
 
   carouselDot: {
