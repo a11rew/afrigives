@@ -1,4 +1,5 @@
 import type { ExpoConfig } from '@expo/config';
+import Env from './env';
 
 const defineConfig = (): ExpoConfig => ({
   name: 'Afrigives',
@@ -12,6 +13,7 @@ const defineConfig = (): ExpoConfig => ({
     eas: {
       projectId: 'fb8be00b-91b4-4b8d-bc65-b50ef02c1186',
     },
+    ...Env,
   },
   splash: {
     image: './assets/images/splash.png',
