@@ -1,16 +1,16 @@
-import { isClerkAPIResponseError, useSignIn } from '@clerk/clerk-expo';
+import { useSignIn } from '@clerk/clerk-expo';
 import FormInput, { FormProtectedInput } from '@components/FormInput';
 import HeaderWithBack from '@components/HeaderWithBack';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import { Text, View } from '@components/Themed';
 import { useNavigation } from '@react-navigation/native';
-import { signIn, skipAuth } from '@store/authSlice';
-import { type RootState } from '@store/index';
+import { skipAuth } from '@store/authSlice';
+import { buildClerkErrorMessage } from '@utils/auth';
 import normalize from '@utils/normalize';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 interface FormValues {
   email: string;
@@ -47,19 +47,9 @@ const Login = (): JSX.Element => {
       });
       setSignInLoading(false);
 
-      return await setActive({ session: completeSignIn.createdSessionId });
+      await setActive({ session: completeSignIn.createdSessionId });
     } catch (error) {
-      if (isClerkAPIResponseError(error)) {
-        const compositeErrorMessage = error.errors
-          .map((e) => e.message)
-          .join(', ')
-          // Capitalize first letter
-          .replace(/^\w/, (c) => c.toUpperCase());
-
-        setSignInError(compositeErrorMessage);
-      } else {
-        setSignInError('Something went wrong. Please try again.');
-      }
+      setSignInError(buildClerkErrorMessage(error));
       setSignInLoading(false);
     }
   };
