@@ -4,7 +4,7 @@
   "engines": {
     "node": ">=v16"
   },
-  "packageManager": "pnpm@8.1.1",
+  "packageManager": "pnpm@8.7.6",
   "scripts": {
     "build": "turbo build",
     "clean": "git clean -xdf node_modules",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@afrigives/eslint-config": "^0.1.0",
-    "@ianvs/prettier-plugin-sort-imports": "^4.0.2",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@manypkg/cli": "^0.20.0",
     "@types/prettier": "^2.7.3",
     "eslint": "^8.42.0",

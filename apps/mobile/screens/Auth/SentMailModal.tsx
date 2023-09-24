@@ -26,7 +26,7 @@ const SentMailModal: React.FC<Props> = ({ route }) => {
 
   const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = async (values: { code: string }) => {
+  const onSubmit = (values: { code: string }) => {
     setError(null);
 
     navigation.navigate('NewPassword', { code: values.code });

@@ -8,7 +8,7 @@ import normalize from '@utils/normalize';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 interface FormValues {
   name: string;

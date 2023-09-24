@@ -9,12 +9,11 @@ import { LogBox, Platform } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { store } from './store';
 
-// @ts-ignore
-const { CLERK_PUBLISHABLE_KEY } = Constants.manifest!.extra;
+// @ts-expect-error - TODO: Type env variables in manifest
+const { CLERK_PUBLISHABLE_KEY } = Constants.manifest.extra;
 
 const tokenCache = {
   async getToken(key: string) {
@@ -35,7 +34,6 @@ const tokenCache = {
 
 const App = (): JSX.Element | null => {
   const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
 
   // https://github.com/facebook/react-native/issues/12981
   LogBox.ignoreLogs(['Setting a timer']);
@@ -52,7 +50,7 @@ const App = (): JSX.Element | null => {
       <Provider store={store}>
         <SafeAreaProvider>
           <SafeAreaView style={{ flex: 1 }}>
-            <Navigation colorScheme={colorScheme} />
+            <Navigation />
             <StatusBar
               translucent={false}
               backgroundColor="#000"

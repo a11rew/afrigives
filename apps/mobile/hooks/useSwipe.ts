@@ -1,21 +1,21 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, type GestureResponderEvent } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 
 export function useSwipe(
-  onSwipeLeft?: any,
-  onSwipeRight?: any,
+  onSwipeLeft?: () => void,
+  onSwipeRight?: () => void,
   rangeOffset = 4
 ) {
   let firstTouch = 0;
 
   // set user touch start position
-  function onTouchStart(e: any) {
+  function onTouchStart(e: GestureResponderEvent) {
     firstTouch = e.nativeEvent.pageX;
   }
 
   // when touch ends check for swipe directions
-  function onTouchEnd(e: any) {
+  function onTouchEnd(e: GestureResponderEvent) {
     // get touch position and screen size
     const positionX = e.nativeEvent.pageX;
     const range = windowWidth / rangeOffset;

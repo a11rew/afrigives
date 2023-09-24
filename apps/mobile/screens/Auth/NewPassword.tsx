@@ -16,7 +16,7 @@ interface FormValues {
   confirmPassword: string;
 }
 
-const NewPassword = ({ route, navigation }: Props): JSX.Element => {
+const NewPassword = ({ route }: Props): JSX.Element => {
   const [resetError, setResetError] = useState<string | null>(null);
   const [resetLoading, setResetLoading] = useState(false);
   const { signIn, isLoaded, setActive } = useSignIn();

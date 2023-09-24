@@ -1,7 +1,6 @@
 import Notif from '@assets/svgs/Notif.svg';
 import { useUser } from '@clerk/clerk-expo';
 import { Text, View } from '@components/Themed';
-import { type RootState } from '@store/index';
 import normalize from '@utils/normalize';
 import * as React from 'react';
 import { Image, StyleSheet } from 'react-native';

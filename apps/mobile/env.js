@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const z = require('zod');
 const path = require('path');
 const envPath = path.resolve(__dirname, `.env`);
