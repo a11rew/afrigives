@@ -1,11 +1,10 @@
+import { useAuth } from '@clerk/clerk-expo';
 import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
 import Colors from '@constants/Colors';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { supabase } from '@services/supabase';
-import { logout } from '@store/authSlice';
 import normalize from '@utils/normalize';
 import React from 'react';
 import {
@@ -15,23 +14,18 @@ import {
   TouchableOpacity,
   type TouchableOpacityProps,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
 import Language from './Language';
 import Notifications from './Notifications';
 
 const AppSettings = (): JSX.Element => {
-  const dispatch = useDispatch();
+  const auth = useAuth();
   const navigation = useNavigation();
 
   const handleLogout = async () => {
     try {
-      const { error } = await supabase.auth.signOut();
-      if (!error) {
-        dispatch(logout());
-      } else {
-        throw error;
-      }
+      await auth.signOut();
     } catch (error) {
+      console.error(error);
       //  Error reporting later on
     }
   };
@@ -64,7 +58,9 @@ const AppSettings = (): JSX.Element => {
         </SettingsCard>
         <SettingsCard
           title="Share"
-          onPress={() => Share.share({ message: 'get-afrigives.com/join' })}
+          onPress={() =>
+            Share.share({ message: 'https://afrigives.a11rew.dev' })
+          }
         >
           Share app
         </SettingsCard>

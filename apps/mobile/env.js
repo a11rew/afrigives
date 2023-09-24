@@ -9,6 +9,7 @@ require('dotenv').config({
 const envSchema = z.object({
   SUPABASE_URL: z.string().url(),
   SUPABASE_PUBLIC_KEY: z.string(),
+  CLERK_PUBLISHABLE_KEY: z.string(),
 });
 
 const parseResult = envSchema.safeParse(process.env);

@@ -13,6 +13,7 @@ const defineConfig = (): ExpoConfig => ({
     eas: {
       projectId: 'fb8be00b-91b4-4b8d-bc65-b50ef02c1186',
     },
+    clerkPublishableKey: Env.CLERK_PUBLISHABLE_KEY,
     ...Env,
   },
   splash: {

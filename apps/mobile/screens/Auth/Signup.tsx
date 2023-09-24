@@ -1,10 +1,11 @@
+import { isClerkAPIResponseError, useSignUp } from '@clerk/clerk-expo';
 import FormInput, { FormProtectedInput } from '@components/FormInput';
 import HeaderWithBack from '@components/HeaderWithBack';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import { Text, View } from '@components/Themed';
-import { skipAuth, supabaseSignUp } from '@store/authSlice';
-import { type RootState } from '@store/index';
+import { skipAuth } from '@store/authSlice';
 import normalize from '@utils/normalize';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +17,8 @@ interface FormValues {
 }
 
 const Signup = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const { signUp, isLoaded, setActive } = useSignUp();
   const {
     control,
     handleSubmit,
@@ -28,11 +31,40 @@ const Signup = (): JSX.Element => {
     },
   });
 
-  const dispatch = useDispatch();
-  const { error, loading } = useSelector((state: RootState) => state.auth);
+  const [signUpError, setSignUpError] = useState<string | null>(null);
+  const [signUpLoading, setSignUpLoading] = useState(false);
 
-  const onSubmit = (data: FormValues) => {
-    dispatch(supabaseSignUp(data));
+  const onSubmit = async (data: FormValues) => {
+    setSignUpError(null);
+    try {
+      setSignUpLoading(true);
+      if (!isLoaded) return;
+
+      const [firstName, ...lastName] = data.name.split(' ');
+
+      const completeSignIn = await signUp.create({
+        firstName: firstName,
+        lastName: lastName.join(' '),
+        emailAddress: data.email,
+        password: data.password,
+      });
+
+      setSignUpLoading(false);
+      await setActive({ session: completeSignIn.createdSessionId });
+    } catch (error) {
+      if (isClerkAPIResponseError(error)) {
+        const compositeErrorMessage = error.errors
+          .map((e) => e.message)
+          .join(', ')
+          // Capitalize first letter
+          .replace(/^\w/, (c) => c.toUpperCase());
+
+        setSignUpError(compositeErrorMessage);
+      } else {
+        setSignUpError('Something went wrong. Please try again.');
+      }
+      setSignUpLoading(false);
+    }
   };
 
   const onSkipAuth = () => {
@@ -107,10 +139,12 @@ const Signup = (): JSX.Element => {
             />
           )}
         />
-        {error?.signUp && <Text style={styles.error}>{error.signUp}</Text>}
+
+        {signUpError && <Text style={styles.error}>{String(signUpError)}</Text>}
+
         <View style={{ marginTop: 20 }}>
           <PrimaryActionButton
-            loading={loading}
+            loading={signUpLoading || !isLoaded}
             onPress={handleSubmit(onSubmit)}
           >
             Start donating
