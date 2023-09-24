@@ -1,10 +1,10 @@
+import { useSignIn } from '@clerk/clerk-expo';
 import { FormProtectedInput } from '@components/FormInput';
 import HeaderWithBack from '@components/HeaderWithBack';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import { Text, View } from '@components/Themed';
-import { supabase } from '@services/supabase';
-import parseAuthString from '@utils/parseAuthString';
-import { useEffect, useState } from 'react';
+import { buildClerkErrorMessage } from '@utils/auth';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 import { type AuthStackScreenProps } from '../../types';
@@ -16,11 +16,12 @@ interface FormValues {
   confirmPassword: string;
 }
 
-const NewPassword = ({ route, navigation }: Props): JSX.Element => {
-  const [resetState, setResetState] =
-    useState<
-      Partial<{ loading: boolean; error: string | null; data: unknown }>
-    >();
+const NewPassword = ({ route }: Props): JSX.Element => {
+  const [resetError, setResetError] = useState<string | null>(null);
+  const [resetLoading, setResetLoading] = useState(false);
+  const { signIn, isLoaded, setActive } = useSignIn();
+
+  const code = route.params.code;
 
   const {
     control,
@@ -34,42 +35,29 @@ const NewPassword = ({ route, navigation }: Props): JSX.Element => {
     },
   });
 
-  useEffect(() => {
-    if (
-      !route.path?.match('newpass/#') ||
-      !route.path?.match('type=recovery')
-    ) {
-      navigation.navigate('Signup');
-    }
-  }, [route.path, navigation]);
-
-  if (!route.path) {
-    return (
-      <View>
-        <Text>Invalid URL</Text>
-      </View>
-    );
-  }
-
-  const queryParams = parseAuthString(route.path);
-
   const onSubmit = async (values: FormValues) => {
-    setResetState((e) => ({ ...e, loading: true, error: null }));
+    if (!isLoaded) return;
+    setResetError(null);
+    setResetLoading(true);
 
-    const { error, data } = await supabase.auth.api.updateUser(
-      String(queryParams.access_token),
-      {
+    try {
+      const completeReset = await signIn.attemptFirstFactor({
+        strategy: 'reset_password_email_code',
+        code,
         password: values.password,
-      }
-    );
+      });
+      setResetLoading(false);
 
-    if (error) {
-      setResetState((e) => ({ ...e, loading: false, error: error.message }));
-      return;
+      await setActive({ session: completeReset.createdSessionId });
+    } catch (error) {
+      const errorMessage = buildClerkErrorMessage(error);
+      setResetError(
+        errorMessage === 'Is incorrect' ? 'Code is incorrect' : errorMessage
+      );
+      setResetLoading(false);
     }
-    setResetState((e) => ({ ...e, loading: false, data }));
-    navigation.navigate('Login');
   };
+
   return (
     <View style={styles.container}>
       <HeaderWithBack title="New password?">
@@ -117,16 +105,18 @@ const NewPassword = ({ route, navigation }: Props): JSX.Element => {
           )}
         />
 
-        {resetState?.error && (
-          <Text style={styles.error}>{resetState.error}</Text>
+        {errors.confirmPassword && (
+          <Text style={styles.error}>Passwords must match</Text>
         )}
+
+        {resetError && <Text style={styles.error}>{resetError}</Text>}
 
         <View style={{ marginTop: 20 }}>
           <PrimaryActionButton
-            loading={resetState?.loading}
+            loading={resetLoading || !isLoaded}
             onPress={handleSubmit(onSubmit)}
           >
-            Send password reset link
+            Reset password
           </PrimaryActionButton>
         </View>
       </View>

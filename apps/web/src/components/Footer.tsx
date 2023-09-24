@@ -12,10 +12,15 @@ const Footer = () => {
             <span className="text-primary-green">Afrigives</span> mobile app
           </h1>
           <div className="mt-12 flex flex-col gap-5 lg:flex-row">
-            <button className="hover:bg-primary-green hover:outline-primary-green flex w-full items-center justify-center gap-[18px] bg-white px-4 py-8 outline outline-1 transition-colors duration-300 ease-in-out hover:text-white">
-              <FaAndroid size={24} />
-              <p className="font-medium">Download on Playstore</p>
-            </button>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.andrewglago.afrigives"
+              className="w-full"
+            >
+              <button className="hover:bg-primary-green hover:outline-primary-green flex w-full items-center justify-center gap-[18px] bg-white px-4 py-8 outline outline-1 transition-colors duration-300 ease-in-out hover:text-white">
+                <FaAndroid size={24} />
+                <p className="font-medium">Download on Playstore</p>
+              </button>
+            </a>
             <button className="hover:bg-primary-green hover:outline-primary-green flex w-full items-center justify-center gap-[18px] bg-white px-4 py-8 outline outline-1 transition-colors duration-300 ease-in-out hover:text-white">
               <GrAppleAppStore size={24} />
               <p className="font-medium">Get on App Store</p>

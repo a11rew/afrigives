@@ -1,14 +1,16 @@
+import { useSignIn } from '@clerk/clerk-expo';
 import FormInput, { FormProtectedInput } from '@components/FormInput';
 import HeaderWithBack from '@components/HeaderWithBack';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import { Text, View } from '@components/Themed';
 import { useNavigation } from '@react-navigation/native';
-import { skipAuth, supabaseSignIn } from '@store/authSlice';
-import { type RootState } from '@store/index';
+import { skipAuth } from '@store/authSlice';
+import { buildClerkErrorMessage } from '@utils/auth';
 import normalize from '@utils/normalize';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 interface FormValues {
   email: string;
@@ -16,6 +18,8 @@ interface FormValues {
 }
 
 const Login = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const { signIn, isLoaded, setActive } = useSignIn();
   const {
     control,
     handleSubmit,
@@ -27,11 +31,27 @@ const Login = (): JSX.Element => {
     },
   });
 
-  const dispatch = useDispatch();
-  const { error, loading } = useSelector((state: RootState) => state.auth);
+  const [signInError, setSignInError] = useState<string | null>(null);
+  const [signInLoading, setSignInLoading] = useState(false);
 
-  const onSubmit = (data: FormValues) => {
-    dispatch(supabaseSignIn(data));
+  const onSubmit = async (data: FormValues) => {
+    setSignInError(null);
+    try {
+      setSignInLoading(true);
+      if (!isLoaded) return;
+
+      const completeSignIn = await signIn.create({
+        strategy: 'password',
+        identifier: data.email,
+        password: data.password,
+      });
+      setSignInLoading(false);
+
+      await setActive({ session: completeSignIn.createdSessionId });
+    } catch (error) {
+      setSignInError(buildClerkErrorMessage(error));
+      setSignInLoading(false);
+    }
   };
 
   const onSkipAuth = () => {
@@ -87,11 +107,11 @@ const Login = (): JSX.Element => {
             />
           )}
         />
-        {error.signIn && <Text style={styles.error}>{error.signIn}</Text>}
+        {signInError && <Text style={styles.error}>{signInError}</Text>}
 
         <View style={{ marginTop: 20 }}>
           <PrimaryActionButton
-            loading={loading}
+            loading={signInLoading || !isLoaded}
             onPress={handleSubmit(onSubmit)}
           >
             Start donating

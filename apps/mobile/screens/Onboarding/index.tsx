@@ -20,7 +20,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { SharedElement } from 'react-navigation-shared-element';
 import PromoView from './PromoView';
 
-const Onbooarding = (): JSX.Element => {
+const Onboarding = (): JSX.Element => {
   // Element animations
   const navigation = useNavigation();
   const [position, setPosition] = useState(0);
@@ -261,4 +261,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Onbooarding;
+export default Onboarding;

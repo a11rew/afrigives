@@ -5,10 +5,7 @@ import PlacesIcon from '@assets/tabIcons/Places.svg';
 import Colors from '@constants/Colors';
 import useColorScheme from '@hooks/useColorScheme';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { refreshAuth } from '@store/authSlice';
 import normalize from '@utils/normalize';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import type { RootTabParamList } from '../types';
 import DonateStack from './DonateStack';
 import HomeStack from './HomeStack';
@@ -19,12 +16,6 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 const BottomTabNavigator = (): JSX.Element => {
   const colorScheme = useColorScheme();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(refreshAuth());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <BottomTab.Navigator

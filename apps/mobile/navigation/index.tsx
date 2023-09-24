@@ -1,37 +1,31 @@
+import { SignedIn, SignedOut } from '@clerk/clerk-expo';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ModalScreen from '@screens/ModalScreen';
 import NotFoundScreen from '@screens/NotFoundScreen';
 import { type RootState } from '@store/index';
-import { type Session, type User } from '@supabase/supabase-js';
-import { type ColorSchemeName } from 'react-native';
 import { useSelector } from 'react-redux';
 import { type RootStackParamList } from '../types';
 import AuthStack from './AuthStack';
 import BottomTabNavigator from './BottomTab';
 import LinkingConfiguration from './LinkingConfiguration';
 
-const Navigation = ({
-  initialAuth,
-}: {
-  colorScheme: ColorSchemeName;
-  initialAuth: { session: Session | null; user: User | null };
-}): JSX.Element => {
-  const { session, user, skipAuth } = useSelector(
-    (state: RootState) => state.auth
-  );
+const Navigation = (): JSX.Element => {
+  const { skipAuth } = useSelector((state: RootState) => state.auth);
 
   return (
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      // theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
-      theme={DefaultTheme}
-    >
-      {skipAuth ||
-      ((initialAuth.session || session) && (initialAuth.user || user)) ? (
+    <NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
+      {skipAuth ? (
         <RootNavigator />
       ) : (
-        <AuthStack />
+        <>
+          <SignedIn>
+            <RootNavigator />
+          </SignedIn>
+          <SignedOut>
+            <AuthStack />
+          </SignedOut>
+        </>
       )}
     </NavigationContainer>
   );

@@ -1,16 +1,13 @@
 import Notif from '@assets/svgs/Notif.svg';
+import { useUser } from '@clerk/clerk-expo';
 import { Text, View } from '@components/Themed';
-import { type RootState } from '@store/index';
 import normalize from '@utils/normalize';
 import * as React from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { useSelector } from 'react-redux';
 
 const HomeHeader = (): React.ReactElement => {
-  const name =
-    useSelector(
-      (state: RootState) => state.auth.user?.user_metadata.name as string
-    ) || 'Stranger';
+  const auth = useUser();
+  const name = auth.user?.firstName || 'Stranger';
 
   return (
     <View style={styles.container}>

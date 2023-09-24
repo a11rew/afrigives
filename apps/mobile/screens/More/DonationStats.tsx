@@ -1,21 +1,17 @@
 import EditIcon from '@assets/icons/edit.svg';
+import { useUser } from '@clerk/clerk-expo';
 import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
 import Colors from '@constants/Colors';
 import { AntDesign } from '@expo/vector-icons';
 import { formatName } from '@screens/Home/Header';
-import { type RootState } from '@store/index';
 import normalize from '@utils/normalize';
 import { DateTime } from 'luxon';
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
 
 const DonationStats = (): JSX.Element => {
-  const user = useSelector((state: RootState) => state.auth.user);
-  const name =
-    useSelector(
-      (state: RootState) => state.auth.user?.user_metadata.name as string
-    ) || 'Stranger';
+  const { user } = useUser();
+  const name = user?.firstName || 'Stranger';
 
   return (
     <View style={{ flex: 1 }}>
@@ -36,8 +32,8 @@ const DonationStats = (): JSX.Element => {
           <View>
             <Text style={styles.heading}>Member since</Text>
             <Text style={styles.content}>
-              {user
-                ? DateTime.fromISO(user?.created_at).toLocaleString(
+              {user?.createdAt
+                ? DateTime.fromJSDate(user.createdAt).toLocaleString(
                     DateTime.DATE_FULL
                   )
                 : 'You never joined us :/'}
