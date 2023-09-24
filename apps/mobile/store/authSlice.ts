@@ -15,9 +15,12 @@ export const authSlice = createSlice({
     skipAuth: (state) => {
       state.skipAuth = true;
     },
+    resetSkipAuth: (state) => {
+      state.skipAuth = false;
+    },
   },
 });
 
-export const { skipAuth } = authSlice.actions;
+export const { skipAuth, resetSkipAuth } = authSlice.actions;
 
 export default authSlice.reducer;

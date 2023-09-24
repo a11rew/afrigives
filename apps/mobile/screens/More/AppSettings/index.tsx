@@ -5,6 +5,7 @@ import Colors from '@constants/Colors';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { resetSkipAuth } from '@store/authSlice';
 import normalize from '@utils/normalize';
 import React from 'react';
 import {
@@ -14,15 +15,18 @@ import {
   TouchableOpacity,
   type TouchableOpacityProps,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import Language from './Language';
 import Notifications from './Notifications';
 
 const AppSettings = (): JSX.Element => {
+  const dispatch = useDispatch();
   const auth = useAuth();
   const navigation = useNavigation();
 
   const handleLogout = async () => {
     try {
+      dispatch(resetSkipAuth());
       await auth.signOut();
     } catch (error) {
       console.error(error);
