@@ -3,7 +3,7 @@ import ScreenHeader from '@components/ScreenHeader';
 import Colors from '@constants/Colors';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { moveForward, setImage } from '@store/donationSlice';
+import { setImage } from '@store/donationSlice';
 import { type RootState } from '@store/index';
 import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
@@ -16,15 +16,6 @@ const Donate = (): JSX.Element => {
   const donationState = useSelector((state: RootState) => state.donation);
   const navigation = useNavigation();
 
-  const handleNext = () => {
-    if (donationState.progress === 0) {
-      pickImage();
-      return;
-    }
-    // @ts-expect-error - screen name not registered right
-    navigation.navigate('DonationDetails');
-  };
-
   const pickImage = async () => {
     const result = await ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -33,9 +24,12 @@ const Donate = (): JSX.Element => {
     });
     if (!result.cancelled) {
       dispatch(setImage(result.uri));
-      dispatch(moveForward());
     }
   };
+
+  const isStepOneDone = Boolean(donationState.imageSource);
+  const isStepTwoDone = isStepOneDone && Boolean(donationState.pickupDate);
+  const isStepThreeDone = isStepTwoDone && Boolean(donationState.homeAddress);
 
   return (
     <View style={{ flex: 1 }}>
@@ -53,8 +47,34 @@ const Donate = (): JSX.Element => {
           <Text style={styles.h2}>
             Donate clothes to any locations in Africa in 3 easy steps
           </Text>
-          <Step1 handleNext={handleNext} done={donationState.progress > 0} />
-          {donationState.progress > 0 && <Step2 handleNext={handleNext} />}
+          <Step
+            handleNext={() => pickImage()}
+            done={isStepOneDone}
+            index={0}
+            primaryText="Upload image of donation"
+            secondaryText="Take a picture or upload from gallery"
+          />
+
+          {isStepOneDone && (
+            <Step
+              // @ts-expect-error - screen name not registered right
+              handleNext={() => navigation.navigate('DonationDetails')}
+              done={isStepTwoDone}
+              index={1}
+              primaryText="Choose donation pickup date"
+              secondaryText="Pick a convenient time"
+            />
+          )}
+
+          {isStepTwoDone && (
+            <Step
+              // @ts-expect-error - screen name not registered right
+              handleNext={() => navigation.navigate('DonationDetails')}
+              index={2}
+              primaryText="Personalise your donation"
+              secondaryText="Set details about your donation"
+            />
+          )}
         </ScrollView>
         <PrimaryActionButton>Continue</PrimaryActionButton>
       </View>
@@ -62,23 +82,33 @@ const Donate = (): JSX.Element => {
   );
 };
 
-const Step1 = ({
+interface StepProps {
+  index: number;
+  handleNext: () => void;
+  done?: boolean;
+  primaryText: string;
+  secondaryText?: string;
+}
+
+const Step = ({
+  index,
   handleNext,
   done,
-}: {
-  handleNext: () => void;
-  done: boolean;
-}) => (
+  primaryText,
+  secondaryText,
+}: StepProps) => (
   <View style={{ marginTop: '10%' }}>
-    <Text style={[styles.h1, { color: Colors.primary }]}>Step 1/3</Text>
+    <Text style={[styles.h1, { color: Colors.primary }]}>
+      Step {index + 1}/3
+    </Text>
     <TouchableOpacity
       disabled={done}
       style={styles.stepCard}
       onPress={handleNext}
     >
       <View>
-        <Text style={styles.h1}>Upload image of donation</Text>
-        <Text style={styles.h2}>Take a picture or upload from gallery</Text>
+        <Text style={styles.h1}>{primaryText}</Text>
+        {secondaryText && <Text style={styles.h2}>{secondaryText}</Text>}
       </View>
       {done ? (
         <View style={styles.check}>
@@ -89,21 +119,6 @@ const Step1 = ({
           <AntDesign name="arrowdown" size={normalize(14)} color="black" />
         </View>
       )}
-    </TouchableOpacity>
-  </View>
-);
-
-const Step2 = ({ handleNext }: { handleNext: () => void }) => (
-  <View style={{ marginTop: '10%' }}>
-    <Text style={[styles.h1, { color: Colors.primary }]}>Step 2/3</Text>
-    <TouchableOpacity style={styles.stepCard} onPress={handleNext}>
-      <View>
-        <Text style={styles.h1}>Choose donation pickup date</Text>
-        <Text style={styles.h2}>Pick a convenient time</Text>
-      </View>
-      <View style={styles.button}>
-        <AntDesign name="arrowdown" size={normalize(14)} color="black" />
-      </View>
     </TouchableOpacity>
   </View>
 );

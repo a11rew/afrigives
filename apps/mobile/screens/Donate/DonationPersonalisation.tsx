@@ -18,7 +18,7 @@ import {
 import { useDispatch } from 'react-redux';
 import DonationDateModal from './DonationDateModal';
 
-const DonationDetails = (): JSX.Element => {
+const DonationPersonalisation = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [dateSelectorShow, setDateSelectorShow] = useState(false);
@@ -104,7 +104,7 @@ const DonationDetails = (): JSX.Element => {
   );
 };
 
-export default DonationDetails;
+export default DonationPersonalisation;
 
 const styles = StyleSheet.create({
   container: {

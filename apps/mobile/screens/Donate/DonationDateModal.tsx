@@ -9,15 +9,20 @@ import { Modal, StyleSheet, TouchableOpacity } from 'react-native';
 interface Props {
   dateSelectorShow: boolean;
   setDateSelectorShow: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedDate: string;
-  setSelectedDate: React.Dispatch<React.SetStateAction<string>>;
+  selectedDate: Dayjs | undefined;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Dayjs | undefined>>;
 }
 
 const DonationDateModal: React.FC<Props> = ({
   dateSelectorShow,
   setDateSelectorShow,
+  selectedDate,
+  setSelectedDate,
 }): JSX.Element => {
   const closeModal = () => setDateSelectorShow(false);
+  const [tentativeDate, setTentativeDate] = React.useState<Dayjs | undefined>(
+    selectedDate
+  );
 
   return (
     <Modal
@@ -49,7 +54,20 @@ const DonationDateModal: React.FC<Props> = ({
               }}
             >
               {[...Array(7)].map((_, idx) => {
-                return <DayCard key={idx} day={dayjs().add(idx, 'day')} />;
+                const day = dayjs().add(idx, 'day');
+
+                const isSameDay = day.isSame(tentativeDate, 'day');
+
+                return (
+                  <DayCard
+                    key={idx}
+                    day={day}
+                    isSelected={isSameDay}
+                    onPress={() => {
+                      setTentativeDate(day);
+                    }}
+                  />
+                );
               })}
             </View>
           </View>
@@ -65,6 +83,7 @@ const DonationDateModal: React.FC<Props> = ({
             </Text>
             <PrimaryActionButton
               onPress={() => {
+                setSelectedDate(tentativeDate);
                 setDateSelectorShow(false);
               }}
             >
@@ -79,9 +98,11 @@ const DonationDateModal: React.FC<Props> = ({
 
 interface DayCardProps {
   day: Dayjs;
+  isSelected: boolean;
+  onPress: () => void;
 }
 
-const DayCard: React.FC<DayCardProps> = ({ day }) => {
+const DayCard: React.FC<DayCardProps> = ({ day, isSelected, onPress }) => {
   // Check if card is for today
   const disabled = dayjs().isSame(day, 'day');
 
@@ -102,12 +123,21 @@ const DayCard: React.FC<DayCardProps> = ({ day }) => {
           {
             backgroundColor: disabled
               ? 'transparent'
+              : isSelected
+              ? Colors.primary
               : 'rgba(12, 109, 61, 0.161)',
           },
         ]}
+        onPress={onPress}
         disabled={disabled}
       >
-        <Text style={{ fontFamily: 'ps-bold', textAlign: 'center' }}>
+        <Text
+          style={{
+            fontFamily: 'ps-bold',
+            textAlign: 'center',
+            color: disabled ? '#CCC' : isSelected ? 'white' : 'black',
+          }}
+        >
           {day.format('D')}
         </Text>
       </TouchableOpacity>

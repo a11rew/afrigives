@@ -14,11 +14,12 @@ type Props = TouchableOpacityProps & { loading?: boolean };
 const PrimaryActionButton: React.FC<Props> = ({
   loading,
   children,
+  disabled,
   ...rest
 }) => (
   <TouchableOpacity {...(rest as TouchableOpacityProps)}>
     <SquircleView
-      style={styles.button}
+      style={[styles.button, disabled && { opacity: 0.4 }]}
       squircleParams={{
         cornerSmoothing: 1,
         fillColor: '#0C6D3D',
