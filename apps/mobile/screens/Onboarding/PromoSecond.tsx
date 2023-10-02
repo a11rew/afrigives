@@ -39,7 +39,7 @@ const PromoSecond = (): JSX.Element => (
       </View>
 
       <View style={styles.promoText}>
-        <Text style={styles.promoH1}>Photo: Jalabunga Wildfire Relief</Text>
+        <Text style={styles.promoH1}>Photo: Jalabunga Earthquake Relief</Text>
         <Text style={styles.promoH2}>$5,410 worth donated</Text>
       </View>
     </View>

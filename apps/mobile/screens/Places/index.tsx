@@ -12,8 +12,12 @@ import { ScrollView, StyleSheet } from 'react-native';
 const Places = (): JSX.Element => {
   const [filter, setFilter] = useState('');
 
+  const filtered = trendingPlaces.filter((tp) =>
+    tp.name.match(new RegExp(filter, 'i'))
+  );
+
   return (
-    <View>
+    <View style={{ backgroundColor: 'white', flex: 1 }}>
       <ScreenHeader noBack title="Places" />
       <ScrollView contentContainerStyle={styles.container}>
         <SearchBar
@@ -22,7 +26,7 @@ const Places = (): JSX.Element => {
           placeholder="Search places"
         />
         <Text style={styles.h1}>Trending places</Text>
-        {trendingPlaces.map((item) => (
+        {filtered.map((item) => (
           <TrendingPlaceCard
             key={item.id}
             id={item.id}
