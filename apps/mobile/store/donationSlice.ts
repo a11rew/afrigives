@@ -9,8 +9,8 @@ export interface DonationState {
 }
 
 export interface Personalization {
-  preferredNGO: string | null;
   getLocationUpdates: boolean | null;
+  rememberPreferences: boolean | null;
 }
 
 const initialState: DonationState = {
@@ -49,6 +49,7 @@ export const donationSlice = createSlice({
   },
 });
 
-export const { setImage, setDetails } = donationSlice.actions;
+export const { setImage, setDetails, setPersonalization } =
+  donationSlice.actions;
 
 export default donationSlice.reducer;

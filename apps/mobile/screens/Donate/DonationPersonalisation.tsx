@@ -1,39 +1,27 @@
-import CalendarIcon from '@assets/icons/calendar.svg';
-import FormInput from '@components/FormInput';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import ScreenHeader from '@components/ScreenHeader';
+import SwitchInput from '@components/SwitchInput';
 import { Text, View } from '@components/Themed';
 import Colors from '@constants/Colors';
-import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { setDetails } from '@store/donationSlice';
+import { setPersonalization } from '@store/donationSlice';
 import normalize from '@utils/normalize';
-import { type Dayjs } from 'dayjs';
 import { useState } from 'react';
-import {
-  KeyboardAvoidingView,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import { KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
-import DonationDateModal from './DonationDateModal';
 
 const DonationPersonalisation = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const [dateSelectorShow, setDateSelectorShow] = useState(false);
-  const [homeAddress, setHomeAddress] = useState('');
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [selectedDate, setSelectedDate] = useState<Dayjs>();
 
-  const isDisabled = !selectedDate || !homeAddress || !mobileNumber;
+  const [getUpdates, setGetUpdates] = useState(false);
+  const [rememberDetails, setRememberDetails] = useState(false);
 
   const onSubmit = () => {
     dispatch(
-      setDetails({
-        homeAddress,
-        pickupDate: selectedDate?.toISOString() ?? null,
-        number: mobileNumber,
+      setPersonalization({
+        getLocationUpdates: getUpdates,
+        rememberPreferences: rememberDetails,
       })
     );
     navigation.goBack();
@@ -50,55 +38,34 @@ const DonationPersonalisation = (): JSX.Element => {
           </Text>
 
           <View style={{ marginTop: '10%' }}>
-            <Text style={[styles.h1, { color: Colors.primary }]}>Step 2/3</Text>
+            <Text style={[styles.h1, { color: Colors.primary }]}>Step 3/3</Text>
             <View style={styles.stepCard}>
               <View>
-                <Text style={styles.h1}>Choose donation pickup date</Text>
-                <Text style={styles.h2}>Pick a convenient time</Text>
+                <Text style={styles.h1}>Personalize your donation</Text>
+                <Text style={styles.h2}>Set details about your donation</Text>
               </View>
             </View>
           </View>
 
-          <View style={{ marginTop: '3%' }}>
-            <FormInput
-              label="Home address"
-              value={homeAddress}
-              onChangeText={(text) => setHomeAddress(text)}
+          <View style={{ marginTop: '3%', marginLeft: '1%' }}>
+            <SwitchInput
+              title="Get donation location updates"
+              subtitle="Get notified on where your donation is going"
+              containerStyle={styles.switch}
+              value={getUpdates}
+              onValueChange={() => setGetUpdates((e) => !e)}
+            />
+
+            <SwitchInput
+              title="Remember donation details"
+              subtitle="Save your donation details for next time"
+              containerStyle={styles.switch}
+              value={rememberDetails}
+              onValueChange={() => setRememberDetails((e) => !e)}
             />
           </View>
-          <View style={{ marginBottom: '3%' }}>
-            <FormInput
-              label="Mobile number"
-              keyboardType="numeric"
-              value={mobileNumber}
-              onChangeText={(text) =>
-                setMobileNumber(text.replace(/[^0-9]/g, ''))
-              }
-            />
-          </View>
-          <TouchableOpacity
-            style={styles.pickupButton}
-            onPress={() => setDateSelectorShow((e) => !e)}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <CalendarIcon style={{ marginRight: normalize(16) }} />
-              <Text style={{ fontFamily: 'ps-bold', fontSize: normalize(14) }}>
-                {selectedDate?.format('dddd, MMMM D, YYYY') ??
-                  'Choose cloth pickup date'}
-              </Text>
-            </View>
-            <AntDesign name="arrowright" size={normalize(20)} />
-          </TouchableOpacity>
         </View>
-        <PrimaryActionButton onPress={onSubmit} disabled={isDisabled}>
-          Continue
-        </PrimaryActionButton>
-        <DonationDateModal
-          dateSelectorShow={dateSelectorShow}
-          setDateSelectorShow={setDateSelectorShow}
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-        />
+        <PrimaryActionButton onPress={onSubmit}>Continue</PrimaryActionButton>
       </View>
     </KeyboardAvoidingView>
   );
@@ -158,5 +125,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#CCCCCC',
     borderRadius: 8,
+  },
+  switch: {
+    marginVertical: '3%',
   },
 });

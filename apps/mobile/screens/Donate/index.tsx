@@ -8,10 +8,13 @@ import { type RootState } from '@store/index';
 import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
 import * as ImagePicker from 'expo-image-picker';
+import { useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Donate = (): JSX.Element => {
+  const [viewedPersonalisation, setViewedPersonalisation] = useState(false);
+
   const dispatch = useDispatch();
   const donationState = useSelector((state: RootState) => state.donation);
   const navigation = useNavigation();
@@ -29,7 +32,7 @@ const Donate = (): JSX.Element => {
 
   const isStepOneDone = Boolean(donationState.imageSource);
   const isStepTwoDone = isStepOneDone && Boolean(donationState.pickupDate);
-  const isStepThreeDone = isStepTwoDone && Boolean(donationState.homeAddress);
+  const isStepThreeDone = isStepTwoDone && viewedPersonalisation;
 
   return (
     <View style={{ flex: 1 }}>
@@ -68,10 +71,14 @@ const Donate = (): JSX.Element => {
 
           {isStepTwoDone && (
             <Step
-              // @ts-expect-error - screen name not registered right
-              handleNext={() => navigation.navigate('DonationDetails')}
+              handleNext={() => {
+                // @ts-expect-error - screen name not registered right
+                navigation.navigate('DonationPersonalisation');
+                setViewedPersonalisation(true);
+              }}
               index={2}
-              primaryText="Personalise your donation"
+              done={isStepThreeDone}
+              primaryText="Personalize your donation"
               secondaryText="Set details about your donation"
             />
           )}

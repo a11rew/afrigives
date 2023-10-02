@@ -84,7 +84,7 @@ const DonationDetails = (): JSX.Element => {
               <CalendarIcon style={{ marginRight: normalize(16) }} />
               <Text style={{ fontFamily: 'ps-bold', fontSize: normalize(14) }}>
                 {selectedDate?.format('dddd, MMMM D, YYYY') ??
-                  'Choose cloth pickup date'}
+                  'Choose donation pickup date'}
               </Text>
             </View>
             <AntDesign name="arrowright" size={normalize(20)} />
