@@ -37,7 +37,7 @@ const PrimaryActionButton: React.FC<Props> = ({
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(14),
     color: 'white',
   },

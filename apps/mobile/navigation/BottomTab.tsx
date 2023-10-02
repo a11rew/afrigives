@@ -30,7 +30,7 @@ const BottomTabNavigator = (): JSX.Element => {
         },
         tabBarLabelStyle: {
           fontSize: normalize(14),
-          fontFamily: 'sg-bold',
+          fontFamily: 'ps-bold',
         },
         tabBarHideOnKeyboard: true,
       }}

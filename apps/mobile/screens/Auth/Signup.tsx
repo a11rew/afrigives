@@ -162,7 +162,7 @@ const Signup = (): JSX.Element => {
         <TouchableOpacity style={{}}>
           <Text
             style={{
-              fontFamily: 'sg-bold',
+              fontFamily: 'ps-bold',
               color: '#0C6D3D',
             }}
           >
@@ -187,14 +187,14 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
   },
   error: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,
     color: '#ca6060',
   },
   skipLoginText: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(14),
     marginTop: '12%',
     textAlign: 'center',

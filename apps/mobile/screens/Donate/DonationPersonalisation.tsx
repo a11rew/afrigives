@@ -81,12 +81,12 @@ const styles = StyleSheet.create({
     paddingBottom: '5%',
   },
   h1: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
     marginBottom: normalize(8),
   },
   h2: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     opacity: 0.56,
   },
 

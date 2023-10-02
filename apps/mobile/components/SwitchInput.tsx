@@ -52,12 +52,12 @@ const styles = StyleSheet.create({
     marginVertical: '4%',
   },
   cardTitle: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
     marginBottom: normalize(6),
   },
   cardState: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     opacity: 0.56,
   },
 });

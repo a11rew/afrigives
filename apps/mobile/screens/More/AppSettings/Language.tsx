@@ -1,9 +1,9 @@
-import ScreenHeader from '@components/ScreenHeader';
-import { Text, View } from '@components/Themed';
-import Colors from '@constants/Colors';
-import { Feather } from '@expo/vector-icons';
-import normalize from '@utils/normalize';
 import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text } from '@components/Themed';
+import ScreenHeader from '@components/ScreenHeader';
+import Colors from '@constants/Colors';
+import normalize from '@utils/normalize';
+import { Feather } from '@expo/vector-icons';
 
 const languages = [
   'Mandarin',
@@ -25,7 +25,7 @@ const Language = (): JSX.Element => {
         <Text
           style={{
             opacity: 0.56,
-            fontFamily: 'sg-bold',
+            fontFamily: 'ps-bold',
             paddingHorizontal: '3%',
           }}
         >
@@ -61,7 +61,7 @@ const LanguageCard = ({ title, selected, disabled }: LanguageCardProps) => (
 
 const styles = StyleSheet.create({
   heading: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     color: Colors.primary,
     fontSize: normalize(16),
     marginVertical: '2%',
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     height: normalize(75),
   },
   cardText: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
   },
 

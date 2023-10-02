@@ -1,9 +1,9 @@
-import ScreenHeader from '@components/ScreenHeader';
-import { Text, View } from '@components/Themed';
-import { AntDesign } from '@expo/vector-icons';
-import normalize from '@utils/normalize';
 import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import { View, Text } from '@components/Themed';
+import ScreenHeader from '@components/ScreenHeader';
+import normalize from '@utils/normalize';
 
 const FAQ = (): JSX.Element => {
   return (
@@ -77,13 +77,13 @@ const styles = StyleSheet.create({
     marginVertical: '3%',
   },
   h1: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
   },
   revealContainer: {
     marginTop: normalize(16),
   },
   revealText: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
   },
 });

@@ -74,7 +74,7 @@ const DonationDateModal: React.FC<Props> = ({
           <View>
             <Text
               style={{
-                fontFamily: 'sg-bold',
+                fontFamily: 'ps-bold',
                 marginBottom: '5%',
               }}
             >
@@ -112,7 +112,7 @@ const DayCard: React.FC<DayCardProps> = ({ day, isSelected, onPress }) => {
         style={{
           textAlign: 'center',
           marginBottom: normalize(16),
-          fontFamily: 'sg-bold',
+          fontFamily: 'ps-bold',
         }}
       >
         {day.format('dd')}
@@ -133,7 +133,7 @@ const DayCard: React.FC<DayCardProps> = ({ day, isSelected, onPress }) => {
       >
         <Text
           style={{
-            fontFamily: 'sg-bold',
+            fontFamily: 'ps-bold',
             textAlign: 'center',
             color: disabled ? '#CCC' : isSelected ? 'white' : 'black',
           }}
@@ -156,17 +156,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   heading: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     color: Colors.primary,
   },
   h1: {
     textAlign: 'center',
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
   },
   h2: {
     textAlign: 'center',
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     opacity: 0.56,
     marginTop: 8,
   },

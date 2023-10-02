@@ -94,12 +94,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   h1: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(40),
     color: '#0C6D3D',
   },
   h2: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
   },
   sprite_1: {

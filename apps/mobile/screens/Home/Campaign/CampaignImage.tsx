@@ -1,10 +1,7 @@
+import { ImageBackground, type ImageSourcePropType, StyleSheet } from 'react-native';
+
 import { View } from '@components/Themed';
 import normalize from '@utils/normalize';
-import {
-  ImageBackground,
-  StyleSheet,
-  type ImageSourcePropType,
-} from 'react-native';
 
 const CampaignImageCard = ({
   image,
@@ -37,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   h1: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
     marginBottom: normalize(16),
   },
@@ -49,13 +46,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   h2: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(20),
     lineHeight: normalize(24),
     color: 'white',
   },
   h3: {
-    fontFamily: 'sg',
+    fontFamily: 'ps',
     fontSize: normalize(14),
     color: 'white',
   },

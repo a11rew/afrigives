@@ -1,10 +1,11 @@
-import PrimaryActionButton from '@components/PrimaryActionButton';
+import { StyleSheet, TextInput } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+
 import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
-import Colors from '@constants/Colors';
-import { AntDesign } from '@expo/vector-icons';
+import PrimaryActionButton from '@components/PrimaryActionButton';
 import normalize from '@utils/normalize';
-import { StyleSheet, TextInput } from 'react-native';
+import Colors from '@constants/Colors';
 
 const JoinDonationGroup = (): JSX.Element => {
   return (
@@ -45,12 +46,12 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: normalize(16),
     color: Colors.primary,
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     marginBottom: normalize(12),
   },
   h1: {
     // fontSize: normalize(16),
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     opacity: 0.56,
     marginBottom: normalize(12),
   },
@@ -65,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   linkInput: {
-    fontFamily: 'sg-medium',
+    fontFamily: 'ps-medium',
     fontSize: normalize(15),
     width: '80%',
   },

@@ -117,23 +117,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: 24,
     color: '#0C6D3D',
     textAlign: 'center',
   },
   h1: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     paddingHorizontal: normalize(50),
     textAlign: 'center',
   },
   h2: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     marginTop: 8,
     textAlign: 'center',
   },
   error: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,

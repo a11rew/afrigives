@@ -132,12 +132,12 @@ const Step = ({
 
 const styles = StyleSheet.create({
   h1: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
     marginBottom: normalize(8),
   },
   h2: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     opacity: 0.56,
   },
   container: {

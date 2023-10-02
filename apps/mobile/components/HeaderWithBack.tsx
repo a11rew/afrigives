@@ -1,9 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
-import { Text, View } from '@Themed';
-import normalize from '@utils/normalize';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { Pressable, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+
+import { View, Text } from '@Themed';
+import normalize from '@utils/normalize';
 
 interface Props {
   title: string;
@@ -49,14 +50,14 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: 24,
     color: '#0C6D3D',
     textAlign: 'center',
   },
 
   h1: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     paddingHorizontal: normalize(50),
     textAlign: 'center',
   },

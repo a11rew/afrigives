@@ -73,7 +73,7 @@ const PlacesDetail = ({ route }: Props): JSX.Element => {
               </View>
               <Text
                 style={{
-                  fontFamily: 'sg-bold',
+                  fontFamily: 'ps-bold',
                   opacity: 0.56,
                   marginBottom: normalize(24),
                 }}
@@ -99,7 +99,7 @@ const PlacesDetail = ({ route }: Props): JSX.Element => {
             >
               <Text
                 style={{
-                  fontFamily: 'sg-bold',
+                  fontFamily: 'ps-bold',
                   fontSize: normalize(16),
                   color: Colors.primary,
                 }}
@@ -136,21 +136,21 @@ const styles = StyleSheet.create({
     paddingVertical: normalize(16),
     borderRadius: normalize(16),
     borderColor: '#CCCCCC',
-    fontFamily: 'sg-medium',
+    fontFamily: 'ps-medium',
     fontSize: normalize(15),
     borderWidth: 1,
   },
   name: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(18),
   },
   added: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     color: Colors.primary,
   },
   event: {
     color: Colors.error,
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     marginTop: normalize(8),
   },
   articleCard: {
@@ -163,21 +163,21 @@ const styles = StyleSheet.create({
     borderRadius: normalize(8),
   },
   articleTitle: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
   },
   articleSource: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     opacity: 0.56,
     marginTop: 2,
   },
   quickDonate: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     marginTop: normalize(48),
     fontSize: normalize(16),
     color: Colors.primary,
   },
   donated: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(15),
     marginTop: normalize(12),
     marginBottom: normalize(8),

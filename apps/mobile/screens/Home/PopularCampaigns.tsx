@@ -1,14 +1,15 @@
-import { Text, View } from '@components/Themed';
-import campaigns from '@data/campaigns';
-import { AntDesign } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import normalize from '@utils/normalize';
 import {
   ImageBackground,
+  type ImageSourcePropType,
   Pressable,
   StyleSheet,
-  type ImageSourcePropType,
 } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
+import normalize from '@utils/normalize';
+import { View, Text } from '@components/Themed';
+import campaigns from '@data/campaigns';
 import { SharedElement } from 'react-navigation-shared-element';
 
 const PopularCampaigns = (): JSX.Element => {
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   h1: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
     marginBottom: normalize(16),
   },
@@ -106,13 +107,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   h2: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(20),
     lineHeight: normalize(24),
     color: 'white',
   },
   h3: {
-    fontFamily: 'sg',
+    fontFamily: 'ps',
     fontSize: normalize(14),
     color: 'white',
   },

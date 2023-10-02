@@ -1,7 +1,8 @@
+import { StyleSheet, TextInput } from 'react-native';
+
 import SearchIcon from '@assets/svgs/search.svg';
 import { View } from '@Themed';
 import normalize from '@utils/normalize';
-import { StyleSheet, TextInput } from 'react-native';
 
 interface Props {
   filter: string;
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     width: '90%',
     lineHeight: 18,
     fontSize: normalize(16),
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
   },
 });
 

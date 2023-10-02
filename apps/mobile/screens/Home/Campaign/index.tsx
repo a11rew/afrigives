@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
     paddingTop: '5%',
   },
   name: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
   },
   date: {
-    fontFamily: 'sg',
+    fontFamily: 'ps',
     opacity: 0.56,
     marginTop: 2,
   },
@@ -89,13 +89,13 @@ const styles = StyleSheet.create({
     marginTop: '8%',
   },
   about: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     fontSize: normalize(16),
     color: '#0C6D3D',
     marginVertical: normalize(10),
   },
   description: {
-    fontFamily: 'sg-bold',
+    fontFamily: 'ps-bold',
     lineHeight: normalize(22),
   },
 });
