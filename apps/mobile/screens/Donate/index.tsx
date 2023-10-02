@@ -1,3 +1,4 @@
+import DonateButton from '@components/DonateButton';
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import ScreenHeader from '@components/ScreenHeader';
 import Colors from '@constants/Colors';
@@ -30,9 +31,28 @@ const Donate = (): JSX.Element => {
     }
   };
 
+  const stepOneNext = pickImage;
+  // @ts-expect-error - screen name not registered right
+  const stepTwoNext = () => navigation.navigate('DonationDetails');
+  const stepThreeNext = () => {
+    // @ts-expect-error - screen name not registered right
+    navigation.navigate('DonationPersonalisation');
+    setViewedPersonalisation(true);
+  };
+
   const isStepOneDone = Boolean(donationState.imageSource);
   const isStepTwoDone = isStepOneDone && Boolean(donationState.pickupDate);
   const isStepThreeDone = isStepTwoDone && viewedPersonalisation;
+
+  const onContinue = () => {
+    if (!isStepOneDone) {
+      stepOneNext();
+    } else if (!isStepTwoDone) {
+      stepTwoNext();
+    } else if (!isStepThreeDone) {
+      stepThreeNext();
+    }
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -51,7 +71,7 @@ const Donate = (): JSX.Element => {
             Donate clothes to any locations in Africa in 3 easy steps
           </Text>
           <Step
-            handleNext={() => pickImage()}
+            handleNext={stepOneNext}
             done={isStepOneDone}
             index={0}
             primaryText="Upload image of donation"
@@ -60,8 +80,7 @@ const Donate = (): JSX.Element => {
 
           {isStepOneDone && (
             <Step
-              // @ts-expect-error - screen name not registered right
-              handleNext={() => navigation.navigate('DonationDetails')}
+              handleNext={stepTwoNext}
               done={isStepTwoDone}
               index={1}
               primaryText="Choose donation pickup date"
@@ -71,11 +90,7 @@ const Donate = (): JSX.Element => {
 
           {isStepTwoDone && (
             <Step
-              handleNext={() => {
-                // @ts-expect-error - screen name not registered right
-                navigation.navigate('DonationPersonalisation');
-                setViewedPersonalisation(true);
-              }}
+              handleNext={stepThreeNext}
               index={2}
               done={isStepThreeDone}
               primaryText="Personalize your donation"
@@ -83,7 +98,13 @@ const Donate = (): JSX.Element => {
             />
           )}
         </ScrollView>
-        <PrimaryActionButton>Continue</PrimaryActionButton>
+        {isStepTwoDone ? (
+          <DonateButton />
+        ) : (
+          <PrimaryActionButton onPress={onContinue}>
+            Continue
+          </PrimaryActionButton>
+        )}
       </View>
     </View>
   );

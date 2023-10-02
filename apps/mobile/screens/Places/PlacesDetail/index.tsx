@@ -1,5 +1,5 @@
 import Hyperlink from '@assets/svgs/Hyperlink.svg';
-import PrimaryActionButton from '@components/PrimaryActionButton';
+import DonateButton from '@components/DonateButton';
 import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
 import Colors from '@constants/Colors';
@@ -117,7 +117,7 @@ const PlacesDetail = ({ route }: Props): JSX.Element => {
           </View>
         </View>
         <View style={{ paddingBottom: normalize(20) }}>
-          <PrimaryActionButton>Donate</PrimaryActionButton>
+          <DonateButton />
         </View>
       </ScrollView>
     </View>
