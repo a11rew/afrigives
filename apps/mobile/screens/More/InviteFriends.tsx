@@ -27,13 +27,13 @@ const InviteFriends = (): JSX.Element => {
         <TouchableOpacity
           onPress={() =>
             Share.share({
-              message: 'https://get-afrigives.com/join',
+              message: 'https://afrigives.a11rew.dev',
             })
           }
           style={styles.linkContainer}
         >
           <View>
-            <Text style={styles.link}>https://get-afrigives.com/join</Text>
+            <Text style={styles.link}>https://afrigives.a11rew.dev</Text>
           </View>
           <AntDesign
             name="arrowright"
@@ -52,10 +52,7 @@ const InviteFriends = (): JSX.Element => {
           </View>
         </View>
         <View style={styles.qr}>
-          <QRCode
-            size={normalize(200)}
-            value="https://get-afrigives.com/join"
-          />
+          <QRCode size={normalize(200)} value="https://afrigives.a11rew.dev" />
           <Text style={styles.qrText}>Scan here</Text>
         </View>
       </View>
