@@ -1,11 +1,15 @@
-import { type ImageSourcePropType, ScrollView, StyleSheet } from 'react-native';
-
-import { Text, View } from '@components/Themed';
-import ScreenHeader from '@components/ScreenHeader';
 import PrimaryActionButton from '@components/PrimaryActionButton';
-import { findCampaign } from '@data/campaigns';
+import ScreenHeader from '@components/ScreenHeader';
+import { Text, View } from '@components/Themed';
+import { CAMPAIGN_MAP } from '@data/campaigns';
+import { useNavigation } from '@react-navigation/native';
 import normalize from '@utils/normalize';
-
+import {
+  Linking,
+  ScrollView,
+  StyleSheet,
+  type ImageSourcePropType,
+} from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import { type HomeStackScreenProps } from 'types';
 import { CampaignCard } from '../PopularCampaigns';
@@ -13,7 +17,27 @@ import { CampaignCard } from '../PopularCampaigns';
 type Props = HomeStackScreenProps<'Campaign'>;
 
 const Campaign = ({ route }: Props): JSX.Element => {
-  const campaign = findCampaign(route.params.id);
+  const navigation = useNavigation();
+  const campaign = CAMPAIGN_MAP[route.params.id];
+
+  if (!campaign) {
+    return (
+      <View>
+        <Text>Invalid campaign</Text>
+      </View>
+    );
+  }
+
+  const onDonatePress = () => {
+    if (campaign?.externalLink) {
+      const link = campaign.externalLink;
+      Linking.openURL(link);
+    } else {
+      navigation.navigate('Root', {
+        screen: 'Donate',
+      });
+    }
+  };
 
   return (
     <View style={{ flex: 1 }}>
@@ -32,14 +56,18 @@ const Campaign = ({ route }: Props): JSX.Element => {
             />
           </View>
         </SharedElement>
-        <View>
-          <Text style={styles.about}>About</Text>
-          <Text style={styles.description}>{campaign?.about}</Text>
-        </View>
-        <View>
-          <PrimaryActionButton>Donate to campaign</PrimaryActionButton>
-        </View>
+        {campaign?.about ? (
+          <View>
+            <Text style={styles.about}>About</Text>
+            <Text style={styles.description}>{campaign?.about}</Text>
+          </View>
+        ) : null}
       </ScrollView>
+      <View style={{ padding: '3%' }}>
+        <PrimaryActionButton onPress={onDonatePress}>
+          Donate to campaign
+        </PrimaryActionButton>
+      </View>
     </View>
   );
 };

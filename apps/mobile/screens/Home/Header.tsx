@@ -25,7 +25,7 @@ const HomeHeader = (): React.ReactElement => {
         </View>
       </View>
 
-      <View>
+      <View style={{ opacity: 0.4 }}>
         <Notif />
       </View>
     </View>

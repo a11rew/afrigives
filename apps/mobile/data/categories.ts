@@ -1,131 +1,54 @@
 import type { ImageSourcePropType } from 'react-native';
+import { CAMPAIGN_MAP, type Campaign } from './campaigns';
 
-const categories: Category[] = [
-  {
-    name: 'Health',
-    campaigns: 10,
-    image: require('../assets/sprites/virus.png'),
-    id: '1',
-    accent: '#ebb5b5',
-    description:
-      'Donate cloths to refugees and internally displaced persons across Africa',
-    categoryCampaigns: [
-      {
-        name: 'Help the Refugees',
-        donationCount: 100,
-      },
-      {
-        name: 'Syria Refugees',
-        donationCount: 48,
-      },
-      {
-        name: 'Donate to Refugees',
-        donationCount: 232,
-      },
-      {
-        name: 'Change4Refugees',
-        donationCount: 104,
-      },
-    ],
-  },
-  {
-    name: 'Education',
-    campaigns: 22,
-    image: require('../assets/sprites/wallet.png'),
-    id: '2',
-    accent: '#f9d8be',
-    description: 'Donate cloths to aid sport related campaigns across Africa',
-    categoryCampaigns: [
-      {
-        name: 'Help the Refugees',
-        donationCount: 100,
-      },
-      {
-        name: 'Syria Refugees',
-        donationCount: 48,
-      },
-      {
-        name: 'Donate to Refugees',
-        donationCount: 232,
-      },
-      {
-        name: 'Change4Refugees',
-        donationCount: 104,
-      },
-    ],
-  },
-
-  {
-    name: 'Refugees',
-    campaigns: 4,
+export const CATEGORY_MAP = {
+  humanitarian: {
+    name: 'Humanitarian',
     image: require('../assets/sprites/heart.png'),
-    id: '3',
+    id: 'humanitarian',
     accent: '#ebb5b5',
-    description:
-      'Donate cloths to campaigns helping the education sector in Africa',
-    categoryCampaigns: [
-      {
-        name: 'Help the Refugees',
-        donationCount: 100,
-      },
-      {
-        name: 'Syria Refugees',
-        donationCount: 48,
-      },
-      {
-        name: 'Donate to Refugees',
-        donationCount: 232,
-      },
-      {
-        name: 'Change4Refugees',
-        donationCount: 104,
-      },
+    description: 'Donate to support humanitarian efforts in Africa',
+    campaigns: [
+      CAMPAIGN_MAP.ke_abd,
+      CAMPAIGN_MAP.alg_eid,
+      CAMPAIGN_MAP.lst_cto,
     ],
   },
-
-  {
-    name: 'Sports',
-    campaigns: 8,
-    image: require('../assets/sprites/target.png'),
-    id: '4',
+  health: {
+    name: 'Health',
+    image: require('../assets/sprites/virus.png'),
+    id: 'health',
+    accent: '#ebb5b5',
+    description: 'Donate to campaigns helping the health sector in Africa',
+    campaigns: [CAMPAIGN_MAP.sa_tsf, CAMPAIGN_MAP.lst_cto, CAMPAIGN_MAP.ke_abd],
+  },
+  education: {
+    name: 'Education',
+    image: require('../assets/sprites/wallet.png'),
+    id: 'education',
     accent: '#f9d8be',
-    description: 'Donate cloths to religious bodies in need across Africa',
-    categoryCampaigns: [
-      {
-        name: 'Help the Refugees',
-        donationCount: 100,
-      },
-      {
-        name: 'Syria Refugees',
-        donationCount: 48,
-      },
-      {
-        name: 'Donate to Refugees',
-        donationCount: 232,
-      },
-      {
-        name: 'Change4Refugees',
-        donationCount: 104,
-      },
-    ],
+    description:
+      'Donate to aid education quality improvement and delivery in Africa',
+    campaigns: [CAMPAIGN_MAP.ng_ufk, CAMPAIGN_MAP.gh_evp],
   },
-];
+  sports: {
+    name: 'Sports',
+    image: require('../assets/sprites/target.png'),
+    id: 'sports',
+    accent: '#f9d8be',
+    description: 'Donate to the development of sports in Africa',
+    campaigns: [CAMPAIGN_MAP.gh_evp],
+  },
+} as Record<string, Category>;
 
-interface Category {
+export interface Category {
   name: string;
-  campaigns: number;
   image: ImageSourcePropType;
   id: string;
   accent: string;
   description: string;
-  categoryCampaigns: {
-    name: string;
-    donationCount: number;
-  }[];
+  campaigns: Campaign[];
 }
 
-export const findCategory = (id: string): Category | undefined => {
-  return categories.find((e) => e.id === id);
-};
-
+const categories = Object.values(CATEGORY_MAP);
 export default categories;

@@ -1,14 +1,15 @@
+import { Text, View } from '@components/Themed';
+import { type Campaign } from '@data/campaigns';
+import categories from '@data/categories';
+import { useNavigation } from '@react-navigation/native';
+import normalize from '@utils/normalize';
 import {
   FlatList,
   Image,
-  type ImageSourcePropType,
   StyleSheet,
   TouchableOpacity,
+  type ImageSourcePropType,
 } from 'react-native';
-import normalize from '@utils/normalize';
-import { View, Text } from '@components/Themed';
-import { useNavigation } from '@react-navigation/native';
-import categories from '@data/categories';
 import { SharedElement } from 'react-navigation-shared-element';
 
 const DonationCategoriesPromo = (): JSX.Element => {
@@ -49,7 +50,7 @@ const DonationCategoriesPromo = (): JSX.Element => {
 
 interface CategoryProps {
   title: string;
-  campaigns: number;
+  campaigns: Campaign[];
   image: ImageSourcePropType;
   accent: string;
   id: string;
@@ -85,7 +86,9 @@ const CategoryCard = ({
       </View>
       <View style={styles.labelContainer}>
         <Text style={styles.h2}>{title}</Text>
-        <Text style={styles.h3}>{campaigns} campaigns</Text>
+        <Text style={styles.h3}>
+          {campaigns.length} campaign{campaigns.length > 1 ? 's' : ''}
+        </Text>
       </View>
     </TouchableOpacity>
   );

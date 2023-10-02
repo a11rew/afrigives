@@ -1,6 +1,7 @@
 import PrimaryActionButton from '@components/PrimaryActionButton';
 import ScreenHeader from '@components/ScreenHeader';
-import { findCategory } from '@data/categories';
+import { CATEGORY_MAP } from '@data/categories';
+import { useNavigation } from '@react-navigation/native';
 import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
 import { Image, ScrollView, StyleSheet } from 'react-native';
@@ -10,7 +11,7 @@ import { type HomeStackScreenProps } from 'types';
 type Props = HomeStackScreenProps<'CategoryCampaignList'>;
 
 const CategoryCampaignList = ({ route }: Props): JSX.Element => {
-  const category = findCategory(route.params.id);
+  const category = CATEGORY_MAP[route.params.id];
 
   if (!category) {
     return <View />;
@@ -26,12 +27,13 @@ const CategoryCampaignList = ({ route }: Props): JSX.Element => {
           </SharedElement>
         </View>
         <Text style={styles.h1}>{category?.name}</Text>
-        {category?.categoryCampaigns.map((campaign) => (
-          <View
-            key={`${campaign.donationCount}${campaign.name}`}
-            style={styles.card}
-          >
-            <CategoryCard name={campaign.name} count={campaign.donationCount} />
+        {category?.campaigns.map((campaign) => (
+          <View key={campaign.id} style={styles.card}>
+            <CategoryCard
+              name={campaign.name}
+              count={campaign.donatedCount}
+              id={campaign.id}
+            />
           </View>
         ))}
       </ScrollView>
@@ -42,9 +44,22 @@ const CategoryCampaignList = ({ route }: Props): JSX.Element => {
 interface CategoryCardProps {
   name: string;
   count: number;
+  id: string;
 }
 
-const CategoryCard = ({ name, count }: CategoryCardProps) => {
+const CategoryCard = ({ name, count, id }: CategoryCardProps) => {
+  const navigation = useNavigation();
+
+  const onDonatePress = () => {
+    navigation.navigate('Root', {
+      screen: 'Home',
+      params: {
+        screen: 'Campaign',
+        params: { id },
+      },
+    });
+  };
+
   return (
     <View style={styles.cardContainer}>
       <View style={{ width: '70%', marginBottom: normalize(16) }}>
@@ -52,7 +67,9 @@ const CategoryCard = ({ name, count }: CategoryCardProps) => {
         <Text style={styles.cardH2}>{count} people have donated</Text>
       </View>
       <View>
-        <PrimaryActionButton>Donate</PrimaryActionButton>
+        <PrimaryActionButton onPress={onDonatePress}>
+          Donate
+        </PrimaryActionButton>
       </View>
     </View>
   );

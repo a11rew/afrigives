@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     paddingHorizontal: '4%',
-    minHeight: normalize(100),
+    minHeight: normalize(80),
     justifyContent: 'space-between',
   },
   h1: {
