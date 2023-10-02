@@ -25,10 +25,10 @@ const DonationTargetDisplay = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   currentText: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
   },
   targetText: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: Colors.primary,
   },
   progressContainer: {

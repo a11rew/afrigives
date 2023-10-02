@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
     marginBottom: normalize(16),
   },
@@ -126,12 +126,12 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
   },
   h2: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(17),
     lineHeight: normalize(24),
   },
   h3: {
-    fontFamily: 'ps',
+    fontFamily: 'sg',
     fontSize: normalize(14),
   },
   labelContainer: {

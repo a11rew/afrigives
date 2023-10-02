@@ -121,7 +121,7 @@ const Login = (): JSX.Element => {
         <TouchableOpacity style={{}}>
           <Text
             style={{
-              fontFamily: 'ps-bold',
+              fontFamily: 'sg-bold',
               color: '#0C6D3D',
               textAlign: 'center',
               fontSize: normalize(14),
@@ -146,7 +146,7 @@ const Login = (): JSX.Element => {
         <TouchableOpacity style={{}}>
           <Text
             style={{
-              fontFamily: 'ps-bold',
+              fontFamily: 'sg-bold',
               color: '#0C6D3D',
             }}
           >
@@ -171,14 +171,14 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
   },
   error: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,
     color: '#ca6060',
   },
   skipLoginText: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(14),
     marginTop: '12%',
     textAlign: 'center',

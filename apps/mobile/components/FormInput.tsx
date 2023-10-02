@@ -95,7 +95,7 @@ export const FormProtectedInput = ({
               offset.value = 10;
             }
           }}
-          style={[{ width: '90%', fontFamily: 'ps' }]}
+          style={[{ width: '90%', fontFamily: 'sg' }]}
           placeholderTextColor="#3B3B3B"
           {...props}
         />
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     marginBottom: normalize(20),
   },
   label: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(14),
     color: '#0C6D3D',
     marginBottom: 2,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     borderColor: '#CCCCCC',
     height: normalize(48),
     paddingHorizontal: 16,
-    fontFamily: 'ps',
+    fontFamily: 'sg',
   },
 });
 

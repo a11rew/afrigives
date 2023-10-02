@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
     marginBottom: normalize(16),
   },
   h2: {
-    fontFamily: 'ps-medium',
+    fontFamily: 'sg-medium',
     fontSize: normalize(14),
     lineHeight: normalize(24),
     width: '75%',

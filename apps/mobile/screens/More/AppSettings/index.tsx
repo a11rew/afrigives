@@ -118,7 +118,7 @@ export default AppSettingsStack;
 
 const styles = StyleSheet.create({
   heading: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: Colors.primary,
     fontSize: normalize(16),
   },
@@ -137,13 +137,13 @@ const styles = StyleSheet.create({
     marginTop: '5%',
   },
   cardH1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
   },
   cardH2: {
     opacity: 0.56,
     marginTop: normalize(4),
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
   },
 
   button: {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     borderRadius: normalize(16),
   },
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: '#0C6D3D',
     fontSize: normalize(16),
     marginTop: normalize(20),

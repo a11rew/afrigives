@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   h1: {
     color: '#0C6D3D',
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
     marginBottom: normalize(24),
     marginTop: normalize(32),
@@ -94,11 +94,11 @@ const styles = StyleSheet.create({
     marginBottom: normalize(40),
   },
   cardH1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
   },
   cardH2: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(14),
     color: '#C63636',
     marginTop: normalize(4),

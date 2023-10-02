@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: '#0C6D3D',
     fontSize: normalize(16),
     marginTop: normalize(20),
@@ -105,11 +105,11 @@ const styles = StyleSheet.create({
   },
   cardContainer: {},
   cardH1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
   },
   cardH2: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(14),
     opacity: 0.56,
     marginTop: normalize(6),

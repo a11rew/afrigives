@@ -25,7 +25,7 @@ const Notifications = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   heading: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: Colors.primary,
     fontSize: normalize(16),
     marginVertical: '4%',
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
     marginVertical: '4%',
   },
   cardTitle: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
     marginBottom: normalize(6),
   },
   cardState: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     opacity: 0.56,
   },
 });

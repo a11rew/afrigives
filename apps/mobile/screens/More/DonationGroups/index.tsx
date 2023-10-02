@@ -64,13 +64,13 @@ const styles = StyleSheet.create({
   },
   h1: {
     fontSize: normalize(16),
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     textAlign: 'center',
     marginBottom: normalize(12),
   },
   h2: {
     width: '70%',
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     opacity: 0.56,
     textAlign: 'center',
   },

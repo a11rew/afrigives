@@ -158,7 +158,7 @@ const Onboarding = (): JSX.Element => {
                     <Text
                       style={{
                         color: 'white',
-                        fontFamily: 'ps-bold',
+                        fontFamily: 'sg-bold',
                         fontSize: normalize(14),
                       }}
                     >
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   },
 
   logo: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(26),
     color: '#0C6D3D',
     textAlign: 'center',
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
   },
 
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     paddingHorizontal: normalize(80),
     textAlign: 'center',
     marginBottom: '15%',
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
   },
 
   loginText: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(14),
     marginTop: '12%',
   },

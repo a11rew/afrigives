@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   greetingText: {
     fontSize: normalize(16),
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
   },
   period: {
     flexDirection: 'row',
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   periodText: {
     fontSize: normalize(14),
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: 'rgba(0, 0, 0, 0.56)',
   },
 });

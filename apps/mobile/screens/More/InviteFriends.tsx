@@ -62,7 +62,7 @@ const InviteFriends = (): JSX.Element => {
 
 const styles = StyleSheet.create({
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: Colors.primary,
     fontSize: normalize(16),
     marginTop: normalize(20),
@@ -78,11 +78,11 @@ const styles = StyleSheet.create({
     marginRight: normalize(8),
   },
   bulletTextH1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
   },
   bulletTextH2: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     opacity: 0.56,
     marginTop: normalize(4),
   },
@@ -92,12 +92,12 @@ const styles = StyleSheet.create({
     marginTop: '7%',
   },
   qrText: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: Colors.primary,
     marginTop: '5%',
   },
   link: {
-    fontFamily: 'ps-medium',
+    fontFamily: 'sg-medium',
     fontSize: normalize(15),
     color: Colors.primary,
   },

@@ -43,14 +43,14 @@ const PromoFirst = (): JSX.Element => (
 
 const styles = StyleSheet.create({
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     paddingHorizontal: normalize(80),
     textAlign: 'center',
     marginBottom: '15%',
   },
 
   h2: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
     opacity: 0,
   },
@@ -87,14 +87,14 @@ const styles = StyleSheet.create({
 
   promoH1: {
     textAlign: 'center',
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     marginBottom: 2,
   },
 
   promoH2: {
     color: '#0C6D3D',
     textAlign: 'center',
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
   },
 });
 

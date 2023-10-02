@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: '3%',
   },
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: '#0C6D3D',
     fontSize: normalize(16),
     marginTop: normalize(20),
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     paddingVertical: normalize(24),
   },
   cardH1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
   },
 

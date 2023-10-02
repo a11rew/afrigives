@@ -101,16 +101,16 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: normalize(18),
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     marginRight: normalize(8),
   },
   heading: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
     marginBottom: normalize(8),
   },
   content: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     opacity: 0.56,
   },
   statBlock: {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   },
   emphasis: {
     color: Colors.primary,
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
     opacity: 1,
   },

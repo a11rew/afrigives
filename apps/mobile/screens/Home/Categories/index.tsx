@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import ScreenHeader from '@components/ScreenHeader';
 import SearchBar from '@components/SearchBar';
+import categories from '@data/categories';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { Text, View } from '@Themed';
 import normalize from '@utils/normalize';
-import { AntDesign } from '@expo/vector-icons';
+import { useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import categories from '@data/categories';
 
 const Categories = (): JSX.Element => {
   const [filter, setFilter] = useState('');
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: '3%',
   },
   h1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     color: '#0C6D3D',
     fontSize: normalize(16),
     marginTop: normalize(20),
@@ -101,11 +101,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   cardH1: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(16),
   },
   cardH2: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     fontSize: normalize(14),
     opacity: 0.56,
     // maxWidth: '90%',

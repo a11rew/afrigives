@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
   },
   error: {
-    fontFamily: 'ps-bold',
+    fontFamily: 'sg-bold',
     marginTop: -8,
     marginBottom: 4,
     paddingLeft: 4,
