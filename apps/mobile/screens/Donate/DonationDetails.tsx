@@ -5,20 +5,39 @@ import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
 import Colors from '@constants/Colors';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { setDetails } from '@store/donationSlice';
 import normalize from '@utils/normalize';
+import { type Dayjs } from 'dayjs';
 import { useState } from 'react';
 import {
   KeyboardAvoidingView,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import DonationDateModal from './DonationDateModal';
 
 const DonationDetails = (): JSX.Element => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [dateSelectorShow, setDateSelectorShow] = useState(false);
   const [homeAddress, setHomeAddress] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
-  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState<Dayjs>();
+
+  const isDisabled = !selectedDate || !homeAddress || !mobileNumber;
+
+  const onSubmit = () => {
+    dispatch(
+      setDetails({
+        homeAddress,
+        pickupDate: selectedDate?.toISOString() ?? null,
+        number: mobileNumber,
+      })
+    );
+    navigation.goBack();
+  };
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }}>
@@ -64,13 +83,16 @@ const DonationDetails = (): JSX.Element => {
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <CalendarIcon style={{ marginRight: normalize(16) }} />
               <Text style={{ fontFamily: 'ps-bold', fontSize: normalize(14) }}>
-                Choose cloth pickup date
+                {selectedDate?.format('dddd, MMMM D, YYYY') ??
+                  'Choose donation pickup date'}
               </Text>
             </View>
             <AntDesign name="arrowright" size={normalize(20)} />
           </TouchableOpacity>
         </View>
-        <PrimaryActionButton>Continue</PrimaryActionButton>
+        <PrimaryActionButton onPress={onSubmit} disabled={isDisabled}>
+          Continue
+        </PrimaryActionButton>
         <DonationDateModal
           dateSelectorShow={dateSelectorShow}
           setDateSelectorShow={setDateSelectorShow}

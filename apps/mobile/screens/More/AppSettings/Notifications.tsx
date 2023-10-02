@@ -1,9 +1,9 @@
-import { ScrollView, StyleSheet, Switch } from 'react-native';
+import ScreenHeader from '@components/ScreenHeader';
+import SwitchInput from '@components/SwitchInput';
 import { Text, View } from '@components/Themed';
 import Colors from '@constants/Colors';
 import normalize from '@utils/normalize';
-import ScreenHeader from '@components/ScreenHeader';
-import { useState } from 'react';
+import { ScrollView, StyleSheet } from 'react-native';
 
 const Notifications = (): JSX.Element => {
   return (
@@ -11,41 +11,14 @@ const Notifications = (): JSX.Element => {
       <ScreenHeader title="Settings" />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.heading}>Adjust app notification settings</Text>
-        <SwitchCard title="Week in review mail" on />
-        <SwitchCard title="Live tracking" />
-        <SwitchCard title="New campaign alerts" on />
-        <SwitchCard title="Invite-link accept" on />
-        <SwitchCard title="Donation request processed" on />
-        <SwitchCard title="Pick up day reminder" />
-        <SwitchCard title="Contact joined Afrigives" />
+        <SwitchInput title="Week in review mail" on />
+        <SwitchInput title="Live tracking" />
+        <SwitchInput title="New campaign alerts" on />
+        <SwitchInput title="Invite-link accept" on />
+        <SwitchInput title="Donation request processed" on />
+        <SwitchInput title="Pick up day reminder" />
+        <SwitchInput title="Contact joined Afrigives" />
       </ScrollView>
-    </View>
-  );
-};
-
-const SwitchCard = ({
-  title,
-  on,
-}: {
-  title: string;
-  on?: boolean;
-}): JSX.Element => {
-  const [isEnabled, setIsEnabled] = useState(on);
-  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
-
-  return (
-    <View style={styles.cardContainer}>
-      <View>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Text style={styles.cardState}>{isEnabled ? 'On' : 'Off'}</Text>
-      </View>
-      <Switch
-        trackColor={{ false: '#0C6D3D29', true: Colors.primary }}
-        thumbColor="#fff"
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
     </View>
   );
 };
