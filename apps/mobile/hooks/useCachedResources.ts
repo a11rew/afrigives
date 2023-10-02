@@ -1,4 +1,4 @@
-import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { AntDesign, Feather, FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
@@ -16,6 +16,7 @@ const useCachedResources = (): boolean => {
         await Font.loadAsync({
           ...FontAwesome.font,
           ...AntDesign.font,
+          ...Feather.font,
           'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
           ps: require('../assets/fonts/ProductSans/ProductSans-Regular.ttf'),
           'ps-italic': require('../assets/fonts/ProductSans/ProductSans-Italic.ttf'),
