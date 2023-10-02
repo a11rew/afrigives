@@ -44,17 +44,17 @@ const DonationStats = (): JSX.Element => {
           <View>
             <Text style={styles.heading}>Campaigns donated to</Text>
             <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-              <Text style={styles.emphasis}>30</Text>
+              <Text style={styles.emphasis}>0</Text>
               <Text style={styles.content}> campaigns</Text>
             </View>
           </View>
         </View>
         <View style={styles.statBlock}>
           <View>
-            <Text style={styles.heading}>Member since</Text>
+            <Text style={styles.heading}>Clothes donated</Text>
             <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-              <Text style={styles.emphasis}>22</Text>
-              <Text style={styles.content}> cloths donated</Text>
+              <Text style={styles.emphasis}>0</Text>
+              <Text style={styles.content}> clothes donated</Text>
             </View>
           </View>
         </View>
