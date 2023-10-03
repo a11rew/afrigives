@@ -32,7 +32,7 @@ const tokenCache = {
   },
 };
 
-const App = (): JSX.Element | null => {
+const App = () => {
   const isLoadingComplete = useCachedResources();
 
   // https://github.com/facebook/react-native/issues/12981
