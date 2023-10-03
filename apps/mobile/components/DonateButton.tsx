@@ -3,7 +3,13 @@ import { Text, View } from '@components/Themed';
 import Colors from '@constants/Colors';
 import normalize from '@utils/normalize';
 import React, { useState } from 'react';
-import { Modal, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Image,
+  Linking,
+  Modal,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 
 interface Props extends React.ComponentProps<typeof PrimaryActionButton> {
   children?: string;
@@ -34,73 +40,97 @@ const DonateButton = ({ children, ...rest }: Props) => {
         >
           <TouchableOpacity activeOpacity={1} style={styles.container}>
             <View>
-              <Text style={styles.h1}>Thank you for exploring Afrigives!</Text>
+              <View style={styles.imageContainer}>
+                <Image
+                  style={{
+                    resizeMode: 'contain',
+                    height: normalize(64),
+                    aspectRatio: 1,
+                  }}
+                  source={require('../assets/sprites/check.png')}
+                />
+              </View>
 
-              <ScrollView style={{ marginTop: '5%' }}>
-                <Text style={styles.text}>
-                  It's been a pleasure to have you here on this journey of
-                  discovery and potential change. Our aim is to transform this
-                  concept into a reality, but we need your support to make it
-                  happen.
-                </Text>
-                <Text
-                  style={[
-                    {
-                      marginVertical: normalize(12),
-                    },
-                    styles.h1,
-                  ]}
-                >
-                  How Can You Help?
-                </Text>
-                <Text style={styles.text}>
-                  If you represent an NGO (Non-Governmental Organization)
-                  dedicated to making a difference in Africa, we want to hear
-                  from you! Afrigives is eager to collaborate with organizations
-                  like yours to turn this innovative idea into a tool for
-                  change.
-                </Text>
-                <Text
-                  style={[
-                    {
-                      marginVertical: normalize(12),
-                    },
-                    styles.h1,
-                  ]}
-                >
-                  Get in Touch
-                </Text>
-                <Text style={styles.text}>
-                  Please reach out to us, and let's explore how we can work
-                  together to bring Afrigives to life and amplify your
-                  charitable efforts.
-                </Text>
-
-                <Text
-                  style={[
-                    styles.text,
-                    {
-                      marginTop: normalize(12),
-                    },
-                  ]}
-                >
-                  - Andrew and Eloke, Creators of Afrigives
-                </Text>
-              </ScrollView>
-            </View>
-
-            <View>
-              <PrimaryActionButton
-                onPress={closeModal}
+              <View
                 style={{
-                  marginBottom: normalize(12),
+                  paddingTop: '5%',
                 }}
               >
-                Reach out
-              </PrimaryActionButton>
-              <PrimaryActionButton onPress={closeModal}>
-                Ok, got it
-              </PrimaryActionButton>
+                <View style={{ alignItems: 'center' }}>
+                  <Text style={styles.heading}>
+                    Thanks for trying out the Afrigives app!
+                  </Text>
+                  <Text
+                    style={[
+                      styles.text,
+                      {
+                        marginTop: normalize(8),
+                        marginBottom: normalize(24),
+                      },
+                    ]}
+                  >
+                    This is a prototype however, and we are not accepting
+                    donations.
+                  </Text>
+                </View>
+
+                <PrimaryActionButton
+                  onPress={closeModal}
+                  style={{
+                    marginTop: normalize(12),
+                  }}
+                >
+                  Ok, got it
+                </PrimaryActionButton>
+              </View>
+            </View>
+
+            <View
+              style={{
+                borderBottomColor: '#3B3B3B29',
+                borderBottomWidth: 1,
+                marginVertical: '10%',
+              }}
+            />
+
+            <View
+              style={{
+                paddingBottom: '10%',
+              }}
+            >
+              <Text style={styles.text}>
+                We would love to work with a willing charity
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: normalize(2),
+                }}
+              >
+                <Text style={styles.text}> to bring this to life. </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    Linking.openURL(
+                      'mailto:andrewglago1@gmail.com?cc=ikiliagwueloke@gmail.com&subject=Reaching%20out%20about%20Afrigives'
+                    );
+                  }}
+                >
+                  <Text
+                    style={[
+                      {
+                        fontFamily: 'ps-bold',
+                        textAlign: 'center',
+                        color: Colors.primary,
+                        textDecorationLine: 'underline',
+                      },
+                    ]}
+                  >
+                    Contact us
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </TouchableOpacity>
         </TouchableOpacity>
@@ -122,11 +152,13 @@ const styles = StyleSheet.create({
   heading: {
     fontFamily: 'ps-bold',
     color: Colors.primary,
+    fontSize: normalize(16),
   },
   h1: {
     textAlign: 'center',
     fontFamily: 'ps-bold',
     fontSize: normalize(16),
+    marginVertical: 8,
   },
   h2: {
     textAlign: 'center',
@@ -137,7 +169,6 @@ const styles = StyleSheet.create({
   container: {
     elevation: 60,
     shadowColor: 'black',
-    height: '55%',
     backgroundColor: 'white',
     position: 'absolute',
     left: 0,
@@ -155,6 +186,12 @@ const styles = StyleSheet.create({
     paddingVertical: '3%',
   },
   text: {
+    textAlign: 'center',
     fontFamily: 'ps',
+  },
+  imageContainer: {
+    alignItems: 'center',
+    marginTop: 24,
+    lineHeight: 30,
   },
 });
