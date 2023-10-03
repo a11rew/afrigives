@@ -30,7 +30,7 @@ const defineConfig = (): ExpoConfig => ({
     bundleIdentifier: 'com.andrewglago.afrigives',
   },
   android: {
-    versionCode: 3,
+    versionCode: 4,
     adaptiveIcon: {
       foregroundImage: './assets/images/adaptive-icon.png',
       backgroundColor: '#376e3e',
