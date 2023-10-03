@@ -1,11 +1,10 @@
-import { StyleSheet, TextInput } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-
+import DonateButton from '@components/DonateButton';
 import ScreenHeader from '@components/ScreenHeader';
 import { Text, View } from '@components/Themed';
-import PrimaryActionButton from '@components/PrimaryActionButton';
-import normalize from '@utils/normalize';
 import Colors from '@constants/Colors';
+import { AntDesign } from '@expo/vector-icons';
+import normalize from '@utils/normalize';
+import { StyleSheet, TextInput } from 'react-native';
 
 const JoinDonationGroup = (): JSX.Element => {
   return (
@@ -31,7 +30,7 @@ const JoinDonationGroup = (): JSX.Element => {
             Join a group to donate together with friends and family
           </Text>
         </View>
-        <PrimaryActionButton>Create a group</PrimaryActionButton>
+        <DonateButton>Create a group</DonateButton>
       </View>
     </View>
   );

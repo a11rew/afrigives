@@ -28,7 +28,7 @@ const DonateButton = ({ children, ...rest }: Props) => {
         animationType="slide"
       >
         <TouchableOpacity
-          style={{ flex: 1 }}
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }}
           activeOpacity={1}
           onPress={closeModal}
         >
@@ -36,34 +36,68 @@ const DonateButton = ({ children, ...rest }: Props) => {
             <View>
               <Text style={styles.h1}>Thank you for exploring Afrigives!</Text>
 
-              <ScrollView>
+              <ScrollView style={{ marginTop: '5%' }}>
+                <Text style={styles.text}>
+                  It's been a pleasure to have you here on this journey of
+                  discovery and potential change. Our aim is to transform this
+                  concept into a reality, but we need your support to make it
+                  happen.
+                </Text>
                 <Text
-                  style={{
-                    fontFamily: 'ps-bold',
-                    marginTop: '5%',
-                  }}
+                  style={[
+                    {
+                      marginVertical: normalize(12),
+                    },
+                    styles.h1,
+                  ]}
                 >
-                  We appreciate your interest in our app, Afrigives. \n\nIt's
-                  been a pleasure to have you here on this journey of discovery
-                  and potential change. Our aim is to transform this concept
-                  into a reality, but we need your support to make it happen.
-                  How Can You Help? If you represent an NGO (Non-Governmental
-                  Organization) dedicated to making a difference in Africa, we
-                  want to hear from you! Afrigives is eager to collaborate with
-                  organizations like yours to turn this innovative idea into a
-                  powerful tool for change. Get in Touch Please reach out to us,
-                  and let's explore how we can work together to bring Afrigives
-                  to life and amplify your charitable efforts. Together, we can
-                  create a meaningful impact in communities across Africa.
-                  Contact Us: Email: [Your Contact Email] Phone: [Your Contact
-                  Phone Number] We sincerely thank you for your time and
-                  enthusiasm. Let's join forces to make a positive difference in
-                  the world. - Andrew and Eloke, Creators of Afrigives
+                  How Can You Help?
+                </Text>
+                <Text style={styles.text}>
+                  If you represent an NGO (Non-Governmental Organization)
+                  dedicated to making a difference in Africa, we want to hear
+                  from you! Afrigives is eager to collaborate with organizations
+                  like yours to turn this innovative idea into a tool for
+                  change.
+                </Text>
+                <Text
+                  style={[
+                    {
+                      marginVertical: normalize(12),
+                    },
+                    styles.h1,
+                  ]}
+                >
+                  Get in Touch
+                </Text>
+                <Text style={styles.text}>
+                  Please reach out to us, and let's explore how we can work
+                  together to bring Afrigives to life and amplify your
+                  charitable efforts.
+                </Text>
+
+                <Text
+                  style={[
+                    styles.text,
+                    {
+                      marginTop: normalize(12),
+                    },
+                  ]}
+                >
+                  - Andrew and Eloke, Creators of Afrigives
                 </Text>
               </ScrollView>
             </View>
 
             <View>
+              <PrimaryActionButton
+                onPress={closeModal}
+                style={{
+                  marginBottom: normalize(12),
+                }}
+              >
+                Reach out
+              </PrimaryActionButton>
               <PrimaryActionButton onPress={closeModal}>
                 Ok, got it
               </PrimaryActionButton>
@@ -119,5 +153,8 @@ const styles = StyleSheet.create({
     borderColor: '#CCC',
     justifyContent: 'space-between',
     paddingVertical: '3%',
+  },
+  text: {
+    fontFamily: 'ps',
   },
 });
