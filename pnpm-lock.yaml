@@ -84,7 +84,7 @@ importers:
         specifier: ~8.6.3
         version: 8.6.3(expo@46.0.21)
       expo-auth-session:
-        specifier: ^3.7.4
+        specifier: 3.7.4
         version: 3.7.4(expo-random@12.3.0)(expo@46.0.21)
       expo-build-properties:
         specifier: ^0.3.0
