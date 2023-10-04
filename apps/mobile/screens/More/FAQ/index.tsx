@@ -1,9 +1,9 @@
+import ScreenHeader from '@components/ScreenHeader';
+import { Text, View } from '@components/Themed';
+import { AntDesign } from '@expo/vector-icons';
+import normalize from '@utils/normalize';
 import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { View, Text } from '@components/Themed';
-import ScreenHeader from '@components/ScreenHeader';
-import normalize from '@utils/normalize';
 
 const FAQ = (): JSX.Element => {
   return (
@@ -11,32 +11,44 @@ const FAQ = (): JSX.Element => {
       <ScreenHeader title="FAQ" />
       <ScrollView style={styles.container}>
         <Disclosure title="What is Afrigives">
-          Afrigives allows you to blah blah
+          Afrigives is a mobile platform that allows for donation of clothes of
+          cash equivalents from anywhere in the world to Africa. Afrigives was
+          designed during the COVID-19 worldwide lockdown.
         </Disclosure>
         <Disclosure title="How do cloth donations work">
-          Afrigives allows you to blah blah
+          Afrigives allows users to donate clothes in 3 easy steps. An image
+          upload of the item(s) followed by details for pickup and options to
+          personalize donation. There is also the option to donate the cash
+          equivalent.
         </Disclosure>
         <Disclosure title="Who are Afri-Agents?">
-          Afrigives allows you to blah blah
+          Afri-Agents are NGOs that partner with Afrigives worldwide and in
+          Africa to pick up and run logistics that ensure donations are
+          fulfilled.
         </Disclosure>
         <Disclosure title="What are Donation Groups">
-          Afrigives allows you to blah blah
-        </Disclosure>
-        <Disclosure title="Invite link expired?">
-          Afrigives allows you to blah blah
+          Donation Groups on Afrigives allows for users to donate in groups with
+          family and friends. User can create or join a donation group and
+          donate clothes or cash equivalent towards a set goal. Donation links
+          can also be shared to invite others to join in and donate on
+          Afrigives.
         </Disclosure>
         <Disclosure title="What can I donate?">
-          Afrigives allows you to blah blah
+          Afrigives is primarily accepts donations in clothes to help meet the
+          SDG goals 1 & 3 in Africa.
         </Disclosure>
       </ScrollView>
     </View>
   );
 };
 
-const Disclosure: React.FC<{ title: string }> = ({
+const Disclosure = ({
   title,
   children,
-}): JSX.Element => {
+}: {
+  title: string;
+  children: string;
+}) => {
   const [open, setOpen] = useState(false);
 
   return (

@@ -33,7 +33,7 @@ const DonationDateModal: React.FC<Props> = ({
       animationType="slide"
     >
       <TouchableOpacity
-        style={{ flex: 1 }}
+        style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }}
         activeOpacity={1}
         onPress={closeModal}
       >
