@@ -12,7 +12,11 @@
         "buildType": "apk"
       }
     },
-    "production": {}
+    "production": {
+      "ios": {
+        "image": "macos-monterey-12.6-xcode-14.1"
+      }
+    }
   },
   "submit": {
     "production": {}
